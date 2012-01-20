@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.mule.tooling.core.contribution">
+      <externalContribution
+            contributionLibPathInMule="/plugins"
+            contributionLibs="mule-debugger-3.2.0.zip"
+            contributionNamespace="http://www.mulesoft.org/schema/mule/muledebugger"
+            contributionNamespaceFile="http://www.mulesoft.org/schema/mule/muledebugger/3.2.0/mule-muledebugger.xsd"
+            contributionNamespaceId="muledebugger"
+            contributionNamespacePrefix="muledebugger"
+            contributionType="component"
+            path="debugger.xml"
+            version="3.2.0">
+      </externalContribution>
+   </extension>
+
+</plugin>
