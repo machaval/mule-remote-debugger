@@ -29,7 +29,7 @@ public class RemoteDebuggerService extends Thread
 
     public void run() {
         log.log(Level.INFO, "Server starting at " + serverPort);
-        openServerSocket();
+        createServerSocket();
         try {
             while (!isStopped()) {
                 Socket clientSocket;
@@ -75,7 +75,7 @@ public class RemoteDebuggerService extends Thread
         }
     }
 
-    private void openServerSocket() {
+    private void createServerSocket() {
         try {
             this.serverSocket = new ServerSocket(this.serverPort);
         } catch (IOException e) {

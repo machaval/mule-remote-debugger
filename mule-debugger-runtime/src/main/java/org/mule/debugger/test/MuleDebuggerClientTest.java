@@ -13,7 +13,7 @@ import org.mule.debugger.response.DebuggerResponse;
 public class MuleDebuggerClientTest {
     public static void main(String[] args) {
         DebuggerConnection localhost = new DebuggerConnection("localhost", 1234);
-        DebuggerResponse debuggerResponse = localhost.connect();
-        System.out.println("debuggerResponse = " + debuggerResponse);
+     //   DebuggerResponse debuggerResponse = localhost.connect();
+       // System.out.println("debuggerResponse = " + debuggerResponse);
     }
 }
