@@ -14,16 +14,20 @@ import java.util.Map;
 
 public class ServerRunnerTest {
     public static void main(String[] args) {
-        Map<String,String> test = new HashMap<String, String>();
-        test.put("hola","mundo");
+
         MuleDebuggerConnector muleDebuggerConnector = new MuleDebuggerConnector();
         muleDebuggerConnector.setPortNumber(1234);
         muleDebuggerConnector.initialize();
 
-        while (true){
+        long i = 0;
+        while (i < 100000L) {
             try {
+                System.out.println("Debuging message I :" + i);
+                Map<String, String> test = new HashMap<String, String>();
+                test.put("hola", "mundo" + i);
                 muleDebuggerConnector.debug(test);
                 Thread.sleep(20000L);
+                i++;
             } catch (InterruptedException e) {
 
             }

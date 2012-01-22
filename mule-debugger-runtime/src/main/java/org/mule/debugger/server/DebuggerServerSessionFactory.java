@@ -7,23 +7,19 @@
  */
 package org.mule.debugger.server;
 
-import org.mule.debugger.IDebuggerProtocol;
+import org.mule.debugger.transport.IServerDebuggerProtocol;
 import org.mule.debugger.MuleDebuggingMessage;
-import org.mule.debugger.server.DebuggerServerSession;
-
-import java.io.InputStream;
-import java.io.OutputStream;
 
 public class DebuggerServerSessionFactory {
 
-    private IDebuggerProtocol protocol;
+    private IServerDebuggerProtocol protocolServer;
 
-    public DebuggerServerSessionFactory(IDebuggerProtocol protocol) {
+    public DebuggerServerSessionFactory(IServerDebuggerProtocol protocolServer) {
 
-        this.protocol = protocol;
+        this.protocolServer = protocolServer;
     }
 
     public DebuggerServerSession createNewSession(MuleDebuggingMessage message) {
-        return new DebuggerServerSession(protocol, message);
+        return new DebuggerServerSession(protocolServer, message);
     }
 }

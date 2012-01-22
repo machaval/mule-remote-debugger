@@ -7,13 +7,15 @@
  */
 package org.mule.debugger.response;
 
-public class ScriptEvaluationInfo {
+import java.io.Serializable;
+
+public class ScriptResultInfo implements Serializable{
 
     private String jsonResult;
     private String className;
     private String toStringResult;
 
-    public ScriptEvaluationInfo(String jsonResult, String className, String toStringResult) {
+    public ScriptResultInfo(String jsonResult, String className, String toStringResult) {
         this.jsonResult = jsonResult;
         this.className = className;
         this.toStringResult = toStringResult;
@@ -29,5 +31,14 @@ public class ScriptEvaluationInfo {
 
     public String getToStringResult() {
         return toStringResult;
+    }
+
+    @Override
+    public String toString() {
+        return "ScriptResultInfo{" +
+                "jsonResult='" + jsonResult + '\'' +
+                ", className='" + className + '\'' +
+                ", toStringResult='" + toStringResult + '\'' +
+                '}';
     }
 }

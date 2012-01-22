@@ -10,20 +10,19 @@ package org.mule.debugger.response;
 import org.mule.debugger.client.IDebuggerResponseCallback;
 import org.mule.debugger.commands.ExecuteScriptCommandImpl;
 
-public class ScriptEvaluationResponse extends DebuggerResponse {
+public class ExecuteScriptResponse extends DebuggerResponse {
 
-    private ScriptEvaluationInfo scriptEvaluationInfo;
+    private ScriptResultInfo scriptEvaluationInfo;
 
-    public ScriptEvaluationResponse(ScriptEvaluationInfo scriptEvaluationInfo) {
+    public ExecuteScriptResponse(ScriptResultInfo scriptEvaluationInfo) {
         super(ExecuteScriptCommandImpl.SCRIPT);
         this.scriptEvaluationInfo = scriptEvaluationInfo;
     }
 
-    public ScriptEvaluationInfo getScriptEvaluationInfo() {
+    public ScriptResultInfo getScriptEvaluationInfo() {
         return scriptEvaluationInfo;
     }
 
-    @Override
     public void callCallback(IDebuggerResponseCallback callback) {
         callback.onScriptEvaluation(scriptEvaluationInfo);
     }

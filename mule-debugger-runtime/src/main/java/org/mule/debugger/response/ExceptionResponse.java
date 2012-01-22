@@ -25,7 +25,6 @@ public class ExceptionResponse extends DebuggerResponse {
     }
 
 
-    @Override
     public void callCallback(IDebuggerResponseCallback callback) {
         callback.onException(getException());
     }

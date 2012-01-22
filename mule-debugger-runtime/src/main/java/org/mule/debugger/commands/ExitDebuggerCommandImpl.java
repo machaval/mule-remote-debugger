@@ -7,15 +7,15 @@
  */
 package org.mule.debugger.commands;
 
-import org.mule.debugger.response.DebuggerResponse;
 import org.mule.debugger.response.ExitDebuggerResponse;
+import org.mule.debugger.response.IDebuggerResponse;
 
-public class ExitCommandImpl extends AbstractCommand
+public class ExitDebuggerCommandImpl extends AbstractCommand
 {
 
     public static final String EXIT = "exit";
 
-    public DebuggerResponse execute()
+    public IDebuggerResponse execute()
     {
         getHandler().stop();
         getCurrentSession().stop();

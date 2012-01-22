@@ -2,9 +2,9 @@ package org.mule.debugger.commands;
 
 import groovy.lang.GroovyShell;
 import groovy.lang.Script;
-import org.mule.debugger.response.DebuggerResponse;
-import org.mule.debugger.response.ScriptEvaluationInfo;
-import org.mule.debugger.response.ScriptEvaluationResponse;
+import org.mule.debugger.response.IDebuggerResponse;
+import org.mule.debugger.response.ScriptResultInfo;
+import org.mule.debugger.response.ExecuteScriptResponse;
 
 public class ExecuteScriptCommandImpl extends AbstractCommand {
 
@@ -16,7 +16,7 @@ public class ExecuteScriptCommandImpl extends AbstractCommand {
         this.script = script;
     }
 
-    public DebuggerResponse execute() {
+    public IDebuggerResponse execute() {
 
         GroovyShell shell = new GroovyShell();
         Script gscript = shell.parse(script);
@@ -24,10 +24,10 @@ public class ExecuteScriptCommandImpl extends AbstractCommand {
         gscript.setProperty("inboundheaders", getCurrentSession().getPayload().getInboundHeaders());
 
         Object result = gscript.run();
-        ScriptEvaluationInfo info = new ScriptEvaluationInfo(objectToString(result),
+        ScriptResultInfo info = new ScriptResultInfo(objectToString(result),
                 String.valueOf(result.getClass()),
                 String.valueOf(result));
-        return new ScriptEvaluationResponse(info);
+        return new ExecuteScriptResponse(info);
 
     }
 

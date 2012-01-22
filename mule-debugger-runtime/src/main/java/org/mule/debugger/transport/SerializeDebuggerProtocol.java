@@ -5,17 +5,16 @@
  * (or other master license agreement) separately entered into in writing between you and
  * MuleSoft. If such an agreement is not in place, you may not use the software.
  */
-package org.mule.debugger;
+package org.mule.debugger.transport;
 
 import org.mule.debugger.request.ExitDebuggerRequest;
 import org.mule.debugger.request.IDebuggerRequest;
-import org.mule.debugger.response.DebuggerResponse;
-import org.mule.debugger.response.ErrorResponse;
 import org.mule.debugger.response.ExitDebuggerResponse;
+import org.mule.debugger.response.IDebuggerResponse;
 
 import java.io.*;
 
-public class SerializeDebuggerProtocol implements IDebuggerProtocol {
+public class SerializeDebuggerProtocol implements IClientDebuggerProtocol, IServerDebuggerProtocol {
 
     private InputStream input;
     private OutputStream output;
@@ -27,22 +26,22 @@ public class SerializeDebuggerProtocol implements IDebuggerProtocol {
 
     public void sendRequest(IDebuggerRequest request) {
 
-        ObjectOutputStream output = null;
+        ObjectOutputStream output;
         try {
             output = new ObjectOutputStream(this.output);
             output.writeObject(request);
             output.flush();
         } catch (IOException e) {
-            e.printStackTrace();
+// we should throw an exception so it close
         }
 
 
     }
 
-    public DebuggerResponse getResponse() {
+    public IDebuggerResponse getResponse() {
         try {
             ObjectInputStream input = new ObjectInputStream(this.input);
-            return (DebuggerResponse) input.readObject();
+            return (IDebuggerResponse) input.readObject();
         } catch (IOException e) {
             //Server disconnect unfriendly
             return new ExitDebuggerResponse();
@@ -65,14 +64,14 @@ public class SerializeDebuggerProtocol implements IDebuggerProtocol {
 
     }
 
-    public void sendResponse(DebuggerResponse response) {
-        ObjectOutputStream output = null;
+    public void sendResponse(IDebuggerResponse response) {
+        ObjectOutputStream output;
         try {
             output = new ObjectOutputStream(this.output);
             output.writeObject(response);
             output.flush();
         } catch (IOException e) {
-            e.printStackTrace();
+            //
         }
 
     }

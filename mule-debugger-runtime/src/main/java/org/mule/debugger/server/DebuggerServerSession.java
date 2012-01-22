@@ -1,37 +1,37 @@
 package org.mule.debugger.server;
 
 import com.google.gson.Gson;
-import org.mule.debugger.IDebuggerProtocol;
+import org.mule.debugger.response.IDebuggerResponse;
+import org.mule.debugger.transport.IServerDebuggerProtocol;
 import org.mule.debugger.MuleDebuggingMessage;
 import org.mule.debugger.commands.ICommand;
 import org.mule.debugger.request.IDebuggerRequest;
-import org.mule.debugger.response.DebuggerResponse;
 import org.mule.debugger.response.MuleMessageArrivedResponse;
 import org.mule.debugger.response.MuleMessageInfo;
 
 import java.util.logging.Logger;
 
 public class DebuggerServerSession {
-    private IDebuggerProtocol protocol;
+    private IServerDebuggerProtocol protocolServer;
 
     private MuleDebuggingMessage payload;
-    private boolean keepOnDebugging = true;
+    private volatile boolean keepOnDebugging = true;
 
 
     private static Logger log = Logger.getLogger(DebuggerServerSession.class.getName());
 
-    public DebuggerServerSession(IDebuggerProtocol protocol, MuleDebuggingMessage payload) {
-        this.protocol = protocol;
+    public DebuggerServerSession(IServerDebuggerProtocol protocolServer, MuleDebuggingMessage payload) {
+        this.protocolServer = protocolServer;
         this.payload = payload;
 
     }
 
-    public void start(DebuggerHandler debuggerHandler) {
+    public void debugMessage(DebuggerHandler debuggerHandler) {
 
-        DebuggerResponse messageToSend = new MuleMessageArrivedResponse(new MuleMessageInfo(objectToString(payload), String.valueOf(payload.getClass()), String.valueOf(payload)));
+        IDebuggerResponse messageToSend = new MuleMessageArrivedResponse(new MuleMessageInfo(objectToString(payload), String.valueOf(payload.getClass()), String.valueOf(payload)));
         while (keepOnDebugging) {
-            protocol.sendResponse(messageToSend);
-            IDebuggerRequest message = protocol.getRequest();
+            protocolServer.sendResponse(messageToSend);
+            IDebuggerRequest message = protocolServer.getRequest();
             messageToSend = execute(message, debuggerHandler);
         }
     }
@@ -46,7 +46,7 @@ public class DebuggerServerSession {
         keepOnDebugging = false;
     }
 
-    private DebuggerResponse execute(IDebuggerRequest message, DebuggerHandler debuggerHandler) {
+    private IDebuggerResponse execute(IDebuggerRequest message, DebuggerHandler debuggerHandler) {
         ICommand command = message.createCommand();
         command.setHandler(debuggerHandler);
         command.setCurrentSession(this);

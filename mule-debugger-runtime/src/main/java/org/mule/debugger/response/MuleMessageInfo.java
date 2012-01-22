@@ -7,20 +7,22 @@
  */
 package org.mule.debugger.response;
 
-public class MuleMessageInfo {
-    private String jsonPaylod;
+import java.io.Serializable;
+
+public class MuleMessageInfo implements Serializable{
+    private String jsonPayload;
     private String payloadClassName;
     private String toStringPayload;
 
-    public MuleMessageInfo(String jsonPaylod, String payloadClassName, String toStringPayload) {
-        this.jsonPaylod = jsonPaylod;
+    public MuleMessageInfo(String jsonPayload, String payloadClassName, String toStringPayload) {
+        this.jsonPayload = jsonPayload;
         this.payloadClassName = payloadClassName;
         this.toStringPayload = toStringPayload;
 
     }
 
-    public String getJsonPaylod() {
-        return jsonPaylod;
+    public String getJsonPayload() {
+        return jsonPayload;
     }
 
     public String getPayloadClassName() {

@@ -17,7 +17,6 @@ public class ErrorResponse extends DebuggerResponse {
         this.errorMessage = errorMessage;
     }
 
-    @Override
     public void callCallback(IDebuggerResponseCallback callback) {
         callback.onError(errorMessage);
     }

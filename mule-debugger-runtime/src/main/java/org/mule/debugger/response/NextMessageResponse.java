@@ -15,7 +15,6 @@ public class NextMessageResponse extends DebuggerResponse{
         super(NextMessageCommandImpl.NEXT);
     }
 
-    @Override
     public void callCallback(IDebuggerResponseCallback callback) {
         callback.onWaitingForNextMessage();
     }

@@ -23,7 +23,6 @@ public class MuleMessageArrivedResponse extends DebuggerResponse {
         return messageInfo;
     }
 
-    @Override
     public void callCallback(IDebuggerResponseCallback callback) {
         callback.onMuleMessageArrived(messageInfo);
     }

@@ -7,13 +7,49 @@
  */
 package org.mule.debugger.test;
 
+import org.mule.debugger.client.DebuggerClient;
 import org.mule.debugger.client.DebuggerConnection;
+import org.mule.debugger.client.IDebuggerResponseCallback;
+import org.mule.debugger.exception.RemoteDebugException;
 import org.mule.debugger.response.DebuggerResponse;
+import org.mule.debugger.response.MuleMessageInfo;
+import org.mule.debugger.response.ScriptResultInfo;
+
+import java.io.IOException;
 
 public class MuleDebuggerClientTest {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         DebuggerConnection localhost = new DebuggerConnection("localhost", 1234);
-     //   DebuggerResponse debuggerResponse = localhost.connect();
-       // System.out.println("debuggerResponse = " + debuggerResponse);
+        final DebuggerClient debuggerClient = new DebuggerClient(localhost);
+        debuggerClient.start(new IDebuggerResponseCallback() {
+            public void onMuleMessageArrived(MuleMessageInfo muleMessageInfo) {
+                System.out.println("MuleDebuggerClientTest.onMuleMessageArrived (muleMessage: "+muleMessageInfo + ")");
+            }
+
+            public void onScriptEvaluation(ScriptResultInfo info) {
+                System.out.println("MuleDebuggerClientTest.onScriptEvaluation( info : " + info + ")");
+            }
+
+            public void onConnected() {
+                System.out.println("MuleDebuggerClientTest.onConnected");
+            }
+
+            public void onExit() {
+                System.out.println("MuleDebuggerClientTest.onExit");
+               debuggerClient.disconnect();
+            }
+
+            public void onError(String error) {
+                System.out.println("MuleDebuggerClientTest.onError(error : " + error + ")");
+            }
+
+            public void onException(RemoteDebugException exception) {
+                System.out.println("MuleDebuggerClientTest.onException");
+            }
+
+            public void onWaitingForNextMessage() {
+                System.out.println("MuleDebuggerClientTest.onWaitingForNextMessage");
+            }
+        });
     }
 }

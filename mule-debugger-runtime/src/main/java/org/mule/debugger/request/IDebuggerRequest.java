@@ -2,7 +2,9 @@ package org.mule.debugger.request;
 
 import org.mule.debugger.commands.ICommand;
 
-public interface IDebuggerRequest
+import java.io.Serializable;
+
+public interface IDebuggerRequest  extends Serializable
 {
 
    ICommand createCommand();

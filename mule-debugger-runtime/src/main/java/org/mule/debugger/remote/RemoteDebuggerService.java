@@ -11,13 +11,12 @@ import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class RemoteDebuggerService extends Thread
-{
+public class RemoteDebuggerService extends Thread {
 
     private int serverPort = 8080;
     private DebuggerHandler handler;
     private ServerSocket serverSocket = null;
-    private boolean isStopped = false;
+    private volatile boolean isStopped = false;
     private ExecutorService threadPool = Executors.newFixedThreadPool(1);
 
     private static Logger log = Logger.getLogger(RemoteDebuggerService.class.getName());
@@ -35,7 +34,7 @@ public class RemoteDebuggerService extends Thread
                 Socket clientSocket;
                 try {
                     clientSocket = this.serverSocket.accept();
-                    this.threadPool.execute(new RemoteDebuggerSession(clientSocket, "Console Session",handler));
+                    this.threadPool.execute(new RemoteDebuggerSession(clientSocket, "Console Session", handler));
                 } catch (IOException e) {
                     if (!isStopped()) {
                         throw new RuntimeException("Error accepting client connection", e);
@@ -61,13 +60,13 @@ public class RemoteDebuggerService extends Thread
         return this.isStopped;
     }
 
-    public synchronized void startService(){
+    public void startService() {
         start();
     }
 
-    public synchronized void stopService() {
-        this.isStopped = true;
+    public void stopService() {
         try {
+            this.isStopped = true;
             this.threadPool.shutdownNow();
             this.serverSocket.close();
         } catch (IOException e) {

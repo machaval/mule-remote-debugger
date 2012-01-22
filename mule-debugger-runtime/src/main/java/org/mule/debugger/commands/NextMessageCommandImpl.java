@@ -7,14 +7,14 @@
  */
 package org.mule.debugger.commands;
 
-import org.mule.debugger.response.DebuggerResponse;
+import org.mule.debugger.response.IDebuggerResponse;
 import org.mule.debugger.response.NextMessageResponse;
 
 public class NextMessageCommandImpl extends AbstractCommand {
 
     public static final String NEXT = "next";
 
-    public DebuggerResponse execute() {
+    public IDebuggerResponse execute() {
         getCurrentSession().stop();
         return new NextMessageResponse();
     }

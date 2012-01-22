@@ -9,13 +9,13 @@ package org.mule.debugger.client;
 
 import org.mule.debugger.exception.RemoteDebugException;
 import org.mule.debugger.response.MuleMessageInfo;
-import org.mule.debugger.response.ScriptEvaluationInfo;
+import org.mule.debugger.response.ScriptResultInfo;
 
 public interface IDebuggerResponseCallback {
 
     void onMuleMessageArrived(MuleMessageInfo muleMessageInfo);
 
-    void onScriptEvaluation(ScriptEvaluationInfo info);
+    void onScriptEvaluation(ScriptResultInfo info);
 
     void onConnected();
 

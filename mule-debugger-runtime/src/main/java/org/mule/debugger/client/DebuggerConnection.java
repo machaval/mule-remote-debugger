@@ -7,9 +7,12 @@
  */
 package org.mule.debugger.client;
 
+import org.mule.debugger.transport.IClientDebuggerProtocol;
+import org.mule.debugger.transport.SerializeDebuggerProtocol;
+
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.Socket;
 
 public class DebuggerConnection {
@@ -17,8 +20,8 @@ public class DebuggerConnection {
     private String hostName;
     private int port;
     private Socket client;
-    private InputStreamReader inputStream;
-    private OutputStreamWriter outputStream;
+    private InputStream inputStream;
+    private OutputStream outputStream;
 
 
     public DebuggerConnection(String hostName, int port) {
@@ -27,21 +30,21 @@ public class DebuggerConnection {
 
     }
 
-    public void connect() {
+    public boolean connect() throws IOException {
 
-
-        try {
-            if (!isConnected()) {
-                client = new Socket(hostName, port);
-                inputStream = new InputStreamReader(client.getInputStream());
-                outputStream = new OutputStreamWriter(client.getOutputStream());
-            }
-
-        } catch (IOException e) {
-
+        if (!isConnected()) {
+            client = new Socket(hostName, port);
+            inputStream = client.getInputStream();
+            outputStream = client.getOutputStream();
+            return true;
         }
 
+        return false;
 
+    }
+
+    public IClientDebuggerProtocol getProtocol() {
+        return new SerializeDebuggerProtocol(inputStream, outputStream);
     }
 
 
@@ -58,8 +61,8 @@ public class DebuggerConnection {
         }
     }
 
-    private boolean isConnected() {
-        return !client.isClosed();
+    public boolean isConnected() {
+        return client != null && !client.isClosed();
     }
 
 }

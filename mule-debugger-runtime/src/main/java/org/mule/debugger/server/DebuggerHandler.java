@@ -1,16 +1,18 @@
 package org.mule.debugger.server;
 
 import org.mule.debugger.MuleDebuggingMessage;
-import org.mule.debugger.server.DebuggerServerSessionFactory;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class DebuggerHandler {
 
-    private final Object lock = new Object();
+    private final Object semaphore = new Object();
+    private final ReentrantLock lock = new ReentrantLock();
     private volatile boolean keepOnRunning = false;
-    private final List<MuleDebuggingMessage> payloads = new ArrayList<MuleDebuggingMessage>();
+    private final BlockingQueue<MuleDebuggingMessage> payloads = new LinkedBlockingQueue<MuleDebuggingMessage>();
+
     private DebuggerServerSessionFactory sessionFactory;
 
     public DebuggerServerSessionFactory getSessionFactory() {
@@ -22,18 +24,18 @@ public class DebuggerHandler {
     }
 
     public void debug(final MuleDebuggingMessage payload) {
-        synchronized (payloads) {
 
-            this.payloads.add(payload);
+        this.payloads.add(payload);
+        synchronized (payloads) {
             this.payloads.notifyAll();
         }
 
-        while (isMessageProcessed(payload)) {
-            synchronized (lock) {
+        while (isMessageProcessed(payload) && isRunning()) {
+            synchronized (semaphore) {
                 try {
-                    lock.wait();
+                    semaphore.wait();
                 } catch (InterruptedException e) {
-
+                    break;
                 }
             }
         }
@@ -42,62 +44,62 @@ public class DebuggerHandler {
 
 
     public void start() {
-        setRunning();
-
         while (isRunning()) {
-
-            while (hasMorePayloads()) {
-                final MuleDebuggingMessage message = popMessage();
-                sessionFactory.createNewSession(message).start(this);
-                synchronized (lock) {
-                    lock.notifyAll();
-                }
-            }
+            final MuleDebuggingMessage message = popMessage();
             if (isRunning()) {
-                waitForPayload();
+                sessionFactory.createNewSession(message).debugMessage(this);
             }
-
+            synchronized (semaphore) {
+                semaphore.notifyAll();
+            }
         }
 
     }
 
     private boolean isMessageProcessed(MuleDebuggingMessage payload) {
-        synchronized (payloads) {
-            return payloads.contains(payload);
-        }
+        return payloads.contains(payload);
     }
 
     private MuleDebuggingMessage popMessage() {
-        synchronized (payloads) {
-            return payloads.remove(payloads.size() - 1);
+        try {
+            return payloads.take();
+        } catch (InterruptedException e) {
+            stop();
+            return null;
         }
+
     }
 
-    private boolean hasMorePayloads() {
-        synchronized (payloads) {
-            return !payloads.isEmpty();
-        }
-    }
 
-
-    private void waitForPayload() {
-        synchronized (payloads) {
-            try {
-                while (!hasMorePayloads()) {
-                    payloads.wait();
-                }
-            } catch (InterruptedException e) {
-
-            }
-        }
-    }
-
-    public synchronized boolean isRunning() {
+    public boolean isRunning() {
         return keepOnRunning;
+    }
+
+    public boolean lockForStart() {
+        lock.lock();
+        try {
+            if (!isRunning()) {
+                setRunning();
+                return true;
+            } else {
+                return false;
+            }
+        } finally {
+            lock.unlock();
+        }
     }
 
     public void stop() {
         keepOnRunning = false;
+        //notify all payloads waiting to be debug
+        synchronized (semaphore) {
+            semaphore.notifyAll();
+        }
+
+        //notify debugger thread if it is waiting for a message
+        synchronized (payloads) {
+            payloads.notifyAll();
+        }
     }
 
     private void setRunning() {
