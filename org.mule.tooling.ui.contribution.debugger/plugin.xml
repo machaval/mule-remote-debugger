@@ -15,5 +15,17 @@
             version="3.2.0">
       </externalContribution>
    </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            allowMultiple="false"
+            category="org.mule.tooling.ui.views"
+            class="org.mule.tooling.ui.contribution.debugger.ui.MuleDebuggerView"
+            icon="icons/small/debug.png"
+            id="org.mule.tooling.ui.contribution.debugger.view"
+            name="Mule Debugger View"
+            restorable="true">
+      </view>
+   </extension>
 
 </plugin>

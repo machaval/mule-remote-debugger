@@ -1,14 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <artifactId>parent</artifactId>
-    <groupId>org.mule.tooling.debugger</groupId>
-    <version>1.0.0-SNAPSHOT</version>
-  </parent>
-  <groupId>org.mule.tooling</groupId>
-  <artifactId>org.mule.tooling.ui.contribution.debugger</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
-  <packaging>eclipse-plugin</packaging>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>parent</artifactId>
+		<groupId>org.mule.tooling.debugger</groupId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+	<properties>
+		<home.dir>.</home.dir>
+		<lib.dir>lib</lib.dir>
+	</properties>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-runtime</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${home.dir}</outputDirectory>
+							<overWriteReleases>true</overWriteReleases>
+							<overWriteSnapshots>true</overWriteSnapshots>
+							<overWriteIfNewer>true</overWriteIfNewer>
+							<stripVersion>true</stripVersion>
+							<artifactItems>
+								<artifactItem>
+									<groupId>org.mule.debugger</groupId>
+									<artifactId>mule-debugger-runtime</artifactId>
+									<type>zip</type>
+									<outputDirectory>${home.dir}</outputDirectory>
+								</artifactItem>
+								<artifactItem>
+									<groupId>org.mule.debugger</groupId>
+									<artifactId>mule-debugger-runtime</artifactId>
+									<type>zip</type>
+									<outputDirectory>${lib.dir}</outputDirectory>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+
+	<groupId>org.mule.tooling</groupId>
+	<artifactId>org.mule.tooling.ui.contribution.debugger</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>eclipse-plugin</packaging>
 </project>
