@@ -1,8 +1,7 @@
 package org.mule.debugger.server;
 
-import org.mule.debugger.MuleDebuggingMessage;
+import org.mule.debugger.MuleDebuggingContext;
 
-import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -11,7 +10,7 @@ public class DebuggerHandler {
     private final Object semaphore = new Object();
     private final ReentrantLock lock = new ReentrantLock();
     private volatile boolean keepOnRunning = false;
-    private final BlockingQueue<MuleDebuggingMessage> payloads = new LinkedBlockingQueue<MuleDebuggingMessage>();
+    private final LinkedBlockingQueue<MuleDebuggingContext> payloads = new LinkedBlockingQueue<MuleDebuggingContext>();
 
     private DebuggerServerSessionFactory sessionFactory;
 
@@ -23,29 +22,26 @@ public class DebuggerHandler {
         this.sessionFactory = sessionFactory;
     }
 
-    public void debug(final MuleDebuggingMessage payload) {
+    public void debug(final MuleDebuggingContext payload) {
+        if (isRunning()) {
+            this.payloads.add(payload);
 
-        this.payloads.add(payload);
-        synchronized (payloads) {
-            this.payloads.notifyAll();
-        }
-
-        while (isMessageProcessed(payload) && isRunning()) {
-            synchronized (semaphore) {
-                try {
-                    semaphore.wait();
-                } catch (InterruptedException e) {
-                    break;
+            do {
+                synchronized (semaphore) {
+                    try {
+                        semaphore.wait();
+                    } catch (InterruptedException e) {
+                        break;
+                    }
                 }
-            }
+            } while (isMessageProcessed(payload) && isRunning());
         }
-
     }
 
 
     public void start() {
         while (isRunning()) {
-            final MuleDebuggingMessage message = popMessage();
+            final MuleDebuggingContext message = popMessage();
             if (isRunning()) {
                 sessionFactory.createNewSession(message).debugMessage(this);
             }
@@ -56,11 +52,11 @@ public class DebuggerHandler {
 
     }
 
-    private boolean isMessageProcessed(MuleDebuggingMessage payload) {
+    private boolean isMessageProcessed(MuleDebuggingContext payload) {
         return payloads.contains(payload);
     }
 
-    private MuleDebuggingMessage popMessage() {
+    private MuleDebuggingContext popMessage() {
         try {
             return payloads.take();
         } catch (InterruptedException e) {
@@ -96,10 +92,7 @@ public class DebuggerHandler {
             semaphore.notifyAll();
         }
 
-        //notify debugger thread if it is waiting for a message
-        synchronized (payloads) {
-            payloads.notifyAll();
-        }
+
     }
 
     private void setRunning() {

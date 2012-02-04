@@ -3,7 +3,7 @@ package org.mule.debugger.server;
 import com.google.gson.Gson;
 import org.mule.debugger.response.IDebuggerResponse;
 import org.mule.debugger.transport.IServerDebuggerProtocol;
-import org.mule.debugger.MuleDebuggingMessage;
+import org.mule.debugger.MuleDebuggingContext;
 import org.mule.debugger.commands.ICommand;
 import org.mule.debugger.request.IDebuggerRequest;
 import org.mule.debugger.response.MuleMessageArrivedResponse;
@@ -14,20 +14,21 @@ import java.util.logging.Logger;
 public class DebuggerServerSession {
     private IServerDebuggerProtocol protocolServer;
 
-    private MuleDebuggingMessage payload;
+    private MuleDebuggingContext muleDebuggingMessage;
     private volatile boolean keepOnDebugging = true;
 
 
     private static Logger log = Logger.getLogger(DebuggerServerSession.class.getName());
 
-    public DebuggerServerSession(IServerDebuggerProtocol protocolServer, MuleDebuggingMessage payload) {
+    public DebuggerServerSession(IServerDebuggerProtocol protocolServer, MuleDebuggingContext muleDebuggingMessage) {
         this.protocolServer = protocolServer;
-        this.payload = payload;
+        this.muleDebuggingMessage = muleDebuggingMessage;
 
     }
 
     public void debugMessage(DebuggerHandler debuggerHandler) {
 
+        Object payload = muleDebuggingMessage.getPayload();
         IDebuggerResponse messageToSend = new MuleMessageArrivedResponse(new MuleMessageInfo(objectToString(payload), String.valueOf(payload.getClass()), String.valueOf(payload)));
         while (keepOnDebugging) {
             protocolServer.sendResponse(messageToSend);
@@ -54,11 +55,11 @@ public class DebuggerServerSession {
     }
 
 
-    public MuleDebuggingMessage getPayload() {
-        return payload;
+    public MuleDebuggingContext getMuleDebuggingMessage() {
+        return muleDebuggingMessage;
     }
 
-    public void setPayload(MuleDebuggingMessage payload) {
-        this.payload = payload;
+    public void setMuleDebuggingMessage(MuleDebuggingContext muleDebuggingMessage) {
+        this.muleDebuggingMessage = muleDebuggingMessage;
     }
 }

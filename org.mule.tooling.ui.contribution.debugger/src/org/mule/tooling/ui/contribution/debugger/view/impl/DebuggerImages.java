@@ -1,5 +1,5 @@
 
-package org.mule.tooling.ui.contribution.debugger.ui;
+package org.mule.tooling.ui.contribution.debugger.view.impl;
 
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.JFaceResources;

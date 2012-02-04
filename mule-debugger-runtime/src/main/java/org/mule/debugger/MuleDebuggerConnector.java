@@ -20,16 +20,20 @@
  */
 package org.mule.debugger;
 
+import org.mule.api.MuleContext;
+import org.mule.api.MuleMessage;
 import org.mule.api.annotations.Module;
 import org.mule.api.annotations.lifecycle.Stop;
 import org.mule.api.annotations.param.*;
 import org.mule.api.annotations.Configurable;
 import org.mule.api.annotations.Processor;
+import org.mule.api.context.MuleContextAware;
+import org.mule.api.expression.ExpressionManager;
 import org.mule.debugger.remote.RemoteDebuggerService;
 import org.mule.debugger.server.DebuggerHandler;
 
 import javax.annotation.PostConstruct;
-import java.util.HashMap;
+import javax.inject.Inject;
 
 /**
  * Cloud Connector
@@ -37,8 +41,7 @@ import java.util.HashMap;
  * @author MuleSoft, Inc.
  */
 @Module(name = "muledebugger", schemaVersion = "3.2.0")
-public class MuleDebuggerConnector
-{
+public class MuleDebuggerConnector implements MuleContextAware {
     /**
      * Configurable
      */
@@ -49,29 +52,30 @@ public class MuleDebuggerConnector
 
     private RemoteDebuggerService server;
     private DebuggerHandler handler;
+    private MuleContext muleContext;
+
+    @Inject
+    private ExpressionManager expressionManager;
 
     /**
      * The port number where the debugger server will run
      *
      * @param portNumber The port number . Default 6666
      */
-    public void setPortNumber(int portNumber)
-    {
+    public void setPortNumber(int portNumber) {
         this.portNumber = portNumber;
     }
 
 
     @PostConstruct
-    public void initialize()
-    {
+    public void initialize() {
         this.handler = new DebuggerHandler();
         this.server = new RemoteDebuggerService(this.portNumber, handler);
         this.server.startService();
     }
 
     @Stop
-    public void shutdown()
-    {
+    public void shutdown() {
         server.stopService();
     }
 
@@ -79,20 +83,42 @@ public class MuleDebuggerConnector
     /**
      * Debug the payload content
      * <p/>
-     * {@sample.xml ../../../doc/MuleDebugger-connector.xml.sample muledebugger:my-processor}
+     * {@sample.xml ../../../doc/MuleDebugger-connector.xml.sample muledebugger:debug}
      *
-     * @param payload The Payload
+     * @param message   The mule message
+     * @param condition The conditional expression
      * @return The payload
      */
     @Processor
-    public Object debug(@Payload Object payload)
-    {
+    public Object debug(MuleMessage message, @Optional String condition) {
 
-        if (handler.isRunning())
-        {
-            handler.debug(new MuleDebuggingMessage(payload, new HashMap<String, Object>()));
+
+        if (handler.isRunning()) {
+            boolean debug = true;
+            if (condition != null) {
+                Object conditionValue = getExpressionManager().evaluate(condition, message);
+                if (conditionValue instanceof Boolean) {
+                    debug = (Boolean) conditionValue;
+                }
+            }
+            if (debug) {
+                handler.debug(new MuleDebuggingContext(message, getExpressionManager(), Thread.currentThread().getContextClassLoader()));
+            }
         }
 
-        return payload;
+        return message.getPayload();
+    }
+
+    public void setMuleContext(MuleContext muleContext) {
+
+        this.muleContext = muleContext;
+    }
+
+    public ExpressionManager getExpressionManager() {
+        return expressionManager;
+    }
+
+    public void setExpressionManager(ExpressionManager expressionManager) {
+        this.expressionManager = expressionManager;
     }
 }

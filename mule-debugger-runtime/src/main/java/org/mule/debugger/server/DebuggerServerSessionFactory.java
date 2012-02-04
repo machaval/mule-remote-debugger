@@ -8,7 +8,7 @@
 package org.mule.debugger.server;
 
 import org.mule.debugger.transport.IServerDebuggerProtocol;
-import org.mule.debugger.MuleDebuggingMessage;
+import org.mule.debugger.MuleDebuggingContext;
 
 public class DebuggerServerSessionFactory {
 
@@ -19,7 +19,7 @@ public class DebuggerServerSessionFactory {
         this.protocolServer = protocolServer;
     }
 
-    public DebuggerServerSession createNewSession(MuleDebuggingMessage message) {
+    public DebuggerServerSession createNewSession(MuleDebuggingContext message) {
         return new DebuggerServerSession(protocolServer, message);
     }
 }
