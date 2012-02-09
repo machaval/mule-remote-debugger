@@ -1,6 +1,7 @@
 package org.mule.debugger.response;
 
 import org.mule.debugger.client.IDebuggerResponseCallback;
+import org.mule.debugger.request.IDebuggerRequest;
 
 import java.io.Serializable;
 
@@ -12,4 +13,8 @@ import java.io.Serializable;
  */
 public interface IDebuggerResponse extends Serializable {
     void callCallback(IDebuggerResponseCallback callback);
+
+    void setRequest(IDebuggerRequest request);
+
+    IDebuggerRequest getRequest() ;
 }

@@ -9,7 +9,7 @@ public interface IDebuggerRequest  extends Serializable
 
    ICommand createCommand();
 
-
+   long getRequestId();
 
 }
 

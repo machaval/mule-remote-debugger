@@ -16,7 +16,7 @@ public class ExceptionResponse extends DebuggerResponse {
 
 
     public ExceptionResponse(RemoteDebugException exception) {
-        super("Exception");
+        super();
         this.exception = exception;
     }
 

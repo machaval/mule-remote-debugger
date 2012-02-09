@@ -2,12 +2,8 @@
 package org.mule.tooling.ui.contribution.debugger.view.impl;
 
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.KeyEvent;
-import org.eclipse.swt.events.KeyListener;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -39,23 +35,6 @@ public class ScriptEvaluationComposite extends Composite implements IScriptEvalu
 
         script = new Text(scriptContainer, SWT.BORDER);
         script.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-        script.addKeyListener(new KeyListener()
-        {
-
-            @Override
-            public void keyReleased(KeyEvent e)
-            {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e)
-            {
-                // TODO Auto-generated method stub
-
-            }
-        });
 
         result = new Text(parent, SWT.BORDER | SWT.MULTI);
         result.setLayoutData(new GridData(GridData.FILL_BOTH));

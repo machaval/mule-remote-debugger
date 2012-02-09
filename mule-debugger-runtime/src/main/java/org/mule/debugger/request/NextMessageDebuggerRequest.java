@@ -10,7 +10,7 @@ package org.mule.debugger.request;
 import org.mule.debugger.commands.ICommand;
 import org.mule.debugger.commands.NextMessageCommandImpl;
 
-public class NextMessageDebuggerRequest implements IDebuggerRequest {
+public class NextMessageDebuggerRequest extends AbstractDebuggerRequestImpl  {
     public ICommand createCommand() {
         return new NextMessageCommandImpl();
     }

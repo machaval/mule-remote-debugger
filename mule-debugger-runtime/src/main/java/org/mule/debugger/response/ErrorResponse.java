@@ -13,7 +13,7 @@ public class ErrorResponse extends DebuggerResponse {
     private String errorMessage;
 
     public ErrorResponse(String errorMessage) {
-        super("ServerBusy");
+        super();
         this.errorMessage = errorMessage;
     }
 

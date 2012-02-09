@@ -8,27 +8,27 @@
 package org.mule.debugger.response;
 
 import org.mule.debugger.client.IDebuggerResponseCallback;
+import org.mule.debugger.request.IDebuggerRequest;
 
 import java.io.Serializable;
 
 public abstract class DebuggerResponse implements IDebuggerResponse {
 
 
-    private String id;
+    private IDebuggerRequest request;
 
 
-    public DebuggerResponse(String id) {
-        this.id = id;
+    public DebuggerResponse() {
 
     }
 
-    public String getId() {
-        return id;
+
+    public void setRequest(IDebuggerRequest request) {
+
+        this.request = request;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public IDebuggerRequest getRequest() {
+        return request;
     }
-
-
 }

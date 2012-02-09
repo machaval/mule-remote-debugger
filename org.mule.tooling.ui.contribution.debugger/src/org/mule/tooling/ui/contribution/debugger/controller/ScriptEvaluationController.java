@@ -4,12 +4,12 @@ package org.mule.tooling.ui.contribution.debugger.controller;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Display;
 import org.mule.debugger.client.DebuggerClient;
+import org.mule.debugger.client.DefaultDebuggerResponseCallback;
+import org.mule.debugger.exception.RemoteDebugException;
+import org.mule.debugger.response.ScriptResultInfo;
 import org.mule.tooling.ui.contribution.debugger.controller.events.ClientInitializedEvent;
-import org.mule.tooling.ui.contribution.debugger.controller.events.ScriptEvaluatedEvent;
 import org.mule.tooling.ui.contribution.debugger.event.EventBus;
 import org.mule.tooling.ui.contribution.debugger.event.IEventHandler;
 import org.mule.tooling.ui.contribution.debugger.view.IScriptEvaluationEditor;
@@ -57,30 +57,45 @@ public class ScriptEvaluationController
             {
                 if (e.character == SWT.CR || e.character == SWT.LF)
                 {
-                    client.executeScript("#[" + scriptEvaluation.getExpressionType() + ":"
-                                         + scriptEvaluation.getScriptText() + "]");
+                    client.executeScript(
+                        "#[" + scriptEvaluation.getExpressionType() + ":" + scriptEvaluation.getScriptText()
+                                        + "]", new DefaultDebuggerResponseCallback()
+                        {
+
+                            @Override
+                            public void onScriptEvaluation(final ScriptResultInfo info)
+                            {
+                                Display.getDefault().asyncExec(new Runnable()
+                                {
+
+                                    @Override
+                                    public void run()
+                                    {
+                                        scriptEvaluation.setResultText(info.getToStringResult());
+                                    }
+                                });
+                            }
+
+                            @Override
+                            public void onException(final RemoteDebugException exception)
+                            {
+                                Display.getDefault().asyncExec(new Runnable()
+                                {
+
+                                    @Override
+                                    public void run()
+                                    {
+                                        scriptEvaluation.setResultText("ERROR :\n Remote exception  :\n"
+                                                                       + exception.getMessage());
+                                    }
+                                });
+
+                            }
+
+                        });
                 }
 
             }
         });
-        eventBus.registerListener(DebuggerEventType.SCRIPT_EVALUATED,
-            new IEventHandler<ScriptEvaluatedEvent>()
-            {
-
-                @Override
-                public void onEvent(final ScriptEvaluatedEvent event)
-                {
-                    Display.getDefault().asyncExec(new Runnable()
-                    {
-
-                        @Override
-                        public void run()
-                        {
-                            scriptEvaluation.setResultText(event.getScriptResult().getJsonResult());
-                        }
-                    });
-
-                }
-            });
     }
 }

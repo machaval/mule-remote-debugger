@@ -2,18 +2,19 @@
 package org.mule.tooling.ui.contribution.debugger.controller;
 
 import org.eclipse.swt.widgets.Display;
+import org.mule.debugger.response.MuleMessageInfo;
 import org.mule.tooling.ui.contribution.debugger.controller.events.NewMuleMessageArrivedEvent;
 import org.mule.tooling.ui.contribution.debugger.event.EventBus;
 import org.mule.tooling.ui.contribution.debugger.event.IEventHandler;
 import org.mule.tooling.ui.contribution.debugger.view.IPayloadEditor;
 
-public class MuleDebuggerPayloadControler
+public class MuleDebuggerPayloadController
 {
 
     private IPayloadEditor payload;
     private final EventBus eventBus;
 
-    public MuleDebuggerPayloadControler(IPayloadEditor payload, EventBus eventBus)
+    public MuleDebuggerPayloadController(IPayloadEditor payload, EventBus eventBus)
     {
         super();
         this.payload = payload;
@@ -36,8 +37,11 @@ public class MuleDebuggerPayloadControler
                         @Override
                         public void run()
                         {
-                            payload.setPayloadClassName(event.getMuleMessageInfo().getPayloadClassName());
-                            payload.setPayloadOutput(event.getMuleMessageInfo().getJsonPayload());
+                            MuleMessageInfo muleMessageInfo = event.getMuleMessageInfo();
+                            payload.setEncoding(muleMessageInfo.getEncoding());
+                            payload.setUniqueId(muleMessageInfo.getUniqueId());
+                            payload.setPayloadClassName(muleMessageInfo.getPayloadClassName());
+                            payload.setPayloadOutput(event.getMuleMessageInfo().getPayloadString());
                         }
                     });
 

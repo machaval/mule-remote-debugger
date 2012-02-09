@@ -1,7 +1,6 @@
 
 package org.mule.tooling.ui.contribution.debugger.view;
 
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Control;
 
 public interface IScriptEvaluationEditor

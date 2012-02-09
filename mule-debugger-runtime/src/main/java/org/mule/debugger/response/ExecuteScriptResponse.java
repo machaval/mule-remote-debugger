@@ -8,14 +8,13 @@
 package org.mule.debugger.response;
 
 import org.mule.debugger.client.IDebuggerResponseCallback;
-import org.mule.debugger.commands.ExecuteScriptCommandImpl;
 
 public class ExecuteScriptResponse extends DebuggerResponse {
 
     private ScriptResultInfo scriptEvaluationInfo;
 
     public ExecuteScriptResponse(ScriptResultInfo scriptEvaluationInfo) {
-        super(ExecuteScriptCommandImpl.SCRIPT);
+        super();
         this.scriptEvaluationInfo = scriptEvaluationInfo;
     }
 

@@ -6,26 +6,28 @@ import org.eclipse.jface.viewers.TreeNodeContentProvider;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.mule.tooling.ui.contribution.debugger.view.IPayloadEditor;
 
-public class MuleDebuggerPayloadComposite extends Composite implements
-     IPayloadEditor
+public class MuleDebuggerPayloadComposite extends Composite implements IPayloadEditor
 {
 
-  
     private Text payloadOutputText;
     private TreeViewer payloadTreeViewer;
     private Text payloadClassName;
+    private Text encoding;
+    private Text uniqueId;
 
     public MuleDebuggerPayloadComposite(Composite parent, int style)
     {
         super(parent, style);
-        this.setLayout(new GridLayout());
+        this.setLayout(new FillLayout());
         createControl(this);
 
     }
@@ -37,38 +39,40 @@ public class MuleDebuggerPayloadComposite extends Composite implements
 
     protected Composite createPayloadView(Composite parent)
     {
-        Composite payloadData = new Composite(parent, SWT.NULL);
-        payloadData.setLayout(new GridLayout(2, false));
+        SashForm payloadProperties = new SashForm(parent, SWT.HORIZONTAL);
 
-        payloadData.setLayoutData(new GridData(GridData.FILL_BOTH));
+        Group generalData = new Group(payloadProperties, SWT.NULL);
+        generalData.setText("Payload properties");
 
-        SashForm sashComposite = new SashForm(payloadData, SWT.HORIZONTAL);
-        GridData layoutData = new GridData(GridData.FILL_BOTH);
-        layoutData.horizontalSpan = 2;
-        sashComposite.setLayoutData(layoutData);
-
-        Composite generalData = new Composite(sashComposite, SWT.NULL);
-        GridLayout layout = new GridLayout(2, false);
-        layout.marginHeight = 0;
-        generalData.setLayout(layout);
+        generalData.setLayout(new GridLayout(2, false));
         generalData.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
         new Label(generalData, SWT.NULL).setText("Class Name");
         setClassName(new Text(generalData, SWT.BORDER));
         getPayloadClassName().setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+        getPayloadClassName().setEditable(false);
+        new Label(generalData, SWT.NULL).setText("Encoding");
+        encoding = new Text(generalData, SWT.BORDER);
+        encoding.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+        encoding.setEditable(false);
+        new Label(generalData, SWT.NULL).setText("Id");
+        uniqueId = new Text(generalData, SWT.BORDER);
+        uniqueId.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+        uniqueId.setEditable(false);
+        new Label(generalData,SWT.NULL).setText("Payload");
         setOutputText(new Text(generalData, SWT.MULTI | SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL));
-        layoutData = new GridData(SWT.FILL, SWT.FILL, true, true);
+        GridData layoutData = new GridData(SWT.FILL, SWT.FILL, true, true);
         layoutData.horizontalSpan = 2;
         getOutputText().setLayoutData(layoutData);
         getOutputText().setFont(JFaceResources.getTextFont());
         getOutputText().setEditable(false);
-        setPayloadTreeViewer(new TreeViewer(sashComposite, SWT.V_SCROLL | SWT.H_SCROLL | SWT.BORDER));
+
+        Group treeView = new Group(payloadProperties, SWT.NULL);
+        treeView.setText("Tree view");
+        setPayloadTreeViewer(new TreeViewer(treeView, SWT.V_SCROLL | SWT.H_SCROLL | SWT.BORDER));
         getPayloadTreeViewer().setContentProvider(new TreeNodeContentProvider());
-        return payloadData;
+
+        return payloadProperties;
     }
-
-   
-
-  
 
     public void setClassName(Text className)
     {
@@ -121,6 +125,18 @@ public class MuleDebuggerPayloadComposite extends Composite implements
     public void setPayloadClassName(String className)
     {
         getPayloadClassName().setText(className);
+    }
+
+    @Override
+    public void setEncoding(String encoding)
+    {
+        this.encoding.setText(encoding);
+    }
+
+    @Override
+    public void setUniqueId(String uniqueId)
+    {
+        this.uniqueId.setText(uniqueId);
     }
 
 }

@@ -94,6 +94,7 @@ public class MuleDebuggerConnector implements MuleContextAware {
 
 
         if (handler.isRunning()) {
+
             boolean debug = true;
             if (condition != null) {
                 Object conditionValue = getExpressionManager().evaluate(condition, message);

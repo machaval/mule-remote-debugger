@@ -8,11 +8,10 @@
 package org.mule.debugger.response;
 
 import org.mule.debugger.client.IDebuggerResponseCallback;
-import org.mule.debugger.commands.ExitDebuggerCommandImpl;
 
 public class ExitDebuggerResponse extends DebuggerResponse {
     public ExitDebuggerResponse() {
-        super(ExitDebuggerCommandImpl.EXIT);
+        super();
     }
 
 

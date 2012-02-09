@@ -4,11 +4,11 @@
    <extension
          point="org.mule.tooling.core.contribution">
       <externalContribution
+      name="Debugger"
             contributionLibPathInMule="/plugins"
-            contributionLibs="mule-debugger-3.2.0.zip"
+            contributionLibs="mule-debugger-runtime.zip"
             contributionNamespace="http://www.mulesoft.org/schema/mule/muledebugger"
             contributionNamespaceFile="http://www.mulesoft.org/schema/mule/muledebugger/3.2.0/mule-muledebugger.xsd"
-            contributionNamespaceId="muledebugger"
             contributionNamespacePrefix="muledebugger"
             contributionType="component"
             path="debugger.xml"
@@ -20,7 +20,7 @@
       <view
             allowMultiple="false"
             category="org.mule.tooling.ui.views"
-            class="org.mule.tooling.ui.contribution.debugger.ui.MuleDebuggerView"
+            class="org.mule.tooling.ui.contribution.debugger.view.impl.MuleDebuggerView"
             icon="icons/small/debug.png"
             id="org.mule.tooling.ui.contribution.debugger.view"
             name="Mule Debugger View"

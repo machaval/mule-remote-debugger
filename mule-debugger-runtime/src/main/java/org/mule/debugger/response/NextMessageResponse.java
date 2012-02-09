@@ -8,11 +8,10 @@
 package org.mule.debugger.response;
 
 import org.mule.debugger.client.IDebuggerResponseCallback;
-import org.mule.debugger.commands.NextMessageCommandImpl;
 
 public class NextMessageResponse extends DebuggerResponse{
     public NextMessageResponse() {
-        super(NextMessageCommandImpl.NEXT);
+        super();
     }
 
     public void callCallback(IDebuggerResponseCallback callback) {

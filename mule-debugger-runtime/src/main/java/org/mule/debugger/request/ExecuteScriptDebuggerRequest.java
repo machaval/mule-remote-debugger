@@ -10,7 +10,7 @@ package org.mule.debugger.request;
 import org.mule.debugger.commands.ExecuteScriptCommandImpl;
 import org.mule.debugger.commands.ICommand;
 
-public class ExecuteScriptDebuggerRequest implements IDebuggerRequest {
+public class ExecuteScriptDebuggerRequest extends AbstractDebuggerRequestImpl {
 
     private String script;
 

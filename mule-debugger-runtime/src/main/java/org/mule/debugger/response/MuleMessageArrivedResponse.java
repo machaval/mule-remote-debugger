@@ -15,7 +15,7 @@ public class MuleMessageArrivedResponse extends DebuggerResponse {
 
 
     public MuleMessageArrivedResponse(MuleMessageInfo messageInfo) {
-        super("MuleMessageArrived");
+        super();
         this.messageInfo = messageInfo;
     }
 

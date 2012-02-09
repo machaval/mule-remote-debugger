@@ -1,3 +1,0 @@
-<!-- BEGIN_INCLUDE(coolapi:my-processor) -->
-    <coolapi:my-processor content="#[map-payload:content]" />
-<!-- END_INCLUDE(coolapi:my-processor) -->

@@ -13,7 +13,8 @@ import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.ui.part.ViewPart;
 import org.mule.tooling.ui.contribution.debugger.controller.ConnectionPropertiesController;
 import org.mule.tooling.ui.contribution.debugger.controller.DebuggerResponseCallback;
-import org.mule.tooling.ui.contribution.debugger.controller.MuleDebuggerPayloadControler;
+import org.mule.tooling.ui.contribution.debugger.controller.MuleDebuggerPayloadController;
+import org.mule.tooling.ui.contribution.debugger.controller.MuleDebuggerPropertiesController;
 import org.mule.tooling.ui.contribution.debugger.controller.MuleDebuggerViewController;
 import org.mule.tooling.ui.contribution.debugger.controller.ScriptEvaluationController;
 import org.mule.tooling.ui.contribution.debugger.event.EventBus;
@@ -26,11 +27,13 @@ public class MuleDebuggerView extends ViewPart implements IMuleDebuggerEditor
 
     private MuleDebuggerPayloadComposite muleDebuggerComposite;
     private ConnectionPropertiesEditorComposite connectionEditor;
+    private MuleDebuggerPropertiesView debuggerPropertiesView;
     private EventBus eventBus;
     private DebuggerResponseCallback callback;
     private Composite debuggerEditor;
     private StackLayout debuggerEditorLayout;
     private CLabel disconnectedLabel;
+    private CLabel waitingLabel;
     private TabFolder tabFolder;
 
     @Override
@@ -52,18 +55,29 @@ public class MuleDebuggerView extends ViewPart implements IMuleDebuggerEditor
         debuggerEditorLayout = new StackLayout();
         debuggerEditor.setLayout(debuggerEditorLayout);
 
-        tabFolder = new TabFolder(debuggerEditor, SWT.NULL);
-
         disconnectedLabel = new CLabel(debuggerEditor, SWT.CENTER);
         disconnectedLabel.setText("Debugger is disconnected!!");
-
+        
+        waitingLabel = new CLabel(debuggerEditor, SWT.CENTER);
+        waitingLabel.setText("Waiting for mule message");
+        
+        tabFolder = new TabFolder(debuggerEditor, SWT.NULL);
         muleDebuggerComposite = new MuleDebuggerPayloadComposite(tabFolder, SWT.NULL);
         muleDebuggerComposite.setLayoutData(new GridData(GridData.FILL_BOTH));
-        new MuleDebuggerPayloadControler(muleDebuggerComposite, eventBus);
+        new MuleDebuggerPayloadController(muleDebuggerComposite, eventBus);
+        
+        
 
         TabItem payload = new TabItem(tabFolder, SWT.NULL);
         payload.setText("Payload");
         payload.setControl(muleDebuggerComposite);
+        
+        
+        debuggerPropertiesView = new MuleDebuggerPropertiesView(tabFolder, SWT.NULL);
+        new MuleDebuggerPropertiesController(debuggerPropertiesView, eventBus);
+        TabItem properties = new TabItem(tabFolder, SWT.NULL);
+        properties.setText("Properties");
+        properties.setControl(debuggerPropertiesView);
 
         ScriptEvaluationComposite scriptEvaluationComposite = new ScriptEvaluationComposite(tabFolder,
             SWT.NULL);
@@ -91,15 +105,13 @@ public class MuleDebuggerView extends ViewPart implements IMuleDebuggerEditor
     {
 
     }
-    
-    
 
     @Override
     public void dispose()
     {
-        // TODO Auto-generated method stub
         super.dispose();
         eventBus.cleanAllListeners();
+        debuggerEditor = null;
     }
 
     /*
@@ -108,19 +120,39 @@ public class MuleDebuggerView extends ViewPart implements IMuleDebuggerEditor
      * setMuleMessageDebuggerEnabled(java.lang.Boolean)
      */
     @Override
-    public void setMuleMessageDebuggerEnabled(Boolean enabled)
+    public void setDebuggerConnected(Boolean enabled)
     {
-        if (enabled)
+        if (debuggerEditor != null)
         {
-            debuggerEditorLayout.topControl = tabFolder;
+            if (enabled)
+            {
+                debuggerEditorLayout.topControl = waitingLabel;
+            }
+            else
+            {
+                debuggerEditorLayout.topControl = disconnectedLabel;
+            }
+            debuggerEditor.layout();
         }
-        else
-        {
-            debuggerEditorLayout.topControl = disconnectedLabel;
-        }
-        debuggerEditor.layout();
-        
 
+    }
+
+    @Override
+    public void setDebuggerWaiting(Boolean waiting)
+    {
+        if (debuggerEditor != null)
+        {
+            if (!waiting)
+            {
+                debuggerEditorLayout.topControl = tabFolder;
+            }
+            else
+            {
+                debuggerEditorLayout.topControl = waitingLabel;
+            }
+            debuggerEditor.layout();
+        }
+        
     }
 
 }

@@ -8,28 +8,75 @@
 package org.mule.debugger.response;
 
 import java.io.Serializable;
+import java.util.Map;
 
-public class MuleMessageInfo implements Serializable{
-    private String jsonPayload;
+public class MuleMessageInfo implements Serializable {
+
     private String payloadClassName;
-    private String toStringPayload;
+    private String payloadString;
+    private String uniqueId;
+    private String encoding;
+    private Map<String, String> inboundProperties;
+    private Map<String, String> invocationProperties;
+    private Map<String, String> sessionProperties;
 
-    public MuleMessageInfo(String jsonPayload, String payloadClassName, String toStringPayload) {
-        this.jsonPayload = jsonPayload;
-        this.payloadClassName = payloadClassName;
-        this.toStringPayload = toStringPayload;
 
+    public String getPayloadString() {
+        return payloadString;
     }
 
-    public String getJsonPayload() {
-        return jsonPayload;
+    public String getUniqueId() {
+        return uniqueId;
+    }
+
+    public Map<String, String> getInboundProperties() {
+        return inboundProperties;
+    }
+
+    public Map<String, String> getInvocationProperties() {
+        return invocationProperties;
+    }
+
+    public String getEncoding() {
+        return encoding;
+    }
+
+    public Map<String, String> getSessionProperties() {
+        return sessionProperties;
     }
 
     public String getPayloadClassName() {
         return payloadClassName;
     }
 
-    public String getToStringPayload() {
-        return toStringPayload;
+
+
+
+    public void setPayloadClassName(String payloadClassName) {
+        this.payloadClassName = payloadClassName;
+    }
+
+    public void setPayloadString(String payloadString) {
+        this.payloadString = payloadString;
+    }
+
+    public void setUniqueId(String uniqueId) {
+        this.uniqueId = uniqueId;
+    }
+
+    public void setEncoding(String encoding) {
+        this.encoding = encoding;
+    }
+
+    public void setInboundProperties(Map<String, String> inboundProperties) {
+        this.inboundProperties = inboundProperties;
+    }
+
+    public void setInvocationProperties(Map<String, String> invocationProperties) {
+        this.invocationProperties = invocationProperties;
+    }
+
+    public void setSessionProperties(Map<String, String> sessionProperties) {
+        this.sessionProperties = sessionProperties;
     }
 }

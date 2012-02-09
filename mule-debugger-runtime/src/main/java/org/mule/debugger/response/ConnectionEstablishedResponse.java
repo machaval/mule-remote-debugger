@@ -11,7 +11,7 @@ import org.mule.debugger.client.IDebuggerResponseCallback;
 
 public class ConnectionEstablishedResponse extends DebuggerResponse{
     public ConnectionEstablishedResponse() {
-        super("Connected");
+        super();
     }
 
     public void callCallback(IDebuggerResponseCallback callback) {
