@@ -13,6 +13,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.widgets.TreeColumn;
 import org.mule.tooling.ui.contribution.debugger.view.IPayloadEditor;
 
 public class MuleDebuggerPayloadComposite extends Composite implements IPayloadEditor
@@ -58,7 +59,7 @@ public class MuleDebuggerPayloadComposite extends Composite implements IPayloadE
         uniqueId = new Text(generalData, SWT.BORDER);
         uniqueId.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
         uniqueId.setEditable(false);
-        new Label(generalData,SWT.NULL).setText("Payload");
+        new Label(generalData, SWT.NULL).setText("Payload");
         setOutputText(new Text(generalData, SWT.MULTI | SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL));
         GridData layoutData = new GridData(SWT.FILL, SWT.FILL, true, true);
         layoutData.horizontalSpan = 2;
@@ -68,8 +69,25 @@ public class MuleDebuggerPayloadComposite extends Composite implements IPayloadE
 
         Group treeView = new Group(payloadProperties, SWT.NULL);
         treeView.setText("Tree view");
+        FillLayout layout = new FillLayout();
+        layout.marginHeight = 5;
+        layout.marginWidth = 5;
+        treeView.setLayout(layout);
+
         setPayloadTreeViewer(new TreeViewer(treeView, SWT.V_SCROLL | SWT.H_SCROLL | SWT.BORDER));
-        getPayloadTreeViewer().setContentProvider(new TreeNodeContentProvider());
+        getPayloadTreeViewer().getTree().setHeaderVisible(true);
+        TreeColumn col = new TreeColumn(getPayloadTreeViewer().getTree(), SWT.NONE);
+        col.setText("Name");
+        col.setResizable(true);
+        col.setWidth(120);
+        col = new TreeColumn(getPayloadTreeViewer().getTree(), SWT.NONE);
+        col.setText("ClassName");
+        col.setWidth(120);
+        col.setResizable(true);
+        col = new TreeColumn(getPayloadTreeViewer().getTree(), SWT.NONE);
+        col.setWidth(120);
+        col.setText("Value");
+        col.setResizable(true);
 
         return payloadProperties;
     }

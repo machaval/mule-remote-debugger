@@ -9,12 +9,12 @@ package org.mule.debugger.response;
 
 import org.mule.debugger.client.IDebuggerResponseCallback;
 
-public class NextMessageResponse extends DebuggerResponse{
-    public NextMessageResponse() {
+public class ResumeResponse extends DebuggerResponse{
+    public ResumeResponse() {
         super();
     }
 
     public void callCallback(IDebuggerResponseCallback callback) {
-        callback.onWaitingForNextMessage();
+        callback.onResume();
     }
 }

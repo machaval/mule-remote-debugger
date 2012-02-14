@@ -32,7 +32,7 @@ public class SerializeDebuggerProtocol implements IClientDebuggerProtocol, IServ
             output.writeObject(request);
             output.flush();
         } catch (IOException e) {
-// we should throw an exception so it close
+          //  e.printStackTrace();
         }
 
 
@@ -41,9 +41,12 @@ public class SerializeDebuggerProtocol implements IClientDebuggerProtocol, IServ
     public IDebuggerResponse getResponse() {
         try {
             ObjectInputStream input = new ObjectInputStream(this.input);
-            return (IDebuggerResponse) input.readObject();
+            IDebuggerResponse iDebuggerResponse = (IDebuggerResponse) input.readObject();
+            System.out.println("iDebuggerResponse = " + iDebuggerResponse);
+            return iDebuggerResponse;
         } catch (IOException e) {
             //Server disconnect unfriendly
+            //e.printStackTrace();
             return new ExitDebuggerResponse();
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
@@ -57,6 +60,7 @@ public class SerializeDebuggerProtocol implements IClientDebuggerProtocol, IServ
             return (IDebuggerRequest) input.readObject();
         } catch (IOException e) {
             //Client disconnect unfriendly
+            //e.printStackTrace();
             return new ExitDebuggerRequest();
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
@@ -65,13 +69,14 @@ public class SerializeDebuggerProtocol implements IClientDebuggerProtocol, IServ
     }
 
     public void sendResponse(IDebuggerResponse response) {
+        System.out.println("response = " + response);
         ObjectOutputStream output;
         try {
             output = new ObjectOutputStream(this.output);
             output.writeObject(response);
             output.flush();
         } catch (IOException e) {
-            //
+       //     e.printStackTrace();
         }
 
     }

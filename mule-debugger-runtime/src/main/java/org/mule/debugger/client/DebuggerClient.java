@@ -7,11 +7,10 @@
  */
 package org.mule.debugger.client;
 
-import com.sun.xml.internal.bind.v2.model.core.ID;
 import org.mule.debugger.request.ExecuteScriptDebuggerRequest;
 import org.mule.debugger.request.ExitDebuggerRequest;
 import org.mule.debugger.request.IDebuggerRequest;
-import org.mule.debugger.request.NextMessageDebuggerRequest;
+import org.mule.debugger.request.ResumeDebuggerRequest;
 import org.mule.debugger.response.IDebuggerResponse;
 
 import java.io.IOException;
@@ -58,8 +57,8 @@ public class DebuggerClient {
 
     }
 
-    public void waitForNextMessage() {
-        this.connection.getProtocol().sendRequest(new NextMessageDebuggerRequest());
+    public void resume() {
+        this.connection.getProtocol().sendRequest(new ResumeDebuggerRequest());
     }
 
     public void executeScript(String script) {

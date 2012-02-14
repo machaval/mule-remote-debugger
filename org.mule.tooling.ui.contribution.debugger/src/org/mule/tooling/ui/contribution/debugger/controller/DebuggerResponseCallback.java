@@ -11,18 +11,20 @@ import org.mule.tooling.ui.contribution.debugger.controller.events.DebuggerExcep
 import org.mule.tooling.ui.contribution.debugger.controller.events.DisconnectedEvent;
 import org.mule.tooling.ui.contribution.debugger.controller.events.NewMuleMessageArrivedEvent;
 import org.mule.tooling.ui.contribution.debugger.controller.events.ScriptEvaluatedEvent;
-import org.mule.tooling.ui.contribution.debugger.controller.events.WaitingForNextMessageEvent;
+import org.mule.tooling.ui.contribution.debugger.controller.events.ResumeEvent;
 import org.mule.tooling.ui.contribution.debugger.event.EventBus;
 
 public class DebuggerResponseCallback implements IDebuggerResponseCallback
 {
 
     private EventBus eventBus;
+    
 
     public DebuggerResponseCallback(EventBus eventBus)
     {
         super();
         this.eventBus = eventBus;
+       
     }
 
     @Override
@@ -47,6 +49,7 @@ public class DebuggerResponseCallback implements IDebuggerResponseCallback
     public void onExit()
     {
         this.eventBus.fireEvent(new DisconnectedEvent());
+        
     }
 
     @Override
@@ -62,9 +65,9 @@ public class DebuggerResponseCallback implements IDebuggerResponseCallback
     }
 
     @Override
-    public void onWaitingForNextMessage()
+    public void onResume()
     {
-        this.eventBus.fireEvent(new WaitingForNextMessageEvent());
+        this.eventBus.fireEvent(new ResumeEvent());
     }
 
 }

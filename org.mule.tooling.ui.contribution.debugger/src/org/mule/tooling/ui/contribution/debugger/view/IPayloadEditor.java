@@ -1,6 +1,8 @@
 
 package org.mule.tooling.ui.contribution.debugger.view;
 
+import org.eclipse.jface.viewers.TreeViewer;
+
 public interface IPayloadEditor
 {
     void setPayloadOutput(String paylodOutput);
@@ -10,5 +12,7 @@ public interface IPayloadEditor
     void setEncoding(String encoding);
 
     void setUniqueId(String uniqueId);
+
+    TreeViewer getPayloadTreeViewer();
 
 }

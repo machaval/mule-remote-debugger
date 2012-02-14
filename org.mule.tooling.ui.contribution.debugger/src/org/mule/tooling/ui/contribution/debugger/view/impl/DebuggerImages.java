@@ -9,6 +9,10 @@ import org.mule.tooling.ui.contribution.debugger.Activator;
 
 public class DebuggerImages
 {
+    public static final String JAVA_ATTR = "Java_Attr";
+
+    public static final String JAVA_ELEMENT = "Java_Element";
+
     private static final String PLUGIN_ID = Activator.PLUGIN_ID;
 
     public static ImageDescriptor IMG_CONNECT = AbstractUIPlugin.imageDescriptorFromPlugin(PLUGIN_ID,
@@ -20,9 +24,15 @@ public class DebuggerImages
     public static ImageDescriptor IMG_NEXT = AbstractUIPlugin.imageDescriptorFromPlugin(PLUGIN_ID,
         "icons/small/next.png");
 
+    public static ImageDescriptor IMG_ATTR = AbstractUIPlugin.imageDescriptorFromPlugin(PLUGIN_ID,
+        "icons/small/attribute.gif");
+
+    public static ImageDescriptor IMG_ELEMENT = AbstractUIPlugin.imageDescriptorFromPlugin(PLUGIN_ID,
+        "icons/small/element.gif");
+
     private static DebuggerImages instance = null;
 
-    public static DebuggerImages getDataMapperImages()
+    public static DebuggerImages getDebuggerImages()
     {
         if (instance == null)
         {
@@ -38,7 +48,14 @@ public class DebuggerImages
 
     public void init()
     {
-
+        if (JFaceResources.getImageRegistry().get(JAVA_ELEMENT) == null)
+        {
+            JFaceResources.getImageRegistry().put(JAVA_ELEMENT, IMG_ELEMENT.createImage());
+        }
+        if (JFaceResources.getImageRegistry().get(JAVA_ATTR) == null)
+        {
+            JFaceResources.getImageRegistry().put(JAVA_ATTR, IMG_ATTR.createImage());
+        }
     }
 
     public Image getImage(String key)

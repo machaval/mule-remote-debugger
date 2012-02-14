@@ -12,6 +12,9 @@ import java.util.Map;
 
 public class MuleMessageInfo implements Serializable {
 
+    private ObjectFieldDefinition payloadDefinition;
+    private ObjectFieldDefinition exceptionPayloadDefinition;
+
     private String payloadClassName;
     private String payloadString;
     private String uniqueId;
@@ -50,7 +53,13 @@ public class MuleMessageInfo implements Serializable {
     }
 
 
+    public void setPayloadDefinition(ObjectFieldDefinition payloadDefinition) {
+        this.payloadDefinition = payloadDefinition;
+    }
 
+    public ObjectFieldDefinition getPayloadDefinition() {
+        return payloadDefinition;
+    }
 
     public void setPayloadClassName(String payloadClassName) {
         this.payloadClassName = payloadClassName;
@@ -78,5 +87,13 @@ public class MuleMessageInfo implements Serializable {
 
     public void setSessionProperties(Map<String, String> sessionProperties) {
         this.sessionProperties = sessionProperties;
+    }
+
+    public ObjectFieldDefinition getExceptionPayloadDefinition() {
+        return exceptionPayloadDefinition;
+    }
+
+    public void setExceptionPayloadDefinition(ObjectFieldDefinition exceptionPayloadDefinition) {
+        this.exceptionPayloadDefinition = exceptionPayloadDefinition;
     }
 }

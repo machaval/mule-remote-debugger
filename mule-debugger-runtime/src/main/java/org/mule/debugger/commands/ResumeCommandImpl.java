@@ -8,18 +8,18 @@
 package org.mule.debugger.commands;
 
 import org.mule.debugger.response.IDebuggerResponse;
-import org.mule.debugger.response.NextMessageResponse;
+import org.mule.debugger.response.ResumeResponse;
 
-public class NextMessageCommandImpl extends AbstractCommand {
+public class ResumeCommandImpl extends AbstractCommand {
 
-    public static final String NEXT = "next";
+    public static final String RESUME = "resume";
 
     public IDebuggerResponse execute() {
-        getCurrentSession().stop();
-        return new NextMessageResponse();
+        getHandler().onResume();
+        return new ResumeResponse();
     }
 
     public String getId() {
-        return NEXT;
+        return RESUME;
     }
 }

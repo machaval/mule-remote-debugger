@@ -27,10 +27,12 @@ import org.mule.api.annotations.lifecycle.Stop;
 import org.mule.api.annotations.param.*;
 import org.mule.api.annotations.Configurable;
 import org.mule.api.annotations.Processor;
-import org.mule.api.context.MuleContextAware;
+import org.mule.api.context.notification.MessageProcessorNotificationListener;
 import org.mule.api.expression.ExpressionManager;
+import org.mule.context.notification.MessageProcessorNotification;
+import org.mule.context.notification.NotificationException;
 import org.mule.debugger.remote.RemoteDebuggerService;
-import org.mule.debugger.server.DebuggerHandler;
+import org.mule.debugger.server.DebuggerService;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -41,7 +43,7 @@ import javax.inject.Inject;
  * @author MuleSoft, Inc.
  */
 @Module(name = "muledebugger", schemaVersion = "3.2.0")
-public class MuleDebuggerConnector implements MuleContextAware {
+public class MuleDebuggerConnector {
     /**
      * Configurable
      */
@@ -51,8 +53,9 @@ public class MuleDebuggerConnector implements MuleContextAware {
     private int portNumber;
 
     private RemoteDebuggerService server;
-    private DebuggerHandler handler;
-    private MuleContext muleContext;
+    private DebuggerService handler;
+    @Inject
+    private MuleContext context;
 
     @Inject
     private ExpressionManager expressionManager;
@@ -69,9 +72,20 @@ public class MuleDebuggerConnector implements MuleContextAware {
 
     @PostConstruct
     public void initialize() {
-        this.handler = new DebuggerHandler();
+        this.handler = new DebuggerService();
         this.server = new RemoteDebuggerService(this.portNumber, handler);
         this.server.startService();
+        try {
+            this.context.registerListener(new MessageProcessorNotificationListener<MessageProcessorNotification>() {
+                public void onNotification(MessageProcessorNotification notification) {
+
+                       notification.getSource().getMessage();
+                }
+            });
+        } catch (NotificationException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Stop
@@ -90,30 +104,23 @@ public class MuleDebuggerConnector implements MuleContextAware {
      * @return The payload
      */
     @Processor
-    public Object debug(MuleMessage message, @Optional String condition) {
+    public Object debug(MuleMessage message, @Optional @Default("false") Boolean condition) {
 
 
         if (handler.isRunning()) {
 
             boolean debug = true;
             if (condition != null) {
-                Object conditionValue = getExpressionManager().evaluate(condition, message);
-                if (conditionValue instanceof Boolean) {
-                    debug = (Boolean) conditionValue;
-                }
+                debug = condition;
             }
             if (debug) {
-                handler.debug(new MuleDebuggingContext(message, getExpressionManager(), Thread.currentThread().getContextClassLoader()));
+                handler.onBreakPoint(new MuleDebuggingContext(message, getExpressionManager(), Thread.currentThread().getContextClassLoader()));
             }
         }
 
         return message.getPayload();
     }
 
-    public void setMuleContext(MuleContext muleContext) {
-
-        this.muleContext = muleContext;
-    }
 
     public ExpressionManager getExpressionManager() {
         return expressionManager;

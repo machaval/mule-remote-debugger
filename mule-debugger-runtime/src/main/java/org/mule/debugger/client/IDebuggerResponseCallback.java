@@ -25,5 +25,5 @@ public interface IDebuggerResponseCallback {
 
     void onException(RemoteDebugException exception);
 
-    void onWaitingForNextMessage();
+    void onResume();
 }

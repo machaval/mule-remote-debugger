@@ -1,7 +1,7 @@
 package org.mule.debugger.remote;
 
 
-import org.mule.debugger.server.DebuggerHandler;
+import org.mule.debugger.server.DebuggerService;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -14,14 +14,14 @@ import java.util.logging.Logger;
 public class RemoteDebuggerService extends Thread {
 
     private int serverPort = 8080;
-    private DebuggerHandler handler;
+    private DebuggerService handler;
     private ServerSocket serverSocket = null;
     private volatile boolean isStopped = false;
     private ExecutorService threadPool = Executors.newFixedThreadPool(1);
 
     private static Logger log = Logger.getLogger(RemoteDebuggerService.class.getName());
 
-    public RemoteDebuggerService(int port, DebuggerHandler handler) {
+    public RemoteDebuggerService(int port, DebuggerService handler) {
         this.serverPort = port;
         this.handler = handler;
     }

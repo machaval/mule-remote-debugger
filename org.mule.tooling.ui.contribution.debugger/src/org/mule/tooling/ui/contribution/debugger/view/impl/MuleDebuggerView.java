@@ -20,7 +20,7 @@ import org.mule.tooling.ui.contribution.debugger.controller.ScriptEvaluationCont
 import org.mule.tooling.ui.contribution.debugger.event.EventBus;
 import org.mule.tooling.ui.contribution.debugger.view.IMuleDebuggerEditor;
 import org.mule.tooling.ui.contribution.debugger.view.actions.ConnectAction;
-import org.mule.tooling.ui.contribution.debugger.view.actions.NextMessageAction;
+import org.mule.tooling.ui.contribution.debugger.view.actions.ResumeAction;
 
 public class MuleDebuggerView extends ViewPart implements IMuleDebuggerEditor
 {
@@ -97,7 +97,7 @@ public class MuleDebuggerView extends ViewPart implements IMuleDebuggerEditor
     {
         IToolBarManager mgr = getViewSite().getActionBars().getToolBarManager();
         mgr.add(new ConnectAction(connectionEditor, eventBus, callback));
-        mgr.add(new NextMessageAction(eventBus));
+        mgr.add(new ResumeAction(eventBus));
     }
 
     @Override

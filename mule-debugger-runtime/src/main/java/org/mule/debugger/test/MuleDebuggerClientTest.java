@@ -47,7 +47,7 @@ public class MuleDebuggerClientTest {
                 System.out.println("MuleDebuggerClientTest.onException");
             }
 
-            public void onWaitingForNextMessage() {
+            public void onResume() {
                 System.out.println("MuleDebuggerClientTest.onWaitingForNextMessage");
             }
         });

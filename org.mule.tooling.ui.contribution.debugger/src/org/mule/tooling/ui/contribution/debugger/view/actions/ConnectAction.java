@@ -49,6 +49,8 @@ public class ConnectAction extends Action
             public void onEvent(DisconnectedEvent event)
             {
                 setConnectState();
+                client.disconnect();
+                client = null;
             }
         });
 
@@ -59,7 +61,9 @@ public class ConnectAction extends Action
         setImageDescriptor(DebuggerImages.IMG_DISCONNECT);
         setToolTipText("Connect");
         setText("Connect");
-        this.setEnabled(true);
+        setEnabled(true);
+        
+
     }
 
     protected void setDisconnectState()
@@ -67,7 +71,7 @@ public class ConnectAction extends Action
         setImageDescriptor(DebuggerImages.IMG_CONNECT);
         setToolTipText("Disconnect");
         setText("Disconnect");
-        this.setEnabled(true);
+        setEnabled(true);
     }
 
     @Override
@@ -81,7 +85,7 @@ public class ConnectAction extends Action
             {
                 client.start(callback);
                 bus.fireEvent(new ClientInitializedEvent(client));
-                this.setEnabled(false);
+                setEnabled(false);
             }
             catch (IOException e)
             {
@@ -90,9 +94,7 @@ public class ConnectAction extends Action
         }
         else
         {
-            client.disconnect();
-            client = null;
+            client.exit();
         }
     }
-
 }

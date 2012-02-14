@@ -17,8 +17,7 @@ public class ExitDebuggerCommandImpl extends AbstractCommand
 
     public IDebuggerResponse execute()
     {
-        getHandler().stop();
-        getCurrentSession().stop();
+        getHandler().stopDebugging();
         return new ExitDebuggerResponse();
     }
 

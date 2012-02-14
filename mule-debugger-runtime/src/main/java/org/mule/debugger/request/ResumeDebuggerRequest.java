@@ -8,10 +8,10 @@
 package org.mule.debugger.request;
 
 import org.mule.debugger.commands.ICommand;
-import org.mule.debugger.commands.NextMessageCommandImpl;
+import org.mule.debugger.commands.ResumeCommandImpl;
 
-public class NextMessageDebuggerRequest extends AbstractDebuggerRequestImpl  {
+public class ResumeDebuggerRequest extends AbstractDebuggerRequestImpl  {
     public ICommand createCommand() {
-        return new NextMessageCommandImpl();
+        return new ResumeCommandImpl();
     }
 }

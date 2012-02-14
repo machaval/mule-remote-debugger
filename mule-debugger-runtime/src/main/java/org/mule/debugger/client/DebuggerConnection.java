@@ -56,8 +56,10 @@ public class DebuggerConnection {
                 outputStream.close();
             }
 
-        } catch (IOException e) {
 
+        } catch (IOException e) {
+        } finally {
+            client = null;
         }
     }
 

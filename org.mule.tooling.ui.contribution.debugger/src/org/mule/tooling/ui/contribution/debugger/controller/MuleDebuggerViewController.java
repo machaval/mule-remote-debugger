@@ -5,7 +5,7 @@ import org.eclipse.swt.widgets.Display;
 import org.mule.tooling.ui.contribution.debugger.controller.events.ConnectedEvent;
 import org.mule.tooling.ui.contribution.debugger.controller.events.DisconnectedEvent;
 import org.mule.tooling.ui.contribution.debugger.controller.events.NewMuleMessageArrivedEvent;
-import org.mule.tooling.ui.contribution.debugger.controller.events.WaitingForNextMessageEvent;
+import org.mule.tooling.ui.contribution.debugger.controller.events.ResumeEvent;
 import org.mule.tooling.ui.contribution.debugger.event.EventBus;
 import org.mule.tooling.ui.contribution.debugger.event.IEventHandler;
 import org.mule.tooling.ui.contribution.debugger.view.IMuleDebuggerEditor;
@@ -63,11 +63,11 @@ public class MuleDebuggerViewController
             }
         });
 
-        eventBus.registerListener(DebuggerEventType.WAITING, new IEventHandler<WaitingForNextMessageEvent>()
+        eventBus.registerListener(DebuggerEventType.WAITING, new IEventHandler<ResumeEvent>()
         {
 
             @Override
-            public void onEvent(WaitingForNextMessageEvent event)
+            public void onEvent(ResumeEvent event)
             {
                 Display.getDefault().syncExec(new Runnable()
                 {

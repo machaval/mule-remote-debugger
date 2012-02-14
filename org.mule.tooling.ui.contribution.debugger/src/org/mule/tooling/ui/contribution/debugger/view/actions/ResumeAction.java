@@ -10,13 +10,13 @@ import org.mule.tooling.ui.contribution.debugger.event.EventBus;
 import org.mule.tooling.ui.contribution.debugger.event.IEventHandler;
 import org.mule.tooling.ui.contribution.debugger.view.impl.DebuggerImages;
 
-public class NextMessageAction extends Action
+public class ResumeAction extends Action
 {
 
     private DebuggerClient client;
     private final EventBus eventBus;
 
-    public NextMessageAction(EventBus eventBus)
+    public ResumeAction(EventBus eventBus)
     {
         super();
         this.eventBus = eventBus;
@@ -63,7 +63,7 @@ public class NextMessageAction extends Action
     public void run()
     {
         setEnabled(false);
-        client.waitForNextMessage();
+        client.resume();
     }
 
 }

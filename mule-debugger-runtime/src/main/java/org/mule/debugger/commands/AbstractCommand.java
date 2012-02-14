@@ -8,40 +8,43 @@
 package org.mule.debugger.commands;
 
 import com.google.gson.Gson;
-import org.mule.debugger.server.DebuggerHandler;
-import org.mule.debugger.server.DebuggerServerSession;
+import org.mule.debugger.MuleDebuggingContext;
+import org.mule.debugger.server.DebuggerService;
 
 public abstract class AbstractCommand implements ICommand
 {
-    private DebuggerServerSession currentSession;
-    private DebuggerHandler handler;
 
-    public DebuggerServerSession getCurrentSession()
-    {
-        return currentSession;
-    }
+    private DebuggerService handler;
+    private MuleDebuggingContext muleDebuggingMessage;
 
-    public DebuggerHandler getHandler()
+
+
+    public DebuggerService getHandler()
     {
         return handler;
     }
 
 
-    public void setCurrentSession(DebuggerServerSession currentSession)
-    {
-        this.currentSession = currentSession;
-    }
 
-    public void setHandler(DebuggerHandler handler)
+
+    public void setHandler(DebuggerService handler)
     {
         this.handler = handler;
     }
 
+    public void setDebuggingContext(MuleDebuggingContext muleDebuggingMessage) {
+
+        this.muleDebuggingMessage = muleDebuggingMessage;
+    }
 
 
     protected String objectToString(Object result)
     {
         Gson gson = new Gson();
         return gson.toJson(result);
+    }
+
+    public MuleDebuggingContext getMuleDebuggingMessage() {
+        return muleDebuggingMessage;
     }
 }
