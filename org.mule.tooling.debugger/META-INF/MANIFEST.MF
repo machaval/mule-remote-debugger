@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Mule Debugger
+Bundle-SymbolicName: org.mule.tooling.debugger
+Bundle-Version: 1.0.0.qualifier
+

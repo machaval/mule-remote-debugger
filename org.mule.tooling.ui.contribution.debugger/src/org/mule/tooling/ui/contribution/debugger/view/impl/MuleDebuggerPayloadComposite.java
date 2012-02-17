@@ -2,7 +2,6 @@
 package org.mule.tooling.ui.contribution.debugger.view.impl;
 
 import org.eclipse.jface.resource.JFaceResources;
-import org.eclipse.jface.viewers.TreeNodeContentProvider;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
@@ -24,6 +23,7 @@ public class MuleDebuggerPayloadComposite extends Composite implements IPayloadE
     private Text payloadClassName;
     private Text encoding;
     private Text uniqueId;
+    private Text transformer;
 
     public MuleDebuggerPayloadComposite(Composite parent, int style)
     {
@@ -45,6 +45,11 @@ public class MuleDebuggerPayloadComposite extends Composite implements IPayloadE
         Group generalData = new Group(payloadProperties, SWT.NULL);
         generalData.setText("Payload properties");
 
+        new Label(generalData, SWT.NULL).setText("Message processor");
+        transformer = new Text(generalData, SWT.BORDER);
+        transformer.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+        transformer.setEditable(false);
+        
         generalData.setLayout(new GridLayout(2, false));
         generalData.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
         new Label(generalData, SWT.NULL).setText("Class Name");
@@ -155,6 +160,13 @@ public class MuleDebuggerPayloadComposite extends Composite implements IPayloadE
     public void setUniqueId(String uniqueId)
     {
         this.uniqueId.setText(uniqueId);
+    }
+
+    @Override
+    public void setCurrentProcessor(String transformerName)
+    {
+        transformer.setText(transformerName);
+        
     }
 
 }

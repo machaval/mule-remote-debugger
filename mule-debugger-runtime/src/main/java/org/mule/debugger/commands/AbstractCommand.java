@@ -7,7 +7,7 @@
  */
 package org.mule.debugger.commands;
 
-import com.google.gson.Gson;
+
 import org.mule.debugger.MuleDebuggingContext;
 import org.mule.debugger.server.DebuggerService;
 
@@ -37,12 +37,6 @@ public abstract class AbstractCommand implements ICommand
         this.muleDebuggingMessage = muleDebuggingMessage;
     }
 
-
-    protected String objectToString(Object result)
-    {
-        Gson gson = new Gson();
-        return gson.toJson(result);
-    }
 
     public MuleDebuggingContext getMuleDebuggingMessage() {
         return muleDebuggingMessage;

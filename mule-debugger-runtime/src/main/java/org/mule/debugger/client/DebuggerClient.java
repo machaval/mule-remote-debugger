@@ -7,10 +7,8 @@
  */
 package org.mule.debugger.client;
 
-import org.mule.debugger.request.ExecuteScriptDebuggerRequest;
-import org.mule.debugger.request.ExitDebuggerRequest;
-import org.mule.debugger.request.IDebuggerRequest;
-import org.mule.debugger.request.ResumeDebuggerRequest;
+import org.mule.debugger.commands.NextStepCommandImpl;
+import org.mule.debugger.request.*;
 import org.mule.debugger.response.IDebuggerResponse;
 
 import java.io.IOException;
@@ -61,8 +59,16 @@ public class DebuggerClient {
         this.connection.getProtocol().sendRequest(new ResumeDebuggerRequest());
     }
 
+    public void nextStep(){
+        this.connection.getProtocol().sendRequest(new NextStepDebuggerRequest());
+    }
+
     public void executeScript(String script) {
         executeScript(script, null);
+    }
+
+    public void assignScriptResultToPayload(String script){
+        this.connection.getProtocol().sendRequest(new AssignScriptResultToPayloadDebuggerRequest(script));
     }
 
     public void executeScript(String script, IDebuggerResponseCallback callback) {

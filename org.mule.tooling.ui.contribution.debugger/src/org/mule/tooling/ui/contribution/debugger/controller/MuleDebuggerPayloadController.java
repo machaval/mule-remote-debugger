@@ -48,6 +48,7 @@ public class MuleDebuggerPayloadController
                             payload.setUniqueId(muleMessageInfo.getUniqueId());
                             payload.setPayloadClassName(muleMessageInfo.getPayloadClassName());
                             payload.setPayloadOutput(muleMessageInfo.getPayloadString());
+                            payload.setCurrentProcessor(muleMessageInfo.getCurrentProcessor());
                             ObjectFieldDefinition payloadDef = muleMessageInfo.getPayloadDefinition();
                             ObjectFieldDefinition excPayloadDef = muleMessageInfo.getExceptionPayloadDefinition();
 

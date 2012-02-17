@@ -8,6 +8,7 @@
 package org.mule.debugger.server;
 
 import org.mule.api.MuleMessage;
+import org.mule.debugger.MuleDebuggingContext;
 import org.mule.debugger.response.MuleMessageInfo;
 import org.mule.debugger.response.ObjectFieldDefinition;
 
@@ -17,14 +18,19 @@ import java.util.Set;
 
 public class MuleMessageInfoBuilder {
 
-    public static MuleMessageInfo createFromMuleMessage(MuleMessage message) {
+    public static MuleMessageInfo createFromMuleMessage(MuleDebuggingContext debuggingContext) {
+        MuleMessage message = debuggingContext.getMessage();
         MuleMessageInfo result = new MuleMessageInfo();
 
         Object messagePayload = message.getPayload();
 
         result.setPayloadDefinition(ObjectFieldDefinition.createFromObject(messagePayload, "payload"));
         result.setExceptionPayloadDefinition(ObjectFieldDefinition.createFromObject(message.getExceptionPayload(), "exceptionPayload"));
-
+        String currentProcessorName = debuggingContext.getMessageProcessor().getCanonicalName();
+        if (currentProcessorName.lastIndexOf('.') > 0) {
+            currentProcessorName = currentProcessorName.substring(currentProcessorName.lastIndexOf('.') + 1);
+        }
+        result.setCurrentProcessor(currentProcessorName);
         result.setPayloadString(String.valueOf(messagePayload));
         result.setUniqueId(message.getUniqueId());
         result.setEncoding(message.getEncoding());

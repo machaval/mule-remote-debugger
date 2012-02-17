@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.mule.tooling</groupId>
+	<artifactId>org.mule.tooling.debugger.updatesite</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>eclipse-repository</packaging>
+	<parent>
+		<artifactId>parent</artifactId>
+		<groupId>org.mule.tooling.debugger</groupId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+	<build>
+		<plugins>
+			      <plugin>
+			        <groupId>org.eclipse.tycho</groupId>
+			        <artifactId>tycho-p2-publisher-plugin</artifactId>
+			        <version>${tycho-version}</version>
+			        <configuration>
+			          <publishArtifacts>true</publishArtifacts>
+			        </configuration>
+			      </plugin>
+		</plugins>
+	</build>
+
+</project>

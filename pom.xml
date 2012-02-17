@@ -8,87 +8,20 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
   <artifactId>parent</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
-  <profiles>
- 
-    
-    
-    <profile>
-      <id>allplatforms</id>
-      <!-- This profile generates products for all the platforms. If this is not activated
-      	   the products generated are only for the current OS. -->
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.eclipse.tycho</groupId>
-            <artifactId>target-platform-configuration</artifactId>
-            <version>${tycho-version}</version>
-            <configuration>
-              <resolver>p2</resolver>
-              <pomDependencies>consider</pomDependencies>
-              <ignoreTychoRepositories>
-              true</ignoreTychoRepositories>
-              <environments>
-                <environment>
-                  <os>linux</os>
-                  <ws>gtk</ws>
-                  <arch>x86_64</arch>
-                </environment>
-                <environment>
-                  <os>linux</os>
-                  <ws>gtk</ws>
-                  <arch>x86</arch>
-                </environment>
-                <environment>
-                  <os>macosx</os>
-                  <ws>cocoa</ws>
-                  <arch>x86</arch>
-                </environment>
-                <environment>
-                  <os>macosx</os>
-                  <ws>cocoa</ws>
-                  <arch>x86_64</arch>
-                </environment>
-                <environment>
-                  <os>win32</os>
-                  <ws>win32</ws>
-                  <arch>x86</arch>
-                </environment>
-                <environment>
-                  <os>win32</os>
-                  <ws>win32</ws>
-                  <arch>x86_64</arch>
-                </environment>
-              </environments>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
-  <properties>
-    <tycho-version>0.14.0-SNAPSHOT</tycho-version>
+  
+ <properties>
+    <tycho-version>0.14.0</tycho-version>
     <maven.clean.plugin.version>2.4.1</maven.clean.plugin.version>
-    <data-mapper-version>3.2.0-SNAPSHOT</data-mapper-version>
-    <eclipse-updatesite>
-    http://download.eclipse.org/releases/helios</eclipse-updatesite>
-    <studio-updatesite>
-    http://jenkinsci.mulesoft.com:8080/jenkins/job/data-mapper-p2studio/ws/org.mule.tooling.studio.ee/target/repository/</studio-updatesite>
-    <clover-updatesite>
-    http://jenkinsci.mulesoft.com:8080/jenkins/job/cloveretl-designer/ws/cloveretl.gui/p2update/</clover-updatesite>
+    <eclipse-updatesite>http://download.eclipse.org/releases/helios</eclipse-updatesite>
   </properties>
   <modules>
-    <!--module>org.mule.tooling.datamapper.cloverplugin</module>
-    <module>org.mule.tooling.datamapper.cloverfeature</module>
-    <module>org.mule.tooling.datamapper.product</module-->
+	<module>mule-debugger-runtime</module>
     <module>org.mule.tooling.ui.contribution.debugger</module>
+    <module>org.mule.tooling.debugger</module>
+    <module>org.mule.tooling.debugger.updatesite</module>
   </modules>
   <dependencyManagement>
     <dependencies>
-      <dependency>
-        <groupId>com.mulesoft.muleesb.modules</groupId>
-        <artifactId>mule-module-data-mapper</artifactId>
-        <version>${data-mapper-version}</version>
-      </dependency>
       <dependency>
         <groupId>com.google.code.gson</groupId>
         <artifactId>gson</artifactId>
@@ -122,40 +55,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
       <layout>p2</layout>
       <url>${eclipse-updatesite}</url>
     </repository>
-    <repository>
-      <id>cloveretl</id>
-      <layout>p2</layout>
-      <url>${clover-updatesite}</url>
-    </repository>
-    <repository>
-      <id>license</id>
-      <layout>p2</layout>
-      <url>${license-updatesite}</url>
-    </repository>
-    <repository>
-      <id>studio</id>
-      <layout>p2</layout>
-      <url>${studio-updatesite}</url>
-    </repository>
-    <repository>
-      <id>muleee.releases</id>
-      <name>MuleEE Releases Repository</name>
-      <url>
-      http://dev.ee.mulesource.com/repository/content/repositories/releases/</url>
-      <layout>default</layout>
-    </repository>
-    <repository>
-      <id>muleee.snapshots</id>
-      <name>MuleEE Snapshots Repository</name>
-      <layout>default</layout>
-      <url>
-      http://dev.ee.mulesource.com/repository/content/repositories/snapshots/</url>
-    </repository>
+
   </repositories>
-  <pluginRepositories>
-    <pluginRepository>
-      <id>tycho-snapshots</id>
-      <url>https://oss.sonatype.org/content/groups/public/</url>
-    </pluginRepository>
-  </pluginRepositories>
+  
 </project>

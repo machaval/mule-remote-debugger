@@ -11,18 +11,18 @@ import java.io.Serializable;
 
 public class ScriptResultInfo implements Serializable{
 
-    private String jsonResult;
+    private ObjectFieldDefinition result;
     private String className;
     private String toStringResult;
 
-    public ScriptResultInfo(String jsonResult, String className, String toStringResult) {
-        this.jsonResult = jsonResult;
+    public ScriptResultInfo(ObjectFieldDefinition result, String className, String toStringResult) {
+        this.result = result;
         this.className = className;
         this.toStringResult = toStringResult;
     }
 
-    public String getJsonResult() {
-        return jsonResult;
+    public ObjectFieldDefinition getResult() {
+        return result;
     }
 
     public String getClassName() {
@@ -36,7 +36,7 @@ public class ScriptResultInfo implements Serializable{
     @Override
     public String toString() {
         return "ScriptResultInfo{" +
-                "jsonResult='" + jsonResult + '\'' +
+                "result=" + result +
                 ", className='" + className + '\'' +
                 ", toStringResult='" + toStringResult + '\'' +
                 '}';

@@ -1,5 +1,5 @@
 <namespace prefix="muledebugger" url="http://www.mulesoft.org/schema/mule/muledebugger">
-    <global-cloud-connector extends="http://www.mulesoft.org/schema/mule/muledebugger/abstractMuledebuggerConnectorGeneric" image="icons/large/muledebugger-connector-48x32.png" localId="config" icon="icons/small/muledebugger-connector-24x16.png" description="Global Muledebugger configuration information." caption="Muledebugger">
+    <global-cloud-connector extends="http://www.mulesoft.org/schema/mule/muledebugger/abstractMuledebuggerConnectorGeneric" image="icons/large/breakpoint.png" localId="config" icon="icons/small/muledebugger-connector-24x16.png" description="Global Muledebugger configuration information." caption="Muledebugger">
       <attribute-category description="Muledebugger configuration properties." caption="Muledebugger">
         <group caption="Generic" id="muledebuggerGenericProperties">
           <name required="false" description="Give a name to this configuration so it can be later referenced by config-ref." caption="Name" name="name"></name>
@@ -7,7 +7,7 @@
         </group>
       </attribute-category>
     </global-cloud-connector>
-    <cloud-connector extends="http://www.mulesoft.org/schema/mule/muledebugger/abstractMuledebuggerConnectorGeneric" image="icons/large/muledebugger-connector-48x32.png" localId="muledebugger-connector" icon="icons/small/muledebugger-connector-24x16.png" description="Muledebugger Integration." caption="Muledebugger" aliasId="org.mule.tooling.ui.modules.core.pattern.muledebugger">
+    <cloud-connector extends="http://www.mulesoft.org/schema/mule/muledebugger/abstractMuledebuggerConnectorGeneric" image="icons/large/breakpoint.png" localId="muledebugger-connector" icon="icons/small/muledebugger-connector-24x16.png" description="Muledebugger Integration." caption="Muledebugger" aliasId="org.mule.tooling.ui.modules.core.pattern.muledebugger">
       <attribute-category description="General properties." caption="General">
         <group caption="Generic" id="muledebuggerConnectorGeneric">
           <modeSwitch description="Operation." caption="Operation" name="Muledebugger operations to execute">
@@ -16,14 +16,14 @@
         </group>
       </attribute-category>
     </cloud-connector>
-    <cloud-connector abstract="true" image="icons/large/muledebugger-connector-48x32.png" localId="abstractMuledebuggerConnectorGeneric" icon="icons/small/muledebugger-connector-24x16.png" description="Interact with Muledebugger." caption="Abstractmuledebuggerconnectorgeneric">
+    <cloud-connector abstract="true" image="icons/large/breakpoint.png" localId="abstractMuledebuggerConnectorGeneric" icon="icons/small/muledebugger-connector-24x16.png" description="Interact with Muledebugger." caption="Abstractmuledebuggerconnectorgeneric">
       <attribute-category description="General properties." caption="General">
         <group caption="Generic" id="abstractMuledebuggerConnectorGeneric">
           <globalRef requiredType="http://www.mulesoft.org/schema/mule/muledebugger/config" description="Specify which configuration to use for this invocation." caption="Config Reference" name="config-ref"></globalRef>
         </group>
       </attribute-category>
     </cloud-connector>
-    <cloud-connector extends="http://www.mulesoft.org/schema/mule/muledebugger/abstractMuledebuggerConnectorGeneric" abstract="true" image="icons/large/muledebugger-connector-48x32.png" localId="debug" icon="icons/small/muledebugger-connector-24x16.png" caption="Debug">
+    <cloud-connector extends="http://www.mulesoft.org/schema/mule/muledebugger/abstractMuledebuggerConnectorGeneric" abstract="true" image="icons/large/breakpoint.png" localId="debug" icon="icons/small/muledebugger-connector-24x16.png" caption="Debug">
       <attribute-category description="General properties." caption="General">
         <group caption="General" description="Debug the payload content." id="general"></group>
       </attribute-category>

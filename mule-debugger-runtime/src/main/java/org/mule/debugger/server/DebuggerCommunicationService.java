@@ -24,6 +24,10 @@ public class DebuggerCommunicationService implements Runnable {
         this.protocol = protocol;
     }
 
+    public void start(){
+        run();
+    }
+
     public void run() {
         while (keepRunning) {
             IDebuggerRequest request = this.protocol.getRequest();

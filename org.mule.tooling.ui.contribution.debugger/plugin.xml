@@ -8,7 +8,7 @@
             contributionLibPathInMule="/plugins"
             contributionLibs="mule-debugger-runtime.zip"
             contributionNamespace="http://www.mulesoft.org/schema/mule/muledebugger"
-            contributionNamespaceFile="http://www.mulesoft.org/schema/mule/muledebugger/3.2.0/mule-muledebugger.xsd"
+            contributionNamespaceFile="http://www.mulesoft.org/schema/mule/muledebugger/current/mule-muledebugger.xsd"
             contributionNamespacePrefix="muledebugger"
             contributionType="component"
             path="debugger.xml"

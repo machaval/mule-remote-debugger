@@ -23,6 +23,16 @@ public class MuleMessageInfo implements Serializable {
     private Map<String, String> invocationProperties;
     private Map<String, String> sessionProperties;
 
+    private String currentProcessor;
+
+
+    public String getCurrentProcessor() {
+        return currentProcessor;
+    }
+
+    public void setCurrentProcessor(String currentProcessor) {
+        this.currentProcessor = currentProcessor;
+    }
 
     public String getPayloadString() {
         return payloadString;

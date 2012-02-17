@@ -28,21 +28,27 @@ import org.mule.api.annotations.param.*;
 import org.mule.api.annotations.Configurable;
 import org.mule.api.annotations.Processor;
 import org.mule.api.context.notification.MessageProcessorNotificationListener;
+import org.mule.api.context.notification.ServerNotification;
+import org.mule.api.context.notification.ServerNotificationListener;
 import org.mule.api.expression.ExpressionManager;
+import org.mule.api.processor.MessageProcessor;
 import org.mule.context.notification.MessageProcessorNotification;
 import org.mule.context.notification.NotificationException;
+import org.mule.context.notification.ServerNotificationManager;
 import org.mule.debugger.remote.RemoteDebuggerService;
 import org.mule.debugger.server.DebuggerService;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Cloud Connector
  *
  * @author MuleSoft, Inc.
  */
-@Module(name = "muledebugger", schemaVersion = "3.2.0")
+@Module(name = "muledebugger", schemaVersion = "3.2.1")
 public class MuleDebuggerConnector {
     /**
      * Configurable
@@ -76,16 +82,27 @@ public class MuleDebuggerConnector {
         this.server = new RemoteDebuggerService(this.portNumber, handler);
         this.server.startService();
         try {
-            this.context.registerListener(new MessageProcessorNotificationListener<MessageProcessorNotification>() {
-                public void onNotification(MessageProcessorNotification notification) {
-
-                       notification.getSource().getMessage();
-                }
-            });
+            final ServerNotificationManager notificationManager = this.context.getNotificationManager();
+            if (!notificationManager.isNotificationDynamic()) {
+                notificationManager.setNotificationDynamic(true);
+            }
+            registerNotificationType(notificationManager,MuleMessageDebuggerListener.class,MessageProcessorNotification.class);
+            this.context.registerListener(new MuleMessageDebuggerListener());
         } catch (NotificationException e) {
             e.printStackTrace();
         }
 
+    }
+
+
+    protected final void registerNotificationType(final ServerNotificationManager notificationManager,
+                                                  @SuppressWarnings("rawtypes") final Class<? extends ServerNotificationListener> listenerType,
+                                                  final Class<? extends ServerNotification> notificationType) {
+        @SuppressWarnings("rawtypes")
+        final Map<Class<? extends ServerNotificationListener>, Set<Class<? extends ServerNotification>>> mapping = notificationManager.getInterfaceToTypes();
+        if (!mapping.containsKey(listenerType)) {
+            notificationManager.addInterfaceToType(listenerType, notificationType);
+        }
     }
 
     @Stop
@@ -104,7 +121,7 @@ public class MuleDebuggerConnector {
      * @return The payload
      */
     @Processor
-    public Object debug(MuleMessage message, @Optional @Default("false") Boolean condition) {
+    public Object debug(MuleMessage message, @Optional @Default("true") Boolean condition) {
 
 
         if (handler.isRunning()) {
@@ -114,7 +131,8 @@ public class MuleDebuggerConnector {
                 debug = condition;
             }
             if (debug) {
-                handler.onBreakPoint(new MuleDebuggingContext(message, getExpressionManager(), Thread.currentThread().getContextClassLoader()));
+                handler.onBreakPoint(new MuleDebuggingContext(message, getExpressionManager(), Thread.currentThread().getContextClassLoader(), this.getClass()));
+
             }
         }
 
@@ -128,5 +146,22 @@ public class MuleDebuggerConnector {
 
     public void setExpressionManager(ExpressionManager expressionManager) {
         this.expressionManager = expressionManager;
+    }
+
+    public void setContext(MuleContext context) {
+        this.context = context;
+    }
+
+    private class MuleMessageDebuggerListener implements MessageProcessorNotificationListener<MessageProcessorNotification> {
+        public void onNotification(MessageProcessorNotification notification) {
+            if (notification.getAction() == MessageProcessorNotification.MESSAGE_PROCESSOR_PRE_INVOKE) {
+                MuleMessage message = notification.getSource().getMessage();
+                if (handler.isRunning() && handler.isDebuggingThisMessage(message)) {
+                    MessageProcessor processor = notification.getProcessor();
+
+                    handler.onProcessMessage(new MuleDebuggingContext(message, getExpressionManager(), Thread.currentThread().getContextClassLoader(), processor.getClass()));
+                }
+            }
+        }
     }
 }

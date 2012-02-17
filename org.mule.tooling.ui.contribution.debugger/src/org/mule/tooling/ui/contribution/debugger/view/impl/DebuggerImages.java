@@ -21,14 +21,32 @@ public class DebuggerImages
     public static ImageDescriptor IMG_DISCONNECT = AbstractUIPlugin.imageDescriptorFromPlugin(PLUGIN_ID,
         "icons/small/disconnect.png");
 
-    public static ImageDescriptor IMG_NEXT = AbstractUIPlugin.imageDescriptorFromPlugin(PLUGIN_ID,
+    public static ImageDescriptor IMG_RESUME = AbstractUIPlugin.imageDescriptorFromPlugin(PLUGIN_ID,
         "icons/small/next.png");
+    
+    public static ImageDescriptor IMG_NEXT_STEP = AbstractUIPlugin.imageDescriptorFromPlugin(PLUGIN_ID,
+    "icons/small/nextStep.png");
 
     public static ImageDescriptor IMG_ATTR = AbstractUIPlugin.imageDescriptorFromPlugin(PLUGIN_ID,
         "icons/small/attribute.gif");
 
     public static ImageDescriptor IMG_ELEMENT = AbstractUIPlugin.imageDescriptorFromPlugin(PLUGIN_ID,
         "icons/small/element.gif");
+    
+    public static ImageDescriptor MARIANO = AbstractUIPlugin.imageDescriptorFromPlugin(PLUGIN_ID,
+    "icons/authors/mariano.png");
+    
+    public static ImageDescriptor JORGE = AbstractUIPlugin.imageDescriptorFromPlugin(PLUGIN_ID,
+    "icons/authors/jorge.png");
+    
+    public static ImageDescriptor ALBERTO = AbstractUIPlugin.imageDescriptorFromPlugin(PLUGIN_ID,
+    "icons/authors/alberto.png");
+    
+    public static ImageDescriptor SANTIAGO = AbstractUIPlugin.imageDescriptorFromPlugin(PLUGIN_ID,
+    "icons/authors/vacas.png");
+    
+    public static ImageDescriptor JULIEN = AbstractUIPlugin.imageDescriptorFromPlugin(PLUGIN_ID,
+    "icons/authors/julien.png");
 
     private static DebuggerImages instance = null;
 
@@ -55,7 +73,15 @@ public class DebuggerImages
         if (JFaceResources.getImageRegistry().get(JAVA_ATTR) == null)
         {
             JFaceResources.getImageRegistry().put(JAVA_ATTR, IMG_ATTR.createImage());
+            JFaceResources.getImageRegistry().put("mariano", MARIANO.createImage());
+            JFaceResources.getImageRegistry().put("jorge", JORGE.createImage());
+            JFaceResources.getImageRegistry().put("alberto", ALBERTO.createImage());
+            JFaceResources.getImageRegistry().put("julien", JULIEN.createImage());
+            JFaceResources.getImageRegistry().put("santiago", SANTIAGO.createImage());
         }
+        
+        
+        
     }
 
     public Image getImage(String key)

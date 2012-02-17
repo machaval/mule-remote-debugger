@@ -8,6 +8,7 @@
 package org.mule.debugger.server;
 
 import org.mule.api.MuleMessage;
+import org.mule.debugger.MuleDebuggingContext;
 import org.mule.debugger.response.MuleMessageArrivedResponse;
 import org.mule.debugger.transport.IServerDebuggerProtocol;
 
@@ -24,13 +25,10 @@ public class DebuggerServerFactory {
         return new DebuggerCommunicationService(protocolServer);
     }
 
-    public MuleMessageArrivedResponse createNewMessageResponse(MuleMessage message){
+    public MuleMessageArrivedResponse createNewMessageResponse(MuleDebuggingContext message){
          return new MuleMessageArrivedResponse(MuleMessageInfoBuilder.createFromMuleMessage(message));
     }
 
-    public void startConnectionService(DebuggerCommunicationService service){
-        new Thread(service).start();
-    }
 
     public MuleMessageDebuggerRequestHandler createMuleMessageRequestHandler(DebuggerService debuggerService) {
         return new MuleMessageDebuggerRequestHandler( debuggerService);

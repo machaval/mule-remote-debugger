@@ -25,7 +25,7 @@ public class SerializeDebuggerProtocol implements IClientDebuggerProtocol, IServ
     }
 
     public void sendRequest(IDebuggerRequest request) {
-
+        System.out.println("SerializeDebuggerProtocol.sendRequest" +  request);
         ObjectOutputStream output;
         try {
             output = new ObjectOutputStream(this.output);
@@ -57,7 +57,9 @@ public class SerializeDebuggerProtocol implements IClientDebuggerProtocol, IServ
     public IDebuggerRequest getRequest() {
         try {
             ObjectInputStream input = new ObjectInputStream(this.input);
-            return (IDebuggerRequest) input.readObject();
+            IDebuggerRequest iDebuggerRequest = (IDebuggerRequest) input.readObject();
+            System.out.println("iDebuggerRequest = " + iDebuggerRequest);
+            return iDebuggerRequest;
         } catch (IOException e) {
             //Client disconnect unfriendly
             //e.printStackTrace();

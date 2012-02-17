@@ -1,13 +1,18 @@
 
 package org.mule.tooling.ui.contribution.debugger.view.impl;
 
+import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.TabFolder;
+import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.widgets.TreeColumn;
 import org.mule.tooling.ui.contribution.debugger.view.IScriptEvaluationEditor;
 
 public class ScriptEvaluationComposite extends Composite implements IScriptEvaluationEditor
@@ -16,6 +21,7 @@ public class ScriptEvaluationComposite extends Composite implements IScriptEvalu
 
     private Text script;
     private Combo expression;
+    private TreeViewer resultTree;
 
     public ScriptEvaluationComposite(Composite parent, int style)
     {
@@ -32,12 +38,37 @@ public class ScriptEvaluationComposite extends Composite implements IScriptEvalu
         scriptContainer.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
         scriptContainer.setLayout(new GridLayout(3, false));
         expression = new Combo(scriptContainer, SWT.NULL);
-
+        new Label(scriptContainer,SWT.NULL).setText(":");
         script = new Text(scriptContainer, SWT.BORDER);
         script.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
-        result = new Text(parent, SWT.BORDER | SWT.MULTI);
+        TabFolder resultTab = new TabFolder(parent, SWT.BORDER);
+        resultTab.setLayoutData(new GridData(GridData.FILL_BOTH));
+        TabItem textResult = new TabItem(resultTab, SWT.NULL);
+        textResult.setText("To String");
+        result = new Text(resultTab, SWT.BORDER | SWT.MULTI);
         result.setLayoutData(new GridData(GridData.FILL_BOTH));
+        textResult.setControl(result);
+        setResultTree(new TreeViewer(resultTab, SWT.V_SCROLL | SWT.H_SCROLL | SWT.BORDER));
+        getResultTree().getTree().setHeaderVisible(true);
+        
+        getResultTree().getTree().setHeaderVisible(true);
+        TreeColumn col = new TreeColumn(getResultTree().getTree(), SWT.NONE);
+        col.setText("Name");
+        col.setResizable(true);
+        col.setWidth(120);
+        col = new TreeColumn(getResultTree().getTree(), SWT.NONE);
+        col.setText("ClassName");
+        col.setWidth(120);
+        col.setResizable(true);
+        col = new TreeColumn(getResultTree().getTree(), SWT.NONE);
+        col.setWidth(120);
+        col.setText("Value");
+        col.setResizable(true);
+
+        TabItem treeResult = new TabItem(resultTab, SWT.NULL);
+        treeResult.setText("Tree");
+        treeResult.setControl(getResultTree().getTree());
 
     }
 
@@ -81,5 +112,15 @@ public class ScriptEvaluationComposite extends Composite implements IScriptEvalu
     public String getExpressionType()
     {
         return expression.getItems()[expression.getSelectionIndex()];
+    }
+
+    public void setResultTree(TreeViewer resultTree)
+    {
+        this.resultTree = resultTree;
+    }
+
+    public TreeViewer getResultTree()
+    {
+        return resultTree;
     }
 }

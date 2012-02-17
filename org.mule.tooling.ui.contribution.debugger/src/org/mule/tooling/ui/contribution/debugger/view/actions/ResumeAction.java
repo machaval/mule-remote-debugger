@@ -21,7 +21,7 @@ public class ResumeAction extends Action
         super();
         this.eventBus = eventBus;
         this.setClient(client);
-        setImageDescriptor(DebuggerImages.IMG_NEXT);
+        setImageDescriptor(DebuggerImages.IMG_RESUME);
         setToolTipText("Resume");
         setText("Resume");
         this.setEnabled(false);
