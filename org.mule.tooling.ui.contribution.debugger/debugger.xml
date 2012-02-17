@@ -1,31 +1,37 @@
-<namespace prefix="muledebugger" url="http://www.mulesoft.org/schema/mule/muledebugger">
-    <global-cloud-connector extends="http://www.mulesoft.org/schema/mule/muledebugger/abstractMuledebuggerConnectorGeneric" image="icons/large/breakpoint.png" localId="config" icon="icons/small/muledebugger-connector-24x16.png" description="Global Muledebugger configuration information." caption="Muledebugger">
-      <attribute-category description="Muledebugger configuration properties." caption="Muledebugger">
-        <group caption="Generic" id="muledebuggerGenericProperties">
-          <name required="false" description="Give a name to this configuration so it can be later referenced by config-ref." caption="Name" name="name"></name>
-          <integer step="1" min="0" defaultValue="6666" required="false" description="Configurable." caption="Port Number" name="portNumber"></integer>
-        </group>
-      </attribute-category>
-    </global-cloud-connector>
-    <cloud-connector extends="http://www.mulesoft.org/schema/mule/muledebugger/abstractMuledebuggerConnectorGeneric" image="icons/large/breakpoint.png" localId="muledebugger-connector" icon="icons/small/muledebugger-connector-24x16.png" description="Muledebugger Integration." caption="Muledebugger" aliasId="org.mule.tooling.ui.modules.core.pattern.muledebugger">
-      <attribute-category description="General properties." caption="General">
-        <group caption="Generic" id="muledebuggerConnectorGeneric">
-          <modeSwitch description="Operation." caption="Operation" name="Muledebugger operations to execute">
-            <mode modeLabel="Debug" modeId="http://www.mulesoft.org/schema/mule/muledebugger/debug"></mode>
-          </modeSwitch>
-        </group>
-      </attribute-category>
-    </cloud-connector>
-    <cloud-connector abstract="true" image="icons/large/breakpoint.png" localId="abstractMuledebuggerConnectorGeneric" icon="icons/small/muledebugger-connector-24x16.png" description="Interact with Muledebugger." caption="Abstractmuledebuggerconnectorgeneric">
-      <attribute-category description="General properties." caption="General">
-        <group caption="Generic" id="abstractMuledebuggerConnectorGeneric">
-          <globalRef requiredType="http://www.mulesoft.org/schema/mule/muledebugger/config" description="Specify which configuration to use for this invocation." caption="Config Reference" name="config-ref"></globalRef>
-        </group>
-      </attribute-category>
-    </cloud-connector>
-    <cloud-connector extends="http://www.mulesoft.org/schema/mule/muledebugger/abstractMuledebuggerConnectorGeneric" abstract="true" image="icons/large/breakpoint.png" localId="debug" icon="icons/small/muledebugger-connector-24x16.png" caption="Debug">
-      <attribute-category description="General properties." caption="General">
-        <group caption="General" description="Debug the payload content." id="general"></group>
-      </attribute-category>
-    </cloud-connector>
-  </namespace>
+<?xml version="1.0" encoding="UTF-8"?>
+
+<namespace xmlns="http://www.mulesoft.org/schema/mule/tooling.attributes" xmlns:mule="http://www.mulesoft.org/schema/mule/core" prefix="muledebugger" url="http://www.mulesoft.org/schema/mule/muledebugger">
+  <global-cloud-connector extends="http://www.mulesoft.org/schema/mule/muledebugger/abstractMuledebuggerConnectorGeneric" image="icons/large/breakpoint.png" localId="config" icon="icons/small/muledebugger-connector_icon.png" description="Global Muledebugger configuration information." caption="Muledebugger">
+    <attribute-category description="Muledebugger configuration properties." caption="General">
+      <group caption="Generic" id="muledebuggerGenericProperties">
+        <name required="true" description="Give a name to this configuration so it can be later referenced by config-ref." caption="Name" name="name"></name>
+      </group>
+      <group caption="General" id="general">
+        <integer step="1" min="0" defaultValue="6666" required="false" description="Configurable." caption="Port Number" name="portNumber"></integer>
+      </group>
+    </attribute-category>
+  </global-cloud-connector>
+  <cloud-connector extends="http://www.mulesoft.org/schema/mule/muledebugger/abstractMuledebuggerConnectorGeneric" image="icons/large/breakpoint.png" localId="muledebugger-connector" icon="icons/small/muledebugger-connector_icon.png" description="Cloud Connector." caption="Muledebugger" aliasId="org.mule.tooling.ui.modules.core.pattern.muledebugger">
+    <attribute-category description="General." caption="General">
+      <group caption="Generic" id="muledebuggerConnectorGeneric">
+        <modeSwitch description="Operation." caption="Operation" name="Muledebugger operations to execute">
+          <mode modeLabel="Debug" modeId="http://www.mulesoft.org/schema/mule/muledebugger/debug"></mode>
+        </modeSwitch>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector abstract="true" image="icons/large/breakpoint.png" localId="abstractMuledebuggerConnectorGeneric" icon="icons/small/muledebugger-connector_icon.png" description="Interact with Muledebugger." caption="Abstractmuledebuggerconnectorgeneric">
+    <attribute-category description="General." caption="General">
+      <group caption="Generic" id="abstractMuledebuggerConnectorGeneric">
+        <globalRef requiredType="http://www.mulesoft.org/schema/mule/muledebugger/config" description="Specify which configuration to use for this invocation." caption="Config Reference" name="config-ref"></globalRef>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector extends="http://www.mulesoft.org/schema/mule/muledebugger/abstractMuledebuggerConnectorGeneric" abstract="true" image="icons/large/breakpoint.png" localId="debug" icon="icons/small/muledebugger-connector_icon.png" caption="Debug">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <boolean defaultValue="true" required="false" supportsExpressions="true" description="The conditional expression." caption="Condition" name="condition"></boolean>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+</namespace>
