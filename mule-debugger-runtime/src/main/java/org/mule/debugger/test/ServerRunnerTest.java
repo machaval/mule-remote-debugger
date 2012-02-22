@@ -25,7 +25,7 @@ public class ServerRunnerTest {
                 System.out.println("Debuging message I :" + i);
                 Map<String, String> test = new HashMap<String, String>();
                 test.put("hola", "mundo" + i);
-                muleDebuggerConnector.debug(null,null);
+                muleDebuggerConnector.breakpoint(null, null);
                 Thread.sleep(20000L);
                 i++;
             } catch (InterruptedException e) {

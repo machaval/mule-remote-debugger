@@ -11,7 +11,6 @@ import org.mule.debugger.client.DebuggerClient;
 import org.mule.debugger.client.DebuggerConnection;
 import org.mule.debugger.client.IDebuggerResponseCallback;
 import org.mule.debugger.exception.RemoteDebugException;
-import org.mule.debugger.response.DebuggerResponse;
 import org.mule.debugger.response.MuleMessageInfo;
 import org.mule.debugger.response.ScriptResultInfo;
 
@@ -19,7 +18,7 @@ import java.io.IOException;
 
 public class MuleDebuggerClientTest {
     public static void main(String[] args) throws IOException {
-        DebuggerConnection localhost = new DebuggerConnection("localhost", 1234);
+        DebuggerConnection localhost = new DebuggerConnection("localhost", 6666);
         final DebuggerClient debuggerClient = new DebuggerClient(localhost);
         debuggerClient.start(new IDebuggerResponseCallback() {
             public void onMuleMessageArrived(MuleMessageInfo muleMessageInfo) {

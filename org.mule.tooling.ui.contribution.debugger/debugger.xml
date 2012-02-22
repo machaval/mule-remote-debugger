@@ -1,33 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<namespace xmlns="http://www.mulesoft.org/schema/mule/tooling.attributes" xmlns:mule="http://www.mulesoft.org/schema/mule/core" prefix="muledebugger" url="http://www.mulesoft.org/schema/mule/muledebugger">
-  <global-cloud-connector extends="http://www.mulesoft.org/schema/mule/muledebugger/abstractMuledebuggerConnectorGeneric" image="icons/large/breakpoint.png" localId="config" icon="icons/small/muledebugger-connector_icon.png" description="Global Muledebugger configuration information." caption="Muledebugger">
-    <attribute-category description="Muledebugger configuration properties." caption="General">
-      <group caption="Generic" id="muledebuggerGenericProperties">
+<namespace xmlns="http://www.mulesoft.org/schema/mule/tooling.attributes" xmlns:mule="http://www.mulesoft.org/schema/mule/core" prefix="debugger" url="http://www.mulesoft.org/schema/mule/debugger">
+  <global-cloud-connector extends="http://www.mulesoft.org/schema/mule/debugger/abstractDebuggerConnectorGeneric" image="icons/large/debugger-connector-48x32.png" localId="config" icon="icons/small/debugger-connector-24x16.png" description="Global Debugger configuration information." caption="Debugger">
+    <attribute-category description="Debugger configuration properties." caption="General">
+      <group caption="Generic" id="debuggerGenericProperties">
         <name required="true" description="Give a name to this configuration so it can be later referenced by config-ref." caption="Name" name="name"></name>
       </group>
       <group caption="General" id="general">
-        <integer step="1" min="0" defaultValue="6666" required="false" description="Configurable." caption="Port Number" name="portNumber"></integer>
+        <integer step="1" min="0" defaultValue="6666" required="false" description="Configurable. The debugger port, by default is 6666." caption="Port Number" name="portNumber"></integer>
+        <boolean defaultValue="false" required="false" supportsExpressions="true" description="Configurable. If true the debugger will wait till some clients connects." caption="Suspend" name="suspend"></boolean>
       </group>
     </attribute-category>
   </global-cloud-connector>
-  <cloud-connector extends="http://www.mulesoft.org/schema/mule/muledebugger/abstractMuledebuggerConnectorGeneric" image="icons/large/breakpoint.png" localId="muledebugger-connector" icon="icons/small/muledebugger-connector_icon.png" description="Cloud Connector." caption="Muledebugger" aliasId="org.mule.tooling.ui.modules.core.pattern.muledebugger">
+  <cloud-connector extends="http://www.mulesoft.org/schema/mule/debugger/abstractDebuggerConnectorGeneric" image="icons/large/debugger-connector-48x32.png" localId="debugger-connector" icon="icons/small/debugger-connector-24x16.png" description="The mule debugger allows to inspect the content of the mule message, and go through all the message processor on the flow." caption="Debugger" aliasId="org.mule.tooling.ui.modules.core.pattern.debugger">
     <attribute-category description="General." caption="General">
-      <group caption="Generic" id="muledebuggerConnectorGeneric">
-        <modeSwitch description="Operation." caption="Operation" name="Muledebugger operations to execute">
-          <mode modeLabel="Debug" modeId="http://www.mulesoft.org/schema/mule/muledebugger/debug"></mode>
+      <group caption="Generic" id="debuggerConnectorGeneric">
+        <modeSwitch description="Operation." caption="Operation" name="Debugger operations to execute">
+          <mode modeLabel="Breakpoint" modeId="http://www.mulesoft.org/schema/mule/debugger/breakpoint"></mode>
         </modeSwitch>
       </group>
     </attribute-category>
   </cloud-connector>
-  <cloud-connector abstract="true" image="icons/large/breakpoint.png" localId="abstractMuledebuggerConnectorGeneric" icon="icons/small/muledebugger-connector_icon.png" description="Interact with Muledebugger." caption="Abstractmuledebuggerconnectorgeneric">
+  <cloud-connector abstract="true" image="icons/large/debugger-connector-48x32.png" localId="abstractDebuggerConnectorGeneric" icon="icons/small/debugger-connector-24x16.png" description="Interact with Debugger." caption="Abstractdebuggerconnectorgeneric">
     <attribute-category description="General." caption="General">
-      <group caption="Generic" id="abstractMuledebuggerConnectorGeneric">
-        <globalRef requiredType="http://www.mulesoft.org/schema/mule/muledebugger/config" description="Specify which configuration to use for this invocation." caption="Config Reference" name="config-ref"></globalRef>
+      <group caption="Generic" id="abstractDebuggerConnectorGeneric">
+        <globalRef requiredType="http://www.mulesoft.org/schema/mule/debugger/config" description="Specify which configuration to use for this invocation." caption="Config Reference" name="config-ref"></globalRef>
       </group>
     </attribute-category>
   </cloud-connector>
-  <cloud-connector extends="http://www.mulesoft.org/schema/mule/muledebugger/abstractMuledebuggerConnectorGeneric" abstract="true" image="icons/large/breakpoint.png" localId="debug" icon="icons/small/muledebugger-connector_icon.png" caption="Debug">
+  <cloud-connector extends="http://www.mulesoft.org/schema/mule/debugger/abstractDebuggerConnectorGeneric" abstract="true" image="icons/large/debugger-connector-48x32.png" localId="breakpoint" icon="icons/small/debugger-connector-24x16.png" caption="Breakpoint">
     <attribute-category description="General." caption="General">
       <group caption="General" id="general">
         <boolean defaultValue="true" required="false" supportsExpressions="true" description="The conditional expression." caption="Condition" name="condition"></boolean>

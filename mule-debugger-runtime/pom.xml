@@ -10,7 +10,7 @@
 
     <properties>
         <mule.version>3.2.1</mule.version>
-        <mule.devkit.version>3.2</mule.devkit.version>
+        <mule.devkit.version>3.3-SNAPSHOT</mule.devkit.version>
         <junit.version>4.8.2</junit.version>
         <mockito.version>1.8.2</mockito.version>
     </properties>
@@ -150,11 +150,7 @@
 
     <dependencies>
 
-        <dependency>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy-all</artifactId>
-            <version>2.0.0-beta-1</version>
-        </dependency>
+
 
          <dependency>
             <groupId>org.mule</groupId>
@@ -208,11 +204,7 @@
             <version>${mule.version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>commons-beanutils</groupId>
-            <artifactId>commons-beanutils</artifactId>
-            <version>1.8.3</version>
-        </dependency>
+
 
     </dependencies>
 

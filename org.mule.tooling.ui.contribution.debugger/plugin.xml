@@ -4,15 +4,15 @@
    <extension
          point="org.mule.tooling.core.contribution">
       <externalContribution
-      name="Debugger"
+	    name="Breakpoint"
             contributionLibPathInMule="/plugins"
             contributionLibs="mule-debugger-runtime.zip"
-            contributionNamespace="http://www.mulesoft.org/schema/mule/muledebugger"
-            contributionNamespaceFile="http://www.mulesoft.org/schema/mule/muledebugger/current/mule-muledebugger.xsd"
-            contributionNamespacePrefix="muledebugger"
+            contributionNamespace="http://www.mulesoft.org/schema/mule/debugger"
+            contributionNamespaceFile="http://www.mulesoft.org/schema/mule/debugger/current/mule-debugger.xsd"
+            contributionNamespacePrefix="debugger"
             contributionType="component"
             path="debugger.xml"
-            version="3.2.0">
+            version="3.2.1">
       </externalContribution>
    </extension>
    <extension

@@ -1,6 +1,8 @@
 package org.mule.debugger.remote;
 
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.mule.debugger.server.DebuggerService;
 
 import java.io.IOException;
@@ -19,7 +21,7 @@ public class RemoteDebuggerService extends Thread {
     private volatile boolean isStopped = false;
     private ExecutorService threadPool = Executors.newFixedThreadPool(1);
 
-    private static Logger log = Logger.getLogger(RemoteDebuggerService.class.getName());
+    private transient static Log logger = LogFactory.getLog(RemoteDebuggerService.class);
 
     public RemoteDebuggerService(int port, DebuggerService handler) {
         this.serverPort = port;
@@ -27,7 +29,7 @@ public class RemoteDebuggerService extends Thread {
     }
 
     public void run() {
-        log.log(Level.INFO, "Server starting at " + serverPort);
+        logger.info("Server starting at " + serverPort);
         createServerSocket();
         try {
             while (!isStopped()) {
@@ -52,7 +54,8 @@ public class RemoteDebuggerService extends Thread {
             }
 
         }
-        log.log(Level.INFO, "Server Stopped.");
+        logger.info("Server stopped");
+
     }
 
 
