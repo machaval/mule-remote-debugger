@@ -1,4 +1,17 @@
-#Documentation
+# Documentation
+
+## Intallation
+
+### Mule Studio
+
+* Download the mule-debugger-runtime-1.0-SNAPSHOT.zip from the downloads and install it as un update site.
+
+### Stand alone eclipse
+
+* Download the mule-debugger-runtime-1.0-SNAPSHOT.zip from the downloads and install it as un update site.
+* Download mule-devkit-annotations-3.3-SNAPSHOT.jar and mule-debugger-runtime-1.0-SNAPSHOT.jar and add them to the mule runtime path
+
+
 
 ## Configuration Properties
 
