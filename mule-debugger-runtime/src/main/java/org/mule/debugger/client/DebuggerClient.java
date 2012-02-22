@@ -15,6 +15,9 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Class used to connect to the debugger
+ */
 public class DebuggerClient {
 
     private DebuggerConnection connection;
@@ -26,6 +29,12 @@ public class DebuggerClient {
         this.handler = new HashMap<IDebuggerRequest, IDebuggerResponseCallback>();
     }
 
+    /**
+     * Method used to connect to the server
+     *
+     * @param defaultHandler The default response handler
+     * @throws IOException If any connection issue
+     */
     public void start(final IDebuggerResponseCallback defaultHandler) throws IOException {
 
         this.connection.connect();
@@ -50,27 +59,49 @@ public class DebuggerClient {
         handler.remove(request);
     }
 
+    /**
+     * Exit the connection
+     */
     public void exit() {
         this.connection.getProtocol().sendRequest(new ExitDebuggerRequest());
 
     }
 
+    /**
+     * Resume current mule message
+     */
     public void resume() {
         this.connection.getProtocol().sendRequest(new ResumeDebuggerRequest());
     }
 
-    public void nextStep(){
+    /**
+     * Move till next message processor
+     */
+    public void nextStep() {
         this.connection.getProtocol().sendRequest(new NextStepDebuggerRequest());
     }
 
-    public void executeScript(String script) {
-        executeScript(script, null);
+
+    /**
+     * Execute a mule script and execute the result to the mule payload
+     *
+     * @param script   The script to be executed
+     * @param callback The callback for this request
+     */
+    public void executeScriptAssignResultToPayload(String script, IDebuggerResponseCallback callback) {
+        AssignScriptResultToPayloadDebuggerRequest request = new AssignScriptResultToPayloadDebuggerRequest(script);
+        if (callback != null) {
+            registerCallback(callback, request);
+        }
+        this.connection.getProtocol().sendRequest(request);
     }
 
-    public void assignScriptResultToPayload(String script){
-        this.connection.getProtocol().sendRequest(new AssignScriptResultToPayloadDebuggerRequest(script));
-    }
-
+    /**
+     * Execute a mule script
+     *
+     * @param script   The script to be executed
+     * @param callback The callback for this request
+     */
     public void executeScript(String script, IDebuggerResponseCallback callback) {
         IDebuggerRequest request = new ExecuteScriptDebuggerRequest(script);
         if (callback != null) {
@@ -83,6 +114,9 @@ public class DebuggerClient {
         handler.put(request, callback);
     }
 
+    /**
+     * Disconnect from the server
+     */
     public void disconnect() {
         this.connection.disconnect();
     }

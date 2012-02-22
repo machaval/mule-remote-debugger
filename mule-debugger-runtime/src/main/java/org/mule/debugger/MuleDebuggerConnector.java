@@ -60,7 +60,7 @@ public class MuleDebuggerConnector {
     private transient static Log logger = LogFactory.getLog(MuleDebuggerConnector.class);
 
     /**
-     * Configurable. The debugger port, by default is 6666
+     * The debugger port, by default is 6666
      */
     @Configurable
     @Default("6666")
@@ -68,7 +68,7 @@ public class MuleDebuggerConnector {
     private int portNumber;
 
     /**
-     * Configurable. If true the debugger will wait till some clients connects
+     * If true the debugger will wait till some clients connects
      */
     @Configurable
     @Default("false")

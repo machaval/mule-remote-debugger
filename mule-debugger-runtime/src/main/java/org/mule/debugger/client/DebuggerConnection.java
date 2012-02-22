@@ -15,6 +15,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 
+/**
+ * Holds the properties for the connection
+ */
 public class DebuggerConnection {
 
     private String hostName;
