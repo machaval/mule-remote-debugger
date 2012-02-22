@@ -26,10 +26,8 @@ public class MuleMessageInfoBuilder {
 
         result.setPayloadDefinition(ObjectFieldDefinition.createFromObject(messagePayload, "payload"));
         result.setExceptionPayloadDefinition(ObjectFieldDefinition.createFromObject(message.getExceptionPayload(), "exceptionPayload"));
-        String currentProcessorName = debuggingContext.getMessageProcessor().getCanonicalName();
-        if (currentProcessorName.lastIndexOf('.') > 0) {
-            currentProcessorName = currentProcessorName.substring(currentProcessorName.lastIndexOf('.') + 1);
-        }
+        String currentProcessorName = String.valueOf(debuggingContext.getMessageProcessor().getName());
+
         result.setCurrentProcessor(currentProcessorName);
         result.setPayloadString(String.valueOf(messagePayload));
         result.setUniqueId(message.getUniqueId());

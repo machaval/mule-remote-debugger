@@ -12,7 +12,7 @@ import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.util.*;
 
-public class ObjectFieldDefinition implements Serializable{
+public class ObjectFieldDefinition implements Serializable {
 
     private String name;
     private String className;
@@ -55,18 +55,18 @@ public class ObjectFieldDefinition implements Serializable{
 
     private static ObjectFieldDefinition createFromObject(Object value, String name, final int depth) {
         int nextDepth = depth + 1;
-        Class<? extends Object> valueClazz = value == null? null : value.getClass();
-        if (nextDepth >= 5 ||value == null || valueClazz.isPrimitive() || ClassUtils.isWrapperType(valueClazz) || String.class.isAssignableFrom(valueClazz)) {
-            return createSimpleField(value, valueClazz,name);
+        Class<? extends Object> valueClazz = value == null ? null : value.getClass();
+        if (nextDepth >= 5 || value == null || valueClazz.isPrimitive() || ClassUtils.isWrapperType(valueClazz) || String.class.isAssignableFrom(valueClazz)) {
+            return createSimpleField(value, valueClazz, name);
         }
-        Field[] fields = valueClazz.getDeclaredFields();
+        List<Field> fields = getInheritedPrivateFields(valueClazz);
         List<ObjectFieldDefinition> elements = new ArrayList<ObjectFieldDefinition>();
         for (Field field : fields) {
             field.setAccessible(true);
             try {
                 Object fieldValue = field.get(value);
-                if (field.getType().isPrimitive() || field.getType().isEnum()|| fieldValue == null) {
-                    elements.add(createSimpleField(fieldValue,field.getType() ,field.getName()));
+                if (field.getType().isPrimitive() || field.getType().isEnum() || fieldValue == null) {
+                    elements.add(createSimpleField(fieldValue, field.getType(), field.getName()));
                 } else if (field.getType().isArray()) {
                     List<ObjectFieldDefinition> arrayElements = new ArrayList<ObjectFieldDefinition>();
                     int length = Array.getLength(fieldValue);
@@ -91,24 +91,39 @@ public class ObjectFieldDefinition implements Serializable{
                         mapElements.add(createFromObject(entryElement.getValue(), String.valueOf(entryElement.getKey()), nextDepth));
                     }
                     elements.add(new ObjectFieldDefinition(name, valueClazz.getCanonicalName(), String.valueOf(value), mapElements));
-                }  else {
-                    elements.add(createFromObject(fieldValue,field.getName(),nextDepth));
+                } else {
+                    elements.add(createFromObject(fieldValue, field.getName(), nextDepth));
                 }
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
         }
-        return new ObjectFieldDefinition(name, valueClazz.getCanonicalName(), String.valueOf(value),elements);
+        return new ObjectFieldDefinition(name, valueClazz.getCanonicalName(), String.valueOf(value), elements);
+    }
+
+    private static List<Field> getInheritedPrivateFields(Class<?> type) {
+        List<Field> result = new ArrayList<Field>();
+
+        Class<?> i = type;
+        while (i != null && i != Object.class) {
+            for (Field field : i.getDeclaredFields()) {
+                if (!field.isSynthetic()) {
+                    result.add(field);
+                }
+            }
+            i = i.getSuperclass();
+        }
+
+        return result;
     }
 
 
-
-    private static ObjectFieldDefinition createSimpleField(Object value, Class clazz,String name) {
-        String canonicalName = clazz != null?clazz.getCanonicalName() : "null";
+    private static ObjectFieldDefinition createSimpleField(Object value, Class clazz, String name) {
+        String canonicalName = clazz != null ? clazz.getCanonicalName() : "null";
         return new ObjectFieldDefinition(name, canonicalName, String.valueOf(value), Collections.<ObjectFieldDefinition>emptyList());
     }
 
-    public static ObjectFieldDefinition createFromObject(Object value, String name){
+    public static ObjectFieldDefinition createFromObject(Object value, String name) {
         return createFromObject(value, name, 0);
     }
 }
