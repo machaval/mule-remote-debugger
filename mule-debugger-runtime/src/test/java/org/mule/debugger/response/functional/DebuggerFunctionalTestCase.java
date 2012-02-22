@@ -5,7 +5,7 @@
  * (or other master license agreement) separately entered into in writing between you and
  * MuleSoft. If such an agreement is not in place, you may not use the software.
  */
-package org.mule.debugger.test;
+package org.mule.debugger.response.functional;
 
 import org.mule.debugger.client.DebuggerClient;
 import org.mule.debugger.client.DebuggerConnection;
@@ -13,42 +13,47 @@ import org.mule.debugger.client.IDebuggerResponseCallback;
 import org.mule.debugger.exception.RemoteDebugException;
 import org.mule.debugger.response.MuleMessageInfo;
 import org.mule.debugger.response.ScriptResultInfo;
+import org.mule.tck.FunctionalTestCase;
 
 import java.io.IOException;
 
-public class MuleDebuggerClientTest {
-    public static void main(String[] args) throws IOException {
-        DebuggerConnection localhost = new DebuggerConnection("localhost", 6666);
-        final DebuggerClient debuggerClient = new DebuggerClient(localhost);
-        debuggerClient.start(new IDebuggerResponseCallback() {
+public class DebuggerFunctionalTestCase extends FunctionalTestCase {
+    @Override
+    protected String getConfigResources() {
+        return "mule-config.xml";
+    }
+
+    public void testDebugger() throws IOException {
+        DebuggerClient client = new DebuggerClient(new DebuggerConnection("localhost",6666));
+        client.start(new IDebuggerResponseCallback() {
             public void onMuleMessageArrived(MuleMessageInfo muleMessageInfo) {
-                System.out.println("MuleDebuggerClientTest.onMuleMessageArrived (muleMessage: "+muleMessageInfo + ")");
+
             }
 
             public void onScriptEvaluation(ScriptResultInfo info) {
-                System.out.println("MuleDebuggerClientTest.onScriptEvaluation( info : " + info + ")");
+
             }
 
             public void onConnected() {
-                System.out.println("MuleDebuggerClientTest.onConnected");
+
             }
 
             public void onExit() {
-                System.out.println("MuleDebuggerClientTest.onExit");
-               debuggerClient.disconnect();
+
             }
 
             public void onError(String error) {
-                System.out.println("MuleDebuggerClientTest.onError(error : " + error + ")");
+
             }
 
             public void onException(RemoteDebugException exception) {
-                System.out.println("MuleDebuggerClientTest.onException");
+
             }
 
             public void onResume() {
-                System.out.println("MuleDebuggerClientTest.onWaitingForNextMessage");
+
             }
         });
+        assertTrue("Debugger started", true);
     }
 }

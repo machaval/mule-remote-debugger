@@ -20,17 +20,15 @@
 
 <mule xmlns="http://www.mulesoft.org/schema/mule/core"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xmlns:spring="http://www.springframework.org/schema/beans"
-      xmlns:debugger="http://www.mulesoft.org/schema/mule/debugger"
-      xsi:schemaLocation="
-        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-        http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
-        http://www.mulesoft.org/schema/mule/debugger http://www.mulesoft.org/schema/mule/debugger/current/mule-debugger.xsd">
+      xmlns:mule-debugger="http://www.mulesoft.org/schema/mule/muledebugger"
+      xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+        http://www.mulesoft.org/schema/mule/muledebugger http://www.mulesoft.org/schema/mule/muledebugger/current/mule-muledebugger.xsd
+        ">
 
-    <debugger:config name="config"/>
 
     <flow name="testFlow">
-        <debugger:breakpoint/>
+        <mule-debugger:breakPoint />
+
     </flow>
 
 </mule>

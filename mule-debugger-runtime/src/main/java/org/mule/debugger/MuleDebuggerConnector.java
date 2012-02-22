@@ -20,6 +20,8 @@
  */
 package org.mule.debugger;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.mule.api.MuleContext;
 import org.mule.api.MuleMessage;
 import org.mule.api.annotations.Module;
@@ -37,26 +39,41 @@ import org.mule.context.notification.NotificationException;
 import org.mule.context.notification.ServerNotificationManager;
 import org.mule.debugger.remote.RemoteDebuggerService;
 import org.mule.debugger.server.DebuggerService;
+import org.mule.debugger.server.IDebuggerServiceListener;
+import org.mule.util.concurrent.Latch;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.CountDownLatch;
 
 /**
- * Cloud Connector
+ * The mule debugger allows to inspect the content of the mule message, and go through all the message processor on the flow.
  *
  * @author MuleSoft, Inc.
  */
-@Module(name = "muledebugger", schemaVersion = "3.2.1")
+@Module(name = "debugger", schemaVersion = "3.2.1")
 public class MuleDebuggerConnector {
+
+
+    private transient static Log logger = LogFactory.getLog(MuleDebuggerConnector.class);
+
     /**
-     * Configurable
+     * Configurable. The debugger port, by default is 6666
      */
     @Configurable
     @Default("6666")
     @Optional
     private int portNumber;
+
+    /**
+     * Configurable. If true the debugger will wait till some clients connects
+     */
+    @Configurable
+    @Default("false")
+    @Optional
+    private boolean suspend;
 
     private RemoteDebuggerService server;
     private DebuggerService handler;
@@ -65,6 +82,9 @@ public class MuleDebuggerConnector {
 
     @Inject
     private ExpressionManager expressionManager;
+
+    public MuleDebuggerConnector() {
+    }
 
     /**
      * The port number where the debugger server will run
@@ -75,10 +95,30 @@ public class MuleDebuggerConnector {
         this.portNumber = portNumber;
     }
 
+    /**
+     * If true the debugger will wait till some clients connects
+     *
+     * @param suspend If suspends the debugger
+     */
+    public void setSuspend(boolean suspend) {
+        this.suspend = suspend;
+    }
 
     @PostConstruct
     public void initialize() {
         this.handler = new DebuggerService();
+        final CountDownLatch suspendLatch = new CountDownLatch(1);
+        if (suspend) {
+            this.handler.addListener(new IDebuggerServiceListener() {
+                public void onStart() {
+                    suspendLatch.countDown();
+                }
+
+                public void onStop() {
+
+                }
+            });
+        }
         this.server = new RemoteDebuggerService(this.portNumber, handler);
         this.server.startService();
         try {
@@ -86,10 +126,19 @@ public class MuleDebuggerConnector {
             if (!notificationManager.isNotificationDynamic()) {
                 notificationManager.setNotificationDynamic(true);
             }
-            registerNotificationType(notificationManager,MuleMessageDebuggerListener.class,MessageProcessorNotification.class);
+            registerNotificationType(notificationManager, MuleMessageDebuggerListener.class, MessageProcessorNotification.class);
             this.context.registerListener(new MuleMessageDebuggerListener());
         } catch (NotificationException e) {
             e.printStackTrace();
+        }
+        if (suspend) {
+            try {
+                logger.info("Waiting for client to connect");
+                suspendLatch.await();
+            } catch (InterruptedException e) {
+
+            }
+            logger.info("Debugger started");
         }
 
     }
@@ -114,14 +163,14 @@ public class MuleDebuggerConnector {
     /**
      * Debug the payload content
      * <p/>
-     * {@sample.xml ../../../doc/MuleDebugger-connector.xml.sample muledebugger:debug}
+     * {@sample.xml ../../../doc/MuleDebugger-connector.xml.sample debugger:breakpoint}
      *
      * @param message   The mule message
      * @param condition The conditional expression
      * @return The payload
      */
     @Processor
-    public Object debug(MuleMessage message, @Optional @Default("true") Boolean condition) {
+    public Object breakpoint(MuleMessage message, @Optional @Default("true") Boolean condition) {
 
 
         if (handler.isRunning()) {

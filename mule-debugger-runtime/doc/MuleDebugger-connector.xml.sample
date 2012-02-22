@@ -1,3 +1,3 @@
-<!-- BEGIN_INCLUDE(muledebugger:debug) -->
-    <muledebugger:debug />
-<!-- END_INCLUDE(muledebugger:debug) -->
+<!-- BEGIN_INCLUDE(debugger:breakpoint) -->
+    <debugger:breakpoint />
+<!-- END_INCLUDE(debugger:breakpoint) -->
