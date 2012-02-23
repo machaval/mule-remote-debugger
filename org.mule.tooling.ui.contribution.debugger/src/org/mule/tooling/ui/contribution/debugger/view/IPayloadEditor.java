@@ -2,6 +2,7 @@
 package org.mule.tooling.ui.contribution.debugger.view;
 
 import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.swt.widgets.Link;
 
 public interface IPayloadEditor
 {
@@ -16,5 +17,7 @@ public interface IPayloadEditor
     void setUniqueId(String uniqueId);
 
     TreeViewer getPayloadTreeViewer();
+    
+    Link getTransformer();
 
 }

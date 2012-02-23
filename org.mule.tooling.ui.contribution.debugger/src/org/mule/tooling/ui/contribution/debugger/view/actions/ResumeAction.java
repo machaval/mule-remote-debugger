@@ -2,6 +2,7 @@
 package org.mule.tooling.ui.contribution.debugger.view.actions;
 
 import org.eclipse.jface.action.Action;
+import org.eclipse.swt.SWT;
 import org.mule.debugger.client.DebuggerClient;
 import org.mule.tooling.ui.contribution.debugger.controller.DebuggerEventType;
 import org.mule.tooling.ui.contribution.debugger.controller.events.ClientInitializedEvent;
@@ -47,6 +48,7 @@ public class ResumeAction extends Action
                     setClient(event.getClient());
                 }
             });
+        setAccelerator(SWT.CTRL | SWT.F6);
     }
 
     public void setClient(DebuggerClient client)

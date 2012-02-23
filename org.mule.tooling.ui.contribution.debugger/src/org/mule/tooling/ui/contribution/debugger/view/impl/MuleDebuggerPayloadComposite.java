@@ -11,6 +11,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.TreeColumn;
 import org.mule.tooling.ui.contribution.debugger.view.IPayloadEditor;
@@ -23,7 +24,7 @@ public class MuleDebuggerPayloadComposite extends Composite implements IPayloadE
     private Text payloadClassName;
     private Text encoding;
     private Text uniqueId;
-    private Text transformer;
+    private Link transformer;
 
     public MuleDebuggerPayloadComposite(Composite parent, int style)
     {
@@ -46,10 +47,9 @@ public class MuleDebuggerPayloadComposite extends Composite implements IPayloadE
         generalData.setText("Payload properties");
 
         new Label(generalData, SWT.NULL).setText("Message processor");
-        transformer = new Text(generalData, SWT.BORDER);
+        transformer = new Link(generalData, SWT.BORDER);
         transformer.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-        transformer.setEditable(false);
-        
+
         generalData.setLayout(new GridLayout(2, false));
         generalData.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
         new Label(generalData, SWT.NULL).setText("Class Name");
@@ -93,6 +93,7 @@ public class MuleDebuggerPayloadComposite extends Composite implements IPayloadE
         col.setWidth(120);
         col.setText("Value");
         col.setResizable(true);
+        
 
         return payloadProperties;
     }
@@ -165,8 +166,21 @@ public class MuleDebuggerPayloadComposite extends Composite implements IPayloadE
     @Override
     public void setCurrentProcessor(String transformerName)
     {
-        transformer.setText(transformerName);
-        
+        transformer.setText("<a>" + transformerName + "</a>");
+
     }
+
+    public Link getTransformer()
+    {
+        return transformer;
+    }
+
+    public void setTransformer(Link transformer)
+    {
+        this.transformer = transformer;
+    }
+    
+    
+    
 
 }

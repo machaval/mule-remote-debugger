@@ -70,14 +70,14 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
         <repository>
             <id>mule-ee-releases</id>
             <name>Mule Nexus EE Repository</name>
-            <url>http://dev.ee.mulesource.com/repository/content/groups/public/</url>
-        </repository>
+	    <url>http://dev.ee.mulesource.com/repository/content/repositories/releases/</url>        
+	</repository>
         <snapshotRepository>
             <id>mule-ee-snapshots</id>
             <name>Mule Nexus EE Repository</name>
-            <url>http://dev.ee.mulesource.com/repository/content/groups/public-snapshots/</url>
-            <uniqueVersion>false</uniqueVersion>
-        </snapshotRepository>
+	    <url>http://dev.ee.mulesource.com/repository/content/repositories/snapshots/</url>
+            <uniqueVersion>false</uniqueVersion>        
+	</snapshotRepository>
     </distributionManagement>
 
 	<scm>

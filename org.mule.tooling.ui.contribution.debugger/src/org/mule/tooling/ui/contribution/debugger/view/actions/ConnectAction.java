@@ -4,6 +4,7 @@ package org.mule.tooling.ui.contribution.debugger.view.actions;
 import java.io.IOException;
 
 import org.eclipse.jface.action.Action;
+import org.eclipse.swt.SWT;
 import org.mule.debugger.client.DebuggerClient;
 import org.mule.debugger.client.DebuggerConnection;
 import org.mule.debugger.client.IDebuggerResponseCallback;
@@ -89,12 +90,19 @@ public class ConnectAction extends Action
             }
             catch (IOException e)
             {
-
+                client = null;
             }
         }
         else
         {
-            client.exit();
+            try
+            {
+                client.exit();
+            }
+            finally
+            {
+                client = null;
+            }
         }
     }
 }
