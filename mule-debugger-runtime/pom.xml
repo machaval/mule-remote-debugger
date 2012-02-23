@@ -4,10 +4,13 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.mule.debugger</groupId>
     <artifactId>mule-debugger-runtime</artifactId>
-    <version>1.0-SNAPSHOT</version>
     <packaging>mule-module</packaging>
-    <name>Mule Cloud Connector</name>
-
+    <name>Mule Debugger Runtime</name>
+	<parent>
+		<artifactId>parent</artifactId>
+		<groupId>org.mule.tooling.debugger</groupId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
     <properties>
         <mule.version>3.2.1</mule.version>
         <mule.devkit.version>3.3-SNAPSHOT</mule.devkit.version>

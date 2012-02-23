@@ -30,6 +30,15 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
     </dependencies>
   </dependencyManagement>
   <build>
+	<pluginManagement>
+	      <plugins>
+	        <plugin>
+	          <groupId>org.apache.maven.plugins</groupId>
+	          <artifactId>maven-deploy-plugin</artifactId>
+	          <version>2.7</version>
+	        </plugin>
+	      </plugins>
+	    </pluginManagement>
     <plugins>
       <plugin>
         <groupId>org.eclipse.tycho</groupId>
@@ -57,5 +66,25 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
     </repository>
 
   </repositories>
-  
+  <distributionManagement>
+        <repository>
+            <id>mule-ee-releases</id>
+            <name>Mule Nexus EE Repository</name>
+            <url>http://dev.ee.mulesource.com/repository/content/groups/public/</url>
+        </repository>
+        <snapshotRepository>
+            <id>mule-ee-snapshots</id>
+            <name>Mule Nexus EE Repository</name>
+            <url>http://dev.ee.mulesource.com/repository/content/groups/public-snapshots/</url>
+            <uniqueVersion>false</uniqueVersion>
+        </snapshotRepository>
+    </distributionManagement>
+
+	<scm>
+		<connection>scm:git:git@github.com:machaval/mule-remote-debugger.git</connection>
+		<developerConnection>
+	           scm:git:git@github.com:machaval/mule-remote-debugger.git
+	    </developerConnection>
+		<url>scm:git:git@github.com:machaval/mule-remote-debugger</url>
+	</scm>
 </project>
