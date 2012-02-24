@@ -9,7 +9,6 @@ package org.mule.debugger;
 
 import org.mule.api.MuleMessage;
 import org.mule.api.expression.ExpressionManager;
-import org.mule.api.processor.MessageProcessor;
 
 public class MuleDebuggingContext {
 

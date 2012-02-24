@@ -1,10 +1,9 @@
 package org.mule.debugger.server;
 
-import com.sun.istack.internal.Nullable;
-import org.mule.debugger.response.IDebuggerResponse;
 import org.mule.debugger.MuleDebuggingContext;
 import org.mule.debugger.commands.ICommand;
 import org.mule.debugger.request.IDebuggerRequest;
+import org.mule.debugger.response.IDebuggerResponse;
 
 import java.util.logging.Logger;
 

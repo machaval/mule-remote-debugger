@@ -7,7 +7,6 @@
  */
 package org.mule.debugger.server;
 
-import org.mule.api.MuleMessage;
 import org.mule.debugger.MuleDebuggingContext;
 import org.mule.debugger.response.MuleMessageArrivedResponse;
 import org.mule.debugger.transport.IServerDebuggerProtocol;

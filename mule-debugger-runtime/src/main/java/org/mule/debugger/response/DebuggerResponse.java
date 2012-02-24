@@ -7,10 +7,7 @@
  */
 package org.mule.debugger.response;
 
-import org.mule.debugger.client.IDebuggerResponseCallback;
 import org.mule.debugger.request.IDebuggerRequest;
-
-import java.io.Serializable;
 
 public abstract class DebuggerResponse implements IDebuggerResponse {
 

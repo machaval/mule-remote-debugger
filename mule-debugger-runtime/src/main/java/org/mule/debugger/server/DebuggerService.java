@@ -1,6 +1,5 @@
 package org.mule.debugger.server;
 
-import com.sun.org.apache.regexp.internal.RE;
 import org.mule.api.MuleMessage;
 import org.mule.debugger.MuleDebuggingContext;
 

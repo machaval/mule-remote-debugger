@@ -7,7 +7,6 @@
  */
 package org.mule.debugger.client;
 
-import org.mule.debugger.commands.NextStepCommandImpl;
 import org.mule.debugger.request.*;
 import org.mule.debugger.response.IDebuggerResponse;
 
