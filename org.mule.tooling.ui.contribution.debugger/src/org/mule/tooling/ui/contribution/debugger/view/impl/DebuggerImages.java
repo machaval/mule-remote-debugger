@@ -47,6 +47,9 @@ public class DebuggerImages
     
     public static ImageDescriptor JULIEN = AbstractUIPlugin.imageDescriptorFromPlugin(PLUGIN_ID,
     "icons/authors/julien.png");
+    
+    public static ImageDescriptor TANO = AbstractUIPlugin.imageDescriptorFromPlugin(PLUGIN_ID,
+    "icons/authors/tano.png");
 
     private static DebuggerImages instance = null;
 
@@ -78,6 +81,7 @@ public class DebuggerImages
             JFaceResources.getImageRegistry().put("alberto", ALBERTO.createImage());
             JFaceResources.getImageRegistry().put("julien", JULIEN.createImage());
             JFaceResources.getImageRegistry().put("santiago", SANTIAGO.createImage());
+            JFaceResources.getImageRegistry().put("tano", TANO.createImage());
         }
         
         
