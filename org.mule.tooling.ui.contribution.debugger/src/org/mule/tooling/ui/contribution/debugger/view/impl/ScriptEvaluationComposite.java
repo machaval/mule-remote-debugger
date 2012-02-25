@@ -5,6 +5,7 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -22,6 +23,7 @@ public class ScriptEvaluationComposite extends Composite implements IScriptEvalu
     private Text script;
     private Combo expression;
     private TreeViewer resultTree;
+    private Button setResultAsPayload;
 
     public ScriptEvaluationComposite(Composite parent, int style)
     {
@@ -36,9 +38,11 @@ public class ScriptEvaluationComposite extends Composite implements IScriptEvalu
 
         Composite scriptContainer = new Composite(parent, SWT.NULL);
         scriptContainer.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-        scriptContainer.setLayout(new GridLayout(3, false));
+        GridLayout layout = new GridLayout(3, false);
+        layout.horizontalSpacing = 2;
+        scriptContainer.setLayout(layout);
         expression = new Combo(scriptContainer, SWT.NULL);
-        new Label(scriptContainer,SWT.NULL).setText(":");
+        new Label(scriptContainer, SWT.NULL).setText(":");
         script = new Text(scriptContainer, SWT.BORDER);
         script.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
@@ -51,7 +55,7 @@ public class ScriptEvaluationComposite extends Composite implements IScriptEvalu
         textResult.setControl(result);
         setResultTree(new TreeViewer(resultTab, SWT.V_SCROLL | SWT.H_SCROLL | SWT.BORDER));
         getResultTree().getTree().setHeaderVisible(true);
-        
+
         getResultTree().getTree().setHeaderVisible(true);
         TreeColumn col = new TreeColumn(getResultTree().getTree(), SWT.NONE);
         col.setText("Name");
@@ -69,6 +73,9 @@ public class ScriptEvaluationComposite extends Composite implements IScriptEvalu
         TabItem treeResult = new TabItem(resultTab, SWT.NULL);
         treeResult.setText("Tree");
         treeResult.setControl(getResultTree().getTree());
+        setSetResultAsPayload(new Button(parent, SWT.NULL));
+        getSetResultAsPayload().setLayoutData(new GridData(SWT.CENTER, SWT.FILL, false, false));
+        getSetResultAsPayload().setText("Set result as payload");
 
     }
 
@@ -122,5 +129,15 @@ public class ScriptEvaluationComposite extends Composite implements IScriptEvalu
     public TreeViewer getResultTree()
     {
         return resultTree;
+    }
+
+    public void setSetResultAsPayload(Button setResultAsPayload)
+    {
+        this.setResultAsPayload = setResultAsPayload;
+    }
+
+    public Button getSetResultAsPayload()
+    {
+        return setResultAsPayload;
     }
 }

@@ -2,6 +2,7 @@
 package org.mule.tooling.ui.contribution.debugger.view;
 
 import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Control;
 
 public interface IScriptEvaluationEditor
@@ -18,5 +19,7 @@ public interface IScriptEvaluationEditor
     String getExpressionType();
     
     TreeViewer getResultTree();
+    
+    Button getSetResultAsPayload();
 
 }

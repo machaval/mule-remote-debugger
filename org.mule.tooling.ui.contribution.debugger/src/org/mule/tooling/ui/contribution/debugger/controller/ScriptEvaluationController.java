@@ -6,6 +6,8 @@ import org.eclipse.jface.viewers.TreeNodeContentProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.widgets.Display;
 import org.mule.debugger.client.DebuggerClient;
 import org.mule.debugger.client.DefaultDebuggerResponseCallback;
@@ -39,10 +41,9 @@ public class ScriptEvaluationController
     {
 
         scriptEvaluation.setExpressionTypes(EXPRESSION_TYPES);
-        
+
         scriptEvaluation.getResultTree().setContentProvider(new TreeNodeContentProvider());
         scriptEvaluation.getResultTree().setLabelProvider(new JavaBeanLabelProvider());
-
 
         eventBus.registerListener(DebuggerEventType.CLIENT_INITIALIZED,
             new IEventHandler<ClientInitializedEvent>()
@@ -53,6 +54,36 @@ public class ScriptEvaluationController
                     client = event.getClient();
                 }
             });
+
+        scriptEvaluation.getSetResultAsPayload().addMouseListener(new MouseListener()
+        {
+
+            @Override
+            public void mouseUp(MouseEvent e)
+            {
+                client.executeScriptAssignResultToPayload("#[" + scriptEvaluation.getExpressionType() + ":"
+                                                          + scriptEvaluation.getScriptText() + "]",
+                    new DefaultDebuggerResponseCallback()
+                    {
+
+                    });
+
+            }
+
+            @Override
+            public void mouseDown(MouseEvent e)
+            {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void mouseDoubleClick(MouseEvent e)
+            {
+                // TODO Auto-generated method stub
+
+            }
+        });
 
         scriptEvaluation.getExpressionControl().addKeyListener(new KeyListener()
         {
@@ -85,8 +116,9 @@ public class ScriptEvaluationController
                                         scriptEvaluation.setResultText(info.getToStringResult());
                                         ObjectFieldDefinition excResultDef = info.getResult();
 
-                                        scriptEvaluation.getResultTree().setInput(
-                                            new TreeNode[]{ObjectTreeNodeBuilder.createTreeNode(excResultDef)});
+                                        scriptEvaluation.getResultTree()
+                                            .setInput(
+                                                new TreeNode[]{ObjectTreeNodeBuilder.createTreeNode(excResultDef)});
 
                                     }
                                 });
