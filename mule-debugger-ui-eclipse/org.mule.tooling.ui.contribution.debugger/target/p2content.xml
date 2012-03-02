@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<units size='1'>
+  <unit id='org.mule.tooling.ui.contribution.debugger' version='1.0.0.201202242224'>
+    <update id='org.mule.tooling.ui.contribution.debugger' range='[0.0.0,1.0.0.201202242224)' severity='0'/>
+    <properties size='5'>
+      <property name='org.eclipse.equinox.p2.name' value='org.mule.tooling.ui.contribution.debugger'/>
+      <property name='org.eclipse.equinox.p2.provider' value='Mulesoft Inc.'/>
+      <property name='maven-groupId' value='org.mule.tooling'/>
+      <property name='maven-artifactId' value='org.mule.tooling.ui.contribution.debugger'/>
+      <property name='maven-version' value='1.0.0-SNAPSHOT'/>
+    </properties>
+    <provides size='3'>
+      <provided namespace='org.eclipse.equinox.p2.iu' name='org.mule.tooling.ui.contribution.debugger' version='1.0.0.201202242224'/>
+      <provided namespace='osgi.bundle' name='org.mule.tooling.ui.contribution.debugger' version='1.0.0.201202242224'/>
+      <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+    </provides>
+    <requires size='2'>
+      <required namespace='osgi.bundle' name='org.eclipse.ui' range='0.0.0'/>
+      <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='0.0.0'/>
+    </requires>
+    <artifacts size='1'>
+      <artifact classifier='osgi.bundle' id='org.mule.tooling.ui.contribution.debugger' version='1.0.0.201202242224'/>
+    </artifacts>
+    <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+    <touchpointData size='1'>
+      <instructions size='2'>
+        <instruction key='manifest'>
+          Bundle-SymbolicName: org.mule.tooling.ui.contribution.debugger;singleton:=true&#xA;Bundle-Version: 1.0.0.201202242224&#xA;
+        </instruction>
+        <instruction key='zipped'>
+          true
+        </instruction>
+      </instructions>
+    </touchpointData>
+  </unit>
+</units>

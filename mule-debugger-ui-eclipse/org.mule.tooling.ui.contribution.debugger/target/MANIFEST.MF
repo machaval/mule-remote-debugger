@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Require-Bundle: org.eclipse.ui,org.eclipse.core.runtime
+Bundle-Vendor: Mulesoft Inc.
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .,lib/mule-debugger-runtime.jar
+Eclipse-BundleShape: dir
+Bundle-Version: 1.0.0.201202242224
+Bundle-Name: org.mule.tooling.ui.contribution.debugger
+Bundle-Activator: org.mule.tooling.ui.contribution.debugger.Activator
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.mule.tooling.ui.contribution.debugger;singlet
+ on:=true
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+

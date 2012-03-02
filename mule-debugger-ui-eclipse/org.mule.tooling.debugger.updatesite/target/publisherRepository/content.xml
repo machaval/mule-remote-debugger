@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?metadataRepository version='1.1.0'?>
+<repository name='publisher repository' type='org.eclipse.equinox.internal.p2.metadata.repository.LocalMetadataRepository' version='1'>
+  <properties size='2'>
+    <property name='p2.timestamp' value='1330122250212'/>
+    <property name='p2.compressed' value='false'/>
+  </properties>
+  <units size='1'>
+    <unit id='201202242224.org.mule.tooling.ui.contribution.debugger' version='1.0.0.2--cKNXLh77357377A777A'>
+      <properties size='3'>
+        <property name='org.eclipse.equinox.p2.name' value='Mule Debugger'/>
+        <property name='org.eclipse.equinox.p2.description' value='Mule debugger'/>
+        <property name='org.eclipse.equinox.p2.type.category' value='true'/>
+      </properties>
+      <provides size='1'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='201202242224.org.mule.tooling.ui.contribution.debugger' version='1.0.0.2--cKNXLh77357377A777A'/>
+      </provides>
+      <requires size='1'>
+        <required namespace='org.eclipse.equinox.p2.iu' name='org.mule.tooling.debugger.feature.group' range='[1.0.0.201202242224,1.0.0.201202242224]'/>
+      </requires>
+      <touchpoint id='null' version='0.0.0'/>
+    </unit>
+  </units>
+</repository>
