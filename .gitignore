@@ -4,5 +4,5 @@
 */*.ipr
 org.mule.tooling.ui.contribution.debugger/lib/
 */bin
-*/target
+*/**/target
 */mule*.zip
