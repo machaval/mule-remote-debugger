@@ -21,7 +21,7 @@ public class MuleDebuggerPayloadComposite extends Composite implements IPayloadE
 
     private Text payloadOutputText;
     private TreeViewer payloadTreeViewer;
-    private Text payloadClassName;
+    private Link payloadClassName;
     private Text encoding;
     private Text uniqueId;
     private Link transformer;
@@ -47,15 +47,15 @@ public class MuleDebuggerPayloadComposite extends Composite implements IPayloadE
         generalData.setText("Payload properties");
 
         new Label(generalData, SWT.NULL).setText("Message processor");
-        transformer = new Link(generalData, SWT.BORDER);
+        transformer = new Link(generalData, SWT.NULL);
         transformer.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
         generalData.setLayout(new GridLayout(2, false));
         generalData.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
         new Label(generalData, SWT.NULL).setText("Class Name");
-        setClassName(new Text(generalData, SWT.BORDER));
+        setClassName(new Link(generalData, SWT.NULL));
         getPayloadClassName().setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-        getPayloadClassName().setEditable(false);
+        
         new Label(generalData, SWT.NULL).setText("Encoding");
         encoding = new Text(generalData, SWT.BORDER);
         encoding.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
@@ -98,12 +98,12 @@ public class MuleDebuggerPayloadComposite extends Composite implements IPayloadE
         return payloadProperties;
     }
 
-    public void setClassName(Text className)
+    public void setClassName(Link className)
     {
         this.payloadClassName = className;
     }
 
-    public Text getPayloadClassName()
+    public Link getPayloadClassName()
     {
         return payloadClassName;
     }
@@ -166,7 +166,7 @@ public class MuleDebuggerPayloadComposite extends Composite implements IPayloadE
     @Override
     public void setCurrentProcessor(String transformerName)
     {
-        transformer.setText("<a>" + transformerName + "</a>");
+        transformer.setText(transformerName);
 
     }
 

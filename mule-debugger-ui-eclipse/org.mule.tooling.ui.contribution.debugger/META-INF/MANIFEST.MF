@@ -12,3 +12,10 @@ Bundle-ActivationPolicy: lazy
 Eclipse-BundleShape: dir
 Bundle-ClassPath: .,
  lib/mule-debugger-runtime.jar
+Import-Package: org.eclipse.core.filesystem,
+ org.eclipse.core.resources,
+ org.eclipse.jdt.core,
+ org.eclipse.jdt.internal.debug.ui,
+ org.eclipse.jdt.internal.debug.ui.actions,
+ org.eclipse.jdt.ui,
+ org.eclipse.ui.ide

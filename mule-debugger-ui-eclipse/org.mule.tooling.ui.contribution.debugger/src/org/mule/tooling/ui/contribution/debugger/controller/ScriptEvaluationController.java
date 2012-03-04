@@ -62,11 +62,7 @@ public class ScriptEvaluationController
             public void mouseUp(MouseEvent e)
             {
                 client.executeScriptAssignResultToPayload("#[" + scriptEvaluation.getExpressionType() + ":"
-                                                          + scriptEvaluation.getScriptText() + "]",
-                    new DefaultDebuggerResponseCallback()
-                    {
-
-                    });
+                                                          + scriptEvaluation.getScriptText() + "]", null);
 
             }
 

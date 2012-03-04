@@ -8,7 +8,7 @@
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>eclipse-feature</packaging>
 	<parent>
-		<artifactId>parent</artifactId>
+		<artifactId>mule-debugger-ui-eclipse</artifactId>
 		<groupId>org.mule.tooling.debugger</groupId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>

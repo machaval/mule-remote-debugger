@@ -19,5 +19,7 @@ public interface IPayloadEditor
     TreeViewer getPayloadTreeViewer();
     
     Link getTransformer();
+    
+    Link getPayloadClassName();
 
 }
