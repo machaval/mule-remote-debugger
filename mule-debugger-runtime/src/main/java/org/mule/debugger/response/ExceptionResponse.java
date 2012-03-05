@@ -25,6 +25,8 @@ public class ExceptionResponse extends DebuggerResponse {
     }
 
 
+
+
     public void callCallback(IDebuggerResponseCallback callback) {
         callback.onException(getException());
     }
