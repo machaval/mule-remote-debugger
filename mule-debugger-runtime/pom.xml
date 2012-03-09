@@ -6,11 +6,8 @@
     <artifactId>mule-debugger-runtime</artifactId>
     <packaging>mule-module</packaging>
     <name>Mule Debugger Runtime</name>
-	<parent>
-		<artifactId>parent</artifactId>
-		<groupId>org.mule.tooling.debugger</groupId>
-		<version>1.0.0-SNAPSHOT</version>
-	</parent>
+  	<version>1.0.0-SNAPSHOT</version>
+
     <properties>
         <mule.version>3.2.1</mule.version>
         <mule.devkit.version>3.3-SNAPSHOT</mule.devkit.version>
@@ -207,29 +204,43 @@
             <version>${mule.version}</version>
             <scope>test</scope>
         </dependency>
-
-
     </dependencies>
 
-    <repositories>
+
+
+   <repositories>
         <repository>
-            <id>mulesoft-releases</id>
-            <name>MuleSoft Releases Repository</name>
+            <id>muleforge-releases</id>
+            <name>MuleForge Releases Repository</name>
             <url>http://repository.mulesoft.org/releases/</url>
             <layout>default</layout>
         </repository>
         <repository>
-            <id>mulesoft-snapshots</id>
-            <name>MuleSoft Snapshots Repository</name>
+            <id>muleforge-snapshots</id>
+            <name>MuleForge Snapshots Repository</name>
             <url>http://repository.mulesoft.org/snapshots/</url>
             <layout>default</layout>
         </repository>
     </repositories>
 
+ <distributionManagement>
+        <repository>
+            <id>mule-ee-releases</id>
+            <name>MuleEE Releases Repository</name>
+            <url>http://dev.ee.mulesource.com/repository/content/repositories/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>mule-ee-snapshots</id>
+            <name>MuleEE Snapshots Repository</name>
+            <url>http://dev.ee.mulesource.com/repository/content/repositories/snapshots/</url>
+            <uniqueVersion>false</uniqueVersion>
+        </snapshotRepository>
+    </distributionManagement>
+
     <pluginRepositories>
         <pluginRepository>
-            <id>mulesoft-plugin-releases</id>
-            <name>MuleSoft Release Repository</name>
+            <id>muleforge-plugin-releases</id>
+            <name>Muleforge Release Repository</name>
             <url>http://repository.mulesoft.org/releases/</url>
             <releases>
                 <enabled>true</enabled>
@@ -239,8 +250,8 @@
             </snapshots>
         </pluginRepository>
         <pluginRepository>
-            <id>mulesoft-plugin-snapshots</id>
-            <name>MuleSoft Snapshot Repository</name>
+            <id>muleforge-plugin-snapshots</id>
+            <name>Muleforge Snapshot Repository</name>
             <url>http://repository.mulesoft.org/snapshots/</url>
             <releases>
                 <enabled>false</enabled>
