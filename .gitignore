@@ -1,8 +1,11 @@
+mule-debugger-ui-eclipse/org.mule.tooling.ui.contribution.debugger/mule-debugger-runtime.zip
 .idea
 */*.iws
 */*.iml
 */*.ipr
-org.mule.tooling.ui.contribution.debugger/lib/
+**/**/lib/*.jar
 */bin
-*/**/target
+*/*/bin
+**/target
+**/**/target
 */mule*.zip

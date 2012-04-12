@@ -28,10 +28,9 @@ public class AssignScriptResultToPayloadCommandImpl extends AbstractCommand {
             Object result = debuggingMessage.getExpressionManager().evaluate(script, message);
             debuggingMessage.getMessage().setPayload(result);
             return new MuleMessageArrivedResponse(MuleMessageInfoBuilder.createFromMuleMessage(getMuleDebuggingMessage()));
-        }catch (Exception e){
-            return new ExceptionResponse(new RemoteDebugException(e.getMessage()));
-        }
-        finally {
+        } catch (Exception e) {
+            return new ExceptionResponse(new RemoteDebugException(e.getMessage(), e));
+        } finally {
             Thread.currentThread().setContextClassLoader(oldContext);
         }
     }

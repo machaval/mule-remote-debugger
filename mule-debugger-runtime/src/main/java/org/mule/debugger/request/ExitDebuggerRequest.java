@@ -10,7 +10,7 @@ package org.mule.debugger.request;
 import org.mule.debugger.commands.ExitDebuggerCommandImpl;
 import org.mule.debugger.commands.ICommand;
 
-public class ExitDebuggerRequest extends AbstractDebuggerRequestImpl  {
+public class ExitDebuggerRequest extends AbstractDebuggerRequestImpl {
     public ICommand createCommand() {
         return new ExitDebuggerCommandImpl();
     }

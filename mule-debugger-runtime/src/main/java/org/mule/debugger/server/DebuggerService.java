@@ -84,7 +84,7 @@ public class DebuggerService {
         return this.currentMessage != null && this.currentMessage.getMessage().getMessageRootId().equals(newMuleMessage.getMessageRootId());
     }
 
-    public void addListener(IDebuggerServiceListener listener){
+    public void addListener(IDebuggerServiceListener listener) {
         this.listeners.add(listener);
     }
 

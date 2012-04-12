@@ -4,12 +4,11 @@ import org.mule.debugger.commands.ICommand;
 
 import java.io.Serializable;
 
-public interface IDebuggerRequest  extends Serializable
-{
+public interface IDebuggerRequest extends Serializable {
 
-   ICommand createCommand();
+    ICommand createCommand();
 
-   long getRequestId();
+    long getRequestId();
 
 }
 

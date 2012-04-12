@@ -7,12 +7,25 @@
  */
 package org.mule.debugger.exception;
 
-public class RemoteDebugException extends Exception{
+import org.mule.debugger.response.ObjectFieldDefinition;
 
-    public RemoteDebugException(String message) {
+public class RemoteDebugException extends Exception {
+
+    private ObjectFieldDefinition exception;
+
+    public RemoteDebugException(String message, Exception e) {
         super(message);
+        exception = ObjectFieldDefinition.createFromObject(e, "exception");
     }
 
     public RemoteDebugException() {
+    }
+
+    public ObjectFieldDefinition getException() {
+        return exception;
+    }
+
+    public void setException(ObjectFieldDefinition exception) {
+        this.exception = exception;
     }
 }

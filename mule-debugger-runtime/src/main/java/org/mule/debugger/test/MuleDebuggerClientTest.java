@@ -22,7 +22,7 @@ public class MuleDebuggerClientTest {
         final DebuggerClient debuggerClient = new DebuggerClient(localhost);
         debuggerClient.start(new IDebuggerResponseCallback() {
             public void onMuleMessageArrived(MuleMessageInfo muleMessageInfo) {
-                System.out.println("MuleDebuggerClientTest.onMuleMessageArrived (muleMessage: "+muleMessageInfo + ")");
+                System.out.println("MuleDebuggerClientTest.onMuleMessageArrived (muleMessage: " + muleMessageInfo + ")");
             }
 
             public void onScriptEvaluation(ScriptResultInfo info) {
@@ -35,7 +35,7 @@ public class MuleDebuggerClientTest {
 
             public void onExit() {
                 System.out.println("MuleDebuggerClientTest.onExit");
-               debuggerClient.disconnect();
+                debuggerClient.disconnect();
             }
 
             public void onError(String error) {

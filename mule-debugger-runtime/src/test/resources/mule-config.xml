@@ -27,7 +27,7 @@
         http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
         http://www.mulesoft.org/schema/mule/debugger http://www.mulesoft.org/schema/mule/debugger/current/mule-debugger.xsd">
 
-    <debugger:config name="config"/>
+    <!--debugger:config name="config"/-->
 
     <flow name="testFlow">
         <debugger:breakpoint/>

@@ -18,13 +18,11 @@ public class DebuggerCommunicationService implements Runnable {
     private volatile boolean keepRunning = true;
 
 
-
-
     public DebuggerCommunicationService(IServerDebuggerProtocol protocol) {
         this.protocol = protocol;
     }
 
-    public void start(){
+    public void start() {
         run();
     }
 
@@ -39,7 +37,7 @@ public class DebuggerCommunicationService implements Runnable {
 
     }
 
-    public void sendResponse(IDebuggerResponse response){
+    public void sendResponse(IDebuggerResponse response) {
         protocol.sendResponse(response);
     }
 
@@ -47,7 +45,7 @@ public class DebuggerCommunicationService implements Runnable {
         this.requestHandler = requestHandler;
     }
 
-    public void stop(){
+    public void stop() {
         this.keepRunning = false;
     }
 }

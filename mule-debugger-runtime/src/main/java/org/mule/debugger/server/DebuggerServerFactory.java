@@ -20,16 +20,16 @@ public class DebuggerServerFactory {
         this.protocolServer = protocolServer;
     }
 
-    public DebuggerCommunicationService createDebuggerConnectionService(){
+    public DebuggerCommunicationService createDebuggerConnectionService() {
         return new DebuggerCommunicationService(protocolServer);
     }
 
-    public MuleMessageArrivedResponse createNewMessageResponse(MuleDebuggingContext message){
-         return new MuleMessageArrivedResponse(MuleMessageInfoBuilder.createFromMuleMessage(message));
+    public MuleMessageArrivedResponse createNewMessageResponse(MuleDebuggingContext message) {
+        return new MuleMessageArrivedResponse(MuleMessageInfoBuilder.createFromMuleMessage(message));
     }
 
 
     public MuleMessageDebuggerRequestHandler createMuleMessageRequestHandler(DebuggerService debuggerService) {
-        return new MuleMessageDebuggerRequestHandler( debuggerService);
+        return new MuleMessageDebuggerRequestHandler(debuggerService);
     }
 }

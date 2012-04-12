@@ -9,7 +9,7 @@ package org.mule.debugger.response;
 
 import org.mule.debugger.client.IDebuggerResponseCallback;
 
-public class ResumeResponse extends DebuggerResponse{
+public class ResumeResponse extends DebuggerResponse {
     public ResumeResponse() {
         super();
     }

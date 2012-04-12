@@ -16,5 +16,5 @@ public interface IDebuggerResponse extends Serializable {
 
     void setRequest(IDebuggerRequest request);
 
-    IDebuggerRequest getRequest() ;
+    IDebuggerRequest getRequest();
 }

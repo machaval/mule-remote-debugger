@@ -16,7 +16,7 @@ public class ServerRunnerTest {
     public static void main(String[] args) {
 
         MuleDebuggerConnector muleDebuggerConnector = new MuleDebuggerConnector();
-        muleDebuggerConnector.setPortNumber(1234);
+
         muleDebuggerConnector.initialize();
 
         long i = 0;

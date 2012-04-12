@@ -10,19 +10,16 @@ package org.mule.debugger.commands;
 import org.mule.debugger.response.ExitDebuggerResponse;
 import org.mule.debugger.response.IDebuggerResponse;
 
-public class ExitDebuggerCommandImpl extends AbstractCommand
-{
+public class ExitDebuggerCommandImpl extends AbstractCommand {
 
     public static final String EXIT = "exit";
 
-    public IDebuggerResponse execute()
-    {
+    public IDebuggerResponse execute() {
         getHandler().stopDebugging();
         return new ExitDebuggerResponse();
     }
 
-    public String getId()
-    {
+    public String getId() {
         return EXIT;
     }
 }

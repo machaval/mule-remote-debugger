@@ -29,7 +29,7 @@ public class MuleMessageDebuggerRequestHandler implements IDebuggerRequestHandle
         try {
             response = command.execute();
         } catch (Exception e) {
-            response = new ExceptionResponse(new RemoteDebugException(e.getMessage()));
+            response = new ExceptionResponse(new RemoteDebugException(e.getMessage(), e));
         }
         response.setRequest(request);
         return response;

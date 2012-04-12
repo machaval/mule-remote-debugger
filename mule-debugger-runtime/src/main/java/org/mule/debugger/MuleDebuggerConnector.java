@@ -59,57 +59,40 @@ public class MuleDebuggerConnector {
 
     private transient static Log logger = LogFactory.getLog(MuleDebuggerConnector.class);
 
-    /**
-     * The debugger port, by default is 6666
-     */
-    @Configurable
-    @Default("6666")
-    @Optional
-    private int portNumber;
 
-    /**
-     * If true the debugger will wait till some clients connects
-     */
-    @Configurable
-    @Default("false")
-    @Optional
-    private boolean suspend;
+    private static RemoteDebuggerService server;
+    private static DebuggerService handler;
+    public static final String MULE_DEBUG_SUSPEND = "mule.debug.suspend";
 
-    private RemoteDebuggerService server;
-    private DebuggerService handler;
     @Inject
     private MuleContext context;
 
     @Inject
     private ExpressionManager expressionManager;
 
+    private static final Object lock = new Object();
+
     public MuleDebuggerConnector() {
     }
 
-    /**
-     * The port number where the debugger server will run
-     *
-     * @param portNumber The port number . Default 6666
-     */
-    public void setPortNumber(int portNumber) {
-        this.portNumber = portNumber;
-    }
-
-    /**
-     * If true the debugger will wait till some clients connects
-     *
-     * @param suspend If suspends the debugger
-     */
-    public void setSuspend(boolean suspend) {
-        this.suspend = suspend;
-    }
 
     @PostConstruct
     public void initialize() {
-        this.handler = new DebuggerService();
+        synchronized (lock) {
+            if (handler == null) {
+                setupDebuggerService();
+            }
+        }
+
+    }
+
+    private void setupDebuggerService() {
+        handler = new DebuggerService();
         final CountDownLatch suspendLatch = new CountDownLatch(1);
+        boolean suspend = Boolean.getBoolean(MULE_DEBUG_SUSPEND);
+        logger.info("Supend property is "+suspend);
         if (suspend) {
-            this.handler.addListener(new IDebuggerServiceListener() {
+            handler.addListener(new IDebuggerServiceListener() {
                 public void onStart() {
                     suspendLatch.countDown();
                 }
@@ -119,8 +102,8 @@ public class MuleDebuggerConnector {
                 }
             });
         }
-        this.server = new RemoteDebuggerService(this.portNumber, handler);
-        this.server.startService();
+        server = new RemoteDebuggerService(Integer.getInteger("mule.debug.port", 6666), handler);
+        server.startService();
         try {
             final ServerNotificationManager notificationManager = this.context.getNotificationManager();
             if (!notificationManager.isNotificationDynamic()) {
@@ -140,7 +123,6 @@ public class MuleDebuggerConnector {
             }
             logger.info("Debugger started");
         }
-
     }
 
 

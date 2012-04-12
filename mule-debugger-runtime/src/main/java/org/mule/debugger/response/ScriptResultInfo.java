@@ -9,7 +9,7 @@ package org.mule.debugger.response;
 
 import java.io.Serializable;
 
-public class ScriptResultInfo implements Serializable{
+public class ScriptResultInfo implements Serializable {
 
     private ObjectFieldDefinition result;
     private String className;

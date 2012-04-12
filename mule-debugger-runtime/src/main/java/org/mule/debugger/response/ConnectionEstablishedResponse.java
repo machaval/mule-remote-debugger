@@ -9,7 +9,7 @@ package org.mule.debugger.response;
 
 import org.mule.debugger.client.IDebuggerResponseCallback;
 
-public class ConnectionEstablishedResponse extends DebuggerResponse{
+public class ConnectionEstablishedResponse extends DebuggerResponse {
     public ConnectionEstablishedResponse() {
         super();
     }

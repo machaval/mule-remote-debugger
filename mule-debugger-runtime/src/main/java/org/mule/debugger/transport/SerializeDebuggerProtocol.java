@@ -25,14 +25,14 @@ public class SerializeDebuggerProtocol implements IClientDebuggerProtocol, IServ
     }
 
     public void sendRequest(IDebuggerRequest request) {
-        System.out.println("SerializeDebuggerProtocol.sendRequest" +  request);
+        System.out.println("SerializeDebuggerProtocol.sendRequest" + request);
         ObjectOutputStream output;
         try {
             output = new ObjectOutputStream(this.output);
             output.writeObject(request);
             output.flush();
         } catch (IOException e) {
-          //  e.printStackTrace();
+            //  e.printStackTrace();
         }
 
 
@@ -78,7 +78,7 @@ public class SerializeDebuggerProtocol implements IClientDebuggerProtocol, IServ
             output.writeObject(response);
             output.flush();
         } catch (IOException e) {
-       //     e.printStackTrace();
+            //     e.printStackTrace();
         }
 
     }

@@ -4,8 +4,7 @@ import org.mule.debugger.MuleDebuggingContext;
 import org.mule.debugger.response.IDebuggerResponse;
 import org.mule.debugger.server.DebuggerService;
 
-public interface ICommand
-{
+public interface ICommand {
     IDebuggerResponse execute();
 
 

@@ -23,14 +23,13 @@ public class ExecuteScriptCommandImpl extends AbstractCommand {
             Thread.currentThread().setContextClassLoader(debuggingMessage.getContextClassLoader());
 
             Object result = debuggingMessage.getExpressionManager().evaluate(script, message);
-            ScriptResultInfo info = new ScriptResultInfo(ObjectFieldDefinition.createFromObject(result,"result"),
+            ScriptResultInfo info = new ScriptResultInfo(ObjectFieldDefinition.createFromObject(result, "result"),
                     String.valueOf(result.getClass()),
                     String.valueOf(result));
             return new ExecuteScriptResponse(info);
-        }catch (Exception e){
-            return new ExceptionResponse(new RemoteDebugException(e.getMessage()));
-        }
-        finally {
+        } catch (Exception e) {
+            return new ExceptionResponse(new RemoteDebugException(e.getMessage(), e));
+        } finally {
             Thread.currentThread().setContextClassLoader(oldContext);
         }
     }
