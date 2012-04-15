@@ -1,6 +1,6 @@
 # Documentation
 
-## Intallation
+## Installation
 
 ### Mule Studio
 
@@ -23,7 +23,7 @@
 
 ## Example
 
-```
+```xml
  <mule xmlns="http://www.mulesoft.org/schema/mule/core"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xmlns:spring="http://www.springframework.org/schema/beans"
