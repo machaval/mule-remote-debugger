@@ -19,9 +19,9 @@ import org.mule.tooling.ui.contribution.debugger.view.IPayloadEditor;
 public class MuleDebuggerPayloadComposite extends Composite implements IPayloadEditor
 {
 
-    private Text payloadOutputText;
+    private Text valueText;
     private TreeViewer payloadTreeViewer;
-    private Link payloadClassName;
+    private Link className;
     private Text encoding;
     private Text uniqueId;
     private Link transformer;
@@ -29,51 +29,20 @@ public class MuleDebuggerPayloadComposite extends Composite implements IPayloadE
     public MuleDebuggerPayloadComposite(Composite parent, int style)
     {
         super(parent, style);
-        this.setLayout(new FillLayout());
+        this.setLayout(new GridLayout());
         createControl(this);
 
     }
 
     protected void createControl(Composite parent)
     {
-        createPayloadView(parent);
-    }
 
-    protected Composite createPayloadView(Composite parent)
-    {
+       
         SashForm payloadProperties = new SashForm(parent, SWT.HORIZONTAL);
-
-        Group generalData = new Group(payloadProperties, SWT.NULL);
-        generalData.setText("Payload properties");
-
-        new Label(generalData, SWT.NULL).setText("Message processor");
-        transformer = new Link(generalData, SWT.NULL);
-        transformer.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-
-        generalData.setLayout(new GridLayout(2, false));
-        generalData.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-        new Label(generalData, SWT.NULL).setText("Class Name");
-        setClassName(new Link(generalData, SWT.NULL));
-        getPayloadClassName().setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-        
-        new Label(generalData, SWT.NULL).setText("Encoding");
-        encoding = new Text(generalData, SWT.BORDER);
-        encoding.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-        encoding.setEditable(false);
-        new Label(generalData, SWT.NULL).setText("Id");
-        uniqueId = new Text(generalData, SWT.BORDER);
-        uniqueId.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-        uniqueId.setEditable(false);
-        new Label(generalData, SWT.NULL).setText("Payload");
-        setOutputText(new Text(generalData, SWT.MULTI | SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL));
-        GridData layoutData = new GridData(SWT.FILL, SWT.FILL, true, true);
-        layoutData.horizontalSpan = 2;
-        getOutputText().setLayoutData(layoutData);
-        getOutputText().setFont(JFaceResources.getTextFont());
-        getOutputText().setEditable(false);
+        payloadProperties.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
         Group treeView = new Group(payloadProperties, SWT.NULL);
-        treeView.setText("Tree view");
+        treeView.setText("Payload");
         FillLayout layout = new FillLayout();
         layout.marginHeight = 5;
         layout.marginWidth = 5;
@@ -93,39 +62,53 @@ public class MuleDebuggerPayloadComposite extends Composite implements IPayloadE
         col.setWidth(120);
         col.setText("Value");
         col.setResizable(true);
-        
 
-        return payloadProperties;
+        Group selectionDetails = new Group(payloadProperties, SWT.NULL);
+        selectionDetails.setText("Selection details");
+        selectionDetails.setLayout(new GridLayout(2, false));
+        selectionDetails.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+
+        new Label(selectionDetails, SWT.NULL).setText("Class Name");
+        setClassName(new Link(selectionDetails, SWT.NULL));
+        getClassName().setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+
+        setValueText(new Text(selectionDetails, SWT.MULTI | SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL));
+        GridData layoutData = new GridData(SWT.FILL, SWT.FILL, true, true);
+        layoutData.horizontalSpan = 2;
+        getValueText().setLayoutData(layoutData);
+        getValueText().setFont(JFaceResources.getTextFont());
+        getValueText().setEditable(false);
+        
+        Group generalData = new Group(parent, SWT.NULL);
+        generalData.setText("Message properties");
+        generalData.setLayout(new GridLayout(6, false));
+        generalData.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+
+        new Label(generalData, SWT.NULL).setText("Message processor");
+        transformer = new Link(generalData, SWT.NULL);
+        transformer.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+
+        new Label(generalData, SWT.NULL).setText("Id");
+        uniqueId = new Text(generalData, SWT.BORDER);
+        uniqueId.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+        uniqueId.setEditable(false);
+
+        new Label(generalData, SWT.NULL).setText("Encoding");
+        encoding = new Text(generalData, SWT.BORDER);
+        encoding.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+        encoding.setEditable(false);
+
+
     }
 
     public void setClassName(Link className)
     {
-        this.payloadClassName = className;
+        this.className = className;
     }
 
-    public Link getPayloadClassName()
+    public Link getClassName()
     {
-        return payloadClassName;
-    }
-
-    public void setOutputText(Text outputText)
-    {
-        this.setPayloadOutputText(outputText);
-    }
-
-    public Text getOutputText()
-    {
-        return getPayloadOutputText();
-    }
-
-    public void setPayloadOutputText(Text payloadOutputText)
-    {
-        this.payloadOutputText = payloadOutputText;
-    }
-
-    public Text getPayloadOutputText()
-    {
-        return payloadOutputText;
+        return className;
     }
 
     public void setPayloadTreeViewer(TreeViewer payloadTreeViewer)
@@ -139,16 +122,16 @@ public class MuleDebuggerPayloadComposite extends Composite implements IPayloadE
     }
 
     @Override
-    public void setPayloadOutput(String paylodOutput)
+    public void setSelectionTextValue(String value)
     {
-        getPayloadOutputText().setText(paylodOutput);
+        getValueText().setText(value);
 
     }
 
     @Override
-    public void setPayloadClassName(String className)
+    public void setSelectionClassName(String className)
     {
-        getPayloadClassName().setText(className);
+        getClassName().setText(className);
     }
 
     @Override
@@ -179,8 +162,15 @@ public class MuleDebuggerPayloadComposite extends Composite implements IPayloadE
     {
         this.transformer = transformer;
     }
-    
-    
-    
+
+    public void setValueText(Text valueText)
+    {
+        this.valueText = valueText;
+    }
+
+    public Text getValueText()
+    {
+        return valueText;
+    }
 
 }

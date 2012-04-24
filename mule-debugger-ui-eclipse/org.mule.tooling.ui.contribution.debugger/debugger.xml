@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <namespace xmlns="http://www.mulesoft.org/schema/mule/tooling.attributes" xmlns:mule="http://www.mulesoft.org/schema/mule/core" prefix="debugger" url="http://www.mulesoft.org/schema/mule/debugger">
-  <global-cloud-connector extends="http://www.mulesoft.org/schema/mule/debugger/abstractDebuggerConnectorGeneric" image="icons/large/debugger-connector-48x32.png" localId="config" icon="icons/small/debugger-connector-24x16.png" description="Global Debugger configuration information." caption="Debugger">
-    <attribute-category description="Debugger configuration properties." caption="General">
-      <group caption="Generic" id="debuggerGenericProperties">
-        <name required="true" description="Give a name to this configuration so it can be later referenced by config-ref." caption="Name" name="name"></name>
-      </group>
-      <group caption="General" id="general">
-        <integer step="1" min="0" defaultValue="6666" required="false" description="Configurable. The debugger port, by default is 6666." caption="Port Number" name="portNumber"></integer>
-        <boolean defaultValue="false" required="false" supportsExpressions="true" description="Configurable. If true the debugger will wait till some clients connects." caption="Suspend" name="suspend"></boolean>
-      </group>
-    </attribute-category>
-  </global-cloud-connector>
+  
   <cloud-connector extends="http://www.mulesoft.org/schema/mule/debugger/abstractDebuggerConnectorGeneric" image="icons/large/debugger-connector-48x32.png" localId="debugger-connector" icon="icons/small/debugger-connector-24x16.png" description="The mule debugger allows to inspect the content of the mule message, and go through all the message processor on the flow." caption="Debugger" aliasId="org.mule.tooling.ui.modules.core.pattern.debugger">
     <attribute-category description="General." caption="General">
       <group caption="Generic" id="debuggerConnectorGeneric">

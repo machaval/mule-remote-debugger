@@ -8,6 +8,10 @@ import org.eclipse.jdt.internal.debug.ui.actions.OpenTypeAction;
 import org.eclipse.jdt.ui.JavaUI;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TreeNode;
 import org.eclipse.jface.viewers.TreeNodeContentProvider;
 import org.eclipse.swt.events.SelectionEvent;
@@ -73,10 +77,29 @@ public class MuleDebuggerPayloadController
     protected void bind()
     {
         payload.getPayloadTreeViewer().setContentProvider(new TreeNodeContentProvider());
-        payload.getPayloadTreeViewer().setLabelProvider(new JavaBeanLabelProvider());
+        payload.getPayloadTreeViewer().setLabelProvider(new TreeNodeLabelProvider());
+        payload.getPayloadTreeViewer().addSelectionChangedListener(new ISelectionChangedListener()
+        {
+
+            @Override
+            public void selectionChanged(SelectionChangedEvent event)
+            {
+
+                ISelection selection = event.getSelection();
+                if (!selection.isEmpty())
+                {
+
+                    IStructuredSelection treeSelection = (IStructuredSelection) selection;
+                    TreeNode node = (TreeNode) treeSelection.getFirstElement();
+                    ObjectFieldDefinition def = (ObjectFieldDefinition) node.getValue();
+                    payload.setSelectionTextValue(def.getValue());
+                    payload.setSelectionClassName("<a>" + def.getClassName() + "</a>");
+                }
+            }
+        });
 
         payload.getTransformer().addSelectionListener(new OpenClassName());
-        payload.getPayloadClassName().addSelectionListener(new OpenClassName());
+        payload.getClassName().addSelectionListener(new OpenClassName());
 
         this.eventBus.registerListener(DebuggerEventType.MULE_MESSAGE_ARRIVED,
             new IEventHandler<NewMuleMessageArrivedEvent>()
@@ -94,9 +117,9 @@ public class MuleDebuggerPayloadController
                             MuleMessageInfo muleMessageInfo = event.getMuleMessageInfo();
                             payload.setEncoding(muleMessageInfo.getEncoding());
                             payload.setUniqueId(muleMessageInfo.getUniqueId());
-                            payload.setPayloadClassName("<a>" + muleMessageInfo.getPayloadClassName()
-                                                        + "</a>");
-                            payload.setPayloadOutput(muleMessageInfo.getPayloadString());
+                            payload.setSelectionClassName("<a>" + muleMessageInfo.getPayloadClassName()
+                                                          + "</a>");
+                            payload.setSelectionTextValue(muleMessageInfo.getPayloadString());
                             payload.setCurrentProcessor("<a>" + muleMessageInfo.getCurrentProcessor()
                                                         + "</a>");
                             ObjectFieldDefinition payloadDef = muleMessageInfo.getPayloadDefinition();

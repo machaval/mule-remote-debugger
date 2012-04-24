@@ -1,8 +1,13 @@
 
 package org.mule.tooling.ui.contribution.debugger.controller;
 
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
 import org.mule.tooling.ui.contribution.debugger.controller.events.ConnectedEvent;
+import org.mule.tooling.ui.contribution.debugger.controller.events.DebuggerExceptionEvent;
 import org.mule.tooling.ui.contribution.debugger.controller.events.DisconnectedEvent;
 import org.mule.tooling.ui.contribution.debugger.controller.events.NewMuleMessageArrivedEvent;
 import org.mule.tooling.ui.contribution.debugger.controller.events.ResumeEvent;
@@ -39,6 +44,7 @@ public class MuleDebuggerViewController
                     public void run()
                     {
                         editor.setDebuggerConnected(true);
+                        showDebuggerView();
                     }
                 });
 
@@ -58,6 +64,7 @@ public class MuleDebuggerViewController
                     public void run()
                     {
                         editor.setDebuggerConnected(false);
+                        showDebuggerView();
                     }
                 });
             }
@@ -76,6 +83,27 @@ public class MuleDebuggerViewController
                     public void run()
                     {
                         editor.setDebuggerWaiting(true);
+                        showDebuggerView();
+                    }
+                });
+            }
+        });
+
+        eventBus.registerListener(DebuggerEventType.EXCEPTION, new IEventHandler<DebuggerExceptionEvent>()
+        {
+
+            @Override
+            public void onEvent(final DebuggerExceptionEvent event)
+            {
+                Display.getDefault().syncExec(new Runnable()
+                {
+
+                    @Override
+                    public void run()
+                    {
+                        MessageDialog.openError(Display.getCurrent().getActiveShell(), "Remote Error",
+                            event.getException().getMessage());
+
                     }
                 });
             }
@@ -95,9 +123,26 @@ public class MuleDebuggerViewController
                         public void run()
                         {
                             editor.setDebuggerWaiting(false);
+                            showDebuggerView();
                         }
                     });
                 }
             });
+
+    }
+
+    public void showDebuggerView()
+    {
+        IWorkbenchPage page = PlatformUI.getWorkbench()
+            .getActiveWorkbenchWindow()
+            .getActivePage();
+        try
+        {
+            page.showView("org.mule.tooling.ui.contribution.debugger.view", null,IWorkbenchPage.VIEW_VISIBLE);
+        }
+        catch (PartInitException e)
+        {
+            e.printStackTrace();
+        }
     }
 }

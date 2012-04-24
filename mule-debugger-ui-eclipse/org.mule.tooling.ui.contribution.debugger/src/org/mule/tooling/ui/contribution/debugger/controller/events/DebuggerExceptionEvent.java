@@ -20,7 +20,7 @@ public class DebuggerExceptionEvent implements IEvent
     @Override
     public IEventType getAssociatedType()
     {
-        return DebuggerEventType.CONNECTED;
+        return DebuggerEventType.EXCEPTION;
     }
 
     public void setException(RemoteDebugException exception)

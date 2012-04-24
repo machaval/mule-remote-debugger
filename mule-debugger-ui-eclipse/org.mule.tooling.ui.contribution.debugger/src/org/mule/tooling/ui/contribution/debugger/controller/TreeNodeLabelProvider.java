@@ -17,7 +17,7 @@ import org.eclipse.swt.graphics.Image;
 import org.mule.debugger.response.ObjectFieldDefinition;
 import org.mule.tooling.ui.contribution.debugger.view.impl.DebuggerImages;
 
-public class JavaBeanLabelProvider extends LabelProvider implements ITableLabelProvider
+public class TreeNodeLabelProvider extends LabelProvider implements ITableLabelProvider
 {
 
     @Override

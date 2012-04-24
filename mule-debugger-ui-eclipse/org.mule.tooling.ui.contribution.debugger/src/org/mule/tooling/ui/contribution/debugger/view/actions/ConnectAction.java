@@ -4,7 +4,8 @@ package org.mule.tooling.ui.contribution.debugger.view.actions;
 import java.io.IOException;
 
 import org.eclipse.jface.action.Action;
-import org.eclipse.swt.SWT;
+import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.swt.widgets.Display;
 import org.mule.debugger.client.DebuggerClient;
 import org.mule.debugger.client.DebuggerConnection;
 import org.mule.debugger.client.IDebuggerResponseCallback;
@@ -14,23 +15,22 @@ import org.mule.tooling.ui.contribution.debugger.controller.events.ConnectedEven
 import org.mule.tooling.ui.contribution.debugger.controller.events.DisconnectedEvent;
 import org.mule.tooling.ui.contribution.debugger.event.EventBus;
 import org.mule.tooling.ui.contribution.debugger.event.IEventHandler;
-import org.mule.tooling.ui.contribution.debugger.view.IConnectionPropertiesEditor;
 import org.mule.tooling.ui.contribution.debugger.view.impl.DebuggerImages;
 
 public class ConnectAction extends Action
 {
-    private IConnectionPropertiesEditor propertiesProvider;
+    // private IConnectionPropertiesEditor propertiesProvider;
     private DebuggerClient client;
     private final EventBus bus;
     private final IDebuggerResponseCallback callback;
+    private String host = "localhost";
+    private int port = 6666;
 
-    public ConnectAction(IConnectionPropertiesEditor propertiesProvider,
-                         EventBus bus,
-                         IDebuggerResponseCallback callback)
+    public ConnectAction(EventBus bus, IDebuggerResponseCallback callback)
     {
         super();
         this.bus = bus;
-        this.propertiesProvider = propertiesProvider;
+
         this.callback = callback;
         setConnectState();
         this.bus.registerListener(DebuggerEventType.CONNECTED, new IEventHandler<ConnectedEvent>()
@@ -63,7 +63,6 @@ public class ConnectAction extends Action
         setToolTipText("Connect");
         setText("Connect");
         setEnabled(true);
-        
 
     }
 
@@ -80,8 +79,8 @@ public class ConnectAction extends Action
     {
         if (client == null)
         {
-            client = new DebuggerClient(new DebuggerConnection(propertiesProvider.getURL(),
-                Integer.parseInt(propertiesProvider.getPort())));
+         
+            client = new DebuggerClient(new DebuggerConnection(host, port));
             try
             {
                 client.start(callback);
@@ -91,6 +90,9 @@ public class ConnectAction extends Action
             catch (IOException e)
             {
                 client = null;
+                MessageDialog.openError(Display.getCurrent().getActiveShell(),
+                    "Error while trying to connect", e.getMessage() + ".\nVerify mule is up and running at '"+host+"' and debugger is running at port "+port);
+
             }
         }
         else

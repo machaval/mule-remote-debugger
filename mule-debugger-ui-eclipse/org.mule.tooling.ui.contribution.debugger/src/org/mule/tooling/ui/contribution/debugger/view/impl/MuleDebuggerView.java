@@ -28,7 +28,7 @@ public class MuleDebuggerView extends ViewPart implements IMuleDebuggerEditor
 {
 
     private MuleDebuggerPayloadComposite muleDebuggerComposite;
-    private ConnectionPropertiesEditorComposite connectionEditor;
+//    private ConnectionPropertiesEditorComposite connectionEditor;
     private MuleDebuggerPropertiesView debuggerPropertiesView;
     private EventBus eventBus;
     private DebuggerResponseCallback callback;
@@ -47,9 +47,9 @@ public class MuleDebuggerView extends ViewPart implements IMuleDebuggerEditor
         Composite editor = new Composite(parent, SWT.NULL);
         editor.setLayout(new GridLayout());
 
-        connectionEditor = new ConnectionPropertiesEditorComposite(editor, SWT.NULL);
-        connectionEditor.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-        new ConnectionPropertiesController(connectionEditor, eventBus);
+//        connectionEditor = new ConnectionPropertiesEditorComposite(editor, SWT.NULL);
+//        connectionEditor.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+//        new ConnectionPropertiesController(connectionEditor, eventBus);
 
         debuggerEditor = new Composite(editor, SWT.NULL);
         debuggerEditor.setLayoutData(new GridData(GridData.FILL_BOTH));
@@ -98,7 +98,7 @@ public class MuleDebuggerView extends ViewPart implements IMuleDebuggerEditor
     public void createToolBar()
     {
         IToolBarManager mgr = getViewSite().getActionBars().getToolBarManager();
-        mgr.add(new ConnectAction(connectionEditor, eventBus, callback));
+        mgr.add(new ConnectAction(eventBus, callback));
         mgr.add(new ResumeAction(eventBus));
         mgr.add(new NextStepAction(eventBus));
         mgr.add(new OpenContributorsAction());

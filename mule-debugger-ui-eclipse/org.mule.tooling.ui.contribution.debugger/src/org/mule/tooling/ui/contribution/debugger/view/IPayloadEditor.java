@@ -8,9 +8,9 @@ public interface IPayloadEditor
 {
     void setCurrentProcessor(String processorName);
     
-    void setPayloadOutput(String paylodOutput);
+    void setSelectionTextValue(String paylodOutput);
 
-    void setPayloadClassName(String className);
+    void setSelectionClassName(String className);
 
     void setEncoding(String encoding);
 
@@ -20,6 +20,6 @@ public interface IPayloadEditor
     
     Link getTransformer();
     
-    Link getPayloadClassName();
+    Link getClassName();
 
 }

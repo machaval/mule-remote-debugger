@@ -43,7 +43,7 @@ public class ScriptEvaluationController
         scriptEvaluation.setExpressionTypes(EXPRESSION_TYPES);
 
         scriptEvaluation.getResultTree().setContentProvider(new TreeNodeContentProvider());
-        scriptEvaluation.getResultTree().setLabelProvider(new JavaBeanLabelProvider());
+        scriptEvaluation.getResultTree().setLabelProvider(new TreeNodeLabelProvider());
 
         eventBus.registerListener(DebuggerEventType.CLIENT_INITIALIZED,
             new IEventHandler<ClientInitializedEvent>()
@@ -131,6 +131,12 @@ public class ScriptEvaluationController
                                     {
                                         scriptEvaluation.setResultText("ERROR :\n Remote exception  :\n"
                                                                        + exception.getMessage());
+
+                                        ObjectFieldDefinition excResultDef = exception.getException();
+
+                                        scriptEvaluation.getResultTree()
+                                            .setInput(
+                                                new TreeNode[]{ObjectTreeNodeBuilder.createTreeNode(excResultDef)});
                                     }
                                 });
 
