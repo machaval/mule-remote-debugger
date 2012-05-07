@@ -7,6 +7,8 @@
  */
 package org.mule.debugger.response.functional;
 
+import org.mule.api.MuleEvent;
+import org.mule.construct.Flow;
 import org.mule.debugger.MuleDebuggerConnector;
 import org.mule.debugger.client.DebuggerClient;
 import org.mule.debugger.client.DebuggerConnection;
@@ -15,10 +17,13 @@ import org.mule.debugger.exception.RemoteDebugException;
 import org.mule.debugger.response.MuleMessageInfo;
 import org.mule.debugger.response.ScriptResultInfo;
 import org.mule.tck.FunctionalTestCase;
+import org.mule.tck.junit4.AbstractMuleContextTestCase;
 
 import java.io.IOException;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
+
+import static org.junit.Assert.assertEquals;
 
 public class DebuggerFunctionalTestCase extends FunctionalTestCase {
 

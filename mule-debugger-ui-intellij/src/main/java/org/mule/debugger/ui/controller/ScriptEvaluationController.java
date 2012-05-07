@@ -1,30 +1,19 @@
 
-package org.mule.tooling.ui.contribution.debugger.controller;
+package org.mule.debugger.ui.controller;
 
-import org.eclipse.jface.viewers.TreeNode;
-import org.eclipse.jface.viewers.TreeNodeContentProvider;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.KeyEvent;
-import org.eclipse.swt.events.KeyListener;
-import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.MouseListener;
-import org.eclipse.swt.widgets.Display;
 import org.mule.debugger.client.DebuggerClient;
-import org.mule.debugger.client.DefaultDebuggerResponseCallback;
-import org.mule.debugger.exception.RemoteDebugException;
-import org.mule.debugger.response.ObjectFieldDefinition;
-import org.mule.debugger.response.ScriptResultInfo;
-import org.mule.tooling.ui.contribution.debugger.controller.events.ClientInitializedEvent;
-import org.mule.tooling.ui.contribution.debugger.event.EventBus;
-import org.mule.tooling.ui.contribution.debugger.event.IEventHandler;
-import org.mule.tooling.ui.contribution.debugger.view.IScriptEvaluationEditor;
+import org.mule.debugger.ui.event.EventBus;
+import org.mule.debugger.ui.event.IEventHandler;
+import org.mule.debugger.ui.events.ClientInitializedEvent;
+import org.mule.debugger.ui.events.DebuggerEventType;
+import org.mule.debugger.ui.view.IScriptEvaluationEditor;
 
 public class ScriptEvaluationController
 {
-    private static final String[] EXPRESSION_TYPES = new String[]{"groovy", "headers", "variable", "xpath",
-        "payload", "mule", "jython", "javascript", "bean", "endpoint", "function", "header", "headers-list",
-        "json", "json-node", "jxpath", "map-payload", "message", "ognl", "process", "regex", "string",
-        "xpath2", "xpath-node"};
+    private static final String[] EXPRESSION_TYPES = new String[]{"mule", "headers", "groovy", "variable",
+        "jython", "javascript", "bean", "endpoint", "function", "header", "headers-list", "json",
+        "json-node", "jxpath", "map-payload", "message", "ognl", "payload", "process", "regex", "string",
+        "xpath", "xpath2", "xpath-node"};
     private IScriptEvaluationEditor scriptEvaluation;
     private EventBus eventBus;
     private DebuggerClient client;
@@ -42,8 +31,6 @@ public class ScriptEvaluationController
 
         scriptEvaluation.setExpressionTypes(EXPRESSION_TYPES);
 
-        scriptEvaluation.getResultTree().setContentProvider(new TreeNodeContentProvider());
-        scriptEvaluation.getResultTree().setLabelProvider(new TreeNodeLabelProvider());
 
         eventBus.registerListener(DebuggerEventType.CLIENT_INITIALIZED,
             new IEventHandler<ClientInitializedEvent>()
@@ -55,7 +42,7 @@ public class ScriptEvaluationController
                 }
             });
 
-        scriptEvaluation.getSetResultAsPayload().addMouseListener(new MouseListener()
+      /*  scriptEvaluation.getSetResultAsPayload().addMouseListener(new MouseListener()
         {
 
             @Override
@@ -79,8 +66,8 @@ public class ScriptEvaluationController
                 // TODO Auto-generated method stub
 
             }
-        });
-
+        });*/
+/*
         scriptEvaluation.getExpressionControl().addKeyListener(new KeyListener()
         {
 
@@ -114,7 +101,7 @@ public class ScriptEvaluationController
 
                                         scriptEvaluation.getResultTree()
                                             .setInput(
-                                                new TreeNode[]{ObjectTreeNodeBuilder.createTreeNode(excResultDef)});
+                                                new TreeNode[]{ObjectFieldDefinitionTreeTableModel.createTreeNode(excResultDef)});
 
                                     }
                                 });
@@ -136,7 +123,7 @@ public class ScriptEvaluationController
 
                                         scriptEvaluation.getResultTree()
                                             .setInput(
-                                                new TreeNode[]{ObjectTreeNodeBuilder.createTreeNode(excResultDef)});
+                                                new TreeNode[]{ObjectFieldDefinitionTreeTableModel.createTreeNode(excResultDef)});
                                     }
                                 });
 
@@ -146,6 +133,6 @@ public class ScriptEvaluationController
                 }
 
             }
-        });
+        });*/
     }
 }

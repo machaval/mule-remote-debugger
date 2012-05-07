@@ -5,8 +5,8 @@ import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.StackLayout;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
@@ -28,40 +28,36 @@ public class MuleDebuggerView extends ViewPart implements IMuleDebuggerEditor
 {
 
     private MuleDebuggerPayloadComposite muleDebuggerComposite;
-//    private ConnectionPropertiesEditorComposite connectionEditor;
+    private ConnectionPropertiesEditorComposite connectionEditor;
     private MuleDebuggerPropertiesView debuggerPropertiesView;
     private EventBus eventBus;
     private DebuggerResponseCallback callback;
     private Composite debuggerEditor;
     private StackLayout debuggerEditorLayout;
-    private CLabel disconnectedLabel;
+    
     private CLabel waitingLabel;
     private TabFolder tabFolder;
+    private TabItem payload;
 
     @Override
     public void createPartControl(Composite parent)
     {
         eventBus = new EventBus();
         callback = new DebuggerResponseCallback(eventBus);
-
+        
         Composite editor = new Composite(parent, SWT.NULL);
-        editor.setLayout(new GridLayout());
-
-//        connectionEditor = new ConnectionPropertiesEditorComposite(editor, SWT.NULL);
-//        connectionEditor.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-//        new ConnectionPropertiesController(connectionEditor, eventBus);
+        editor.setLayout(new FillLayout());
 
         debuggerEditor = new Composite(editor, SWT.NULL);
-        debuggerEditor.setLayoutData(new GridData(GridData.FILL_BOTH));
-
         debuggerEditorLayout = new StackLayout();
         debuggerEditor.setLayout(debuggerEditorLayout);
-
-        disconnectedLabel = new CLabel(debuggerEditor, SWT.CENTER);
-        disconnectedLabel.setText("Debugger is disconnected!!");
+        
+        connectionEditor = new ConnectionPropertiesEditorComposite(debuggerEditor, SWT.NULL);
+        connectionEditor.setLayoutData(new GridData(GridData.FILL_BOTH));
+        new ConnectionPropertiesController(connectionEditor, eventBus);
         
         waitingLabel = new CLabel(debuggerEditor, SWT.CENTER);
-        waitingLabel.setText("Waiting for mule message");
+        waitingLabel.setText("Connected with mule ESB.\nWaiting for a mule message to arrive!!!");
         
         tabFolder = new TabFolder(debuggerEditor, SWT.NULL);
         muleDebuggerComposite = new MuleDebuggerPayloadComposite(tabFolder, SWT.NULL);
@@ -70,8 +66,8 @@ public class MuleDebuggerView extends ViewPart implements IMuleDebuggerEditor
         
         
 
-        TabItem payload = new TabItem(tabFolder, SWT.NULL);
-        payload.setText("Payload");
+         payload = new TabItem(tabFolder, SWT.NULL);
+        payload.setText("Message");
         payload.setControl(muleDebuggerComposite);
         
         
@@ -98,7 +94,9 @@ public class MuleDebuggerView extends ViewPart implements IMuleDebuggerEditor
     public void createToolBar()
     {
         IToolBarManager mgr = getViewSite().getActionBars().getToolBarManager();
-        mgr.add(new ConnectAction(eventBus, callback));
+        ConnectAction connectAction = new ConnectAction(eventBus, callback);
+        connectAction.setConnectionProperties(connectionEditor);
+        mgr.add(connectAction);
         mgr.add(new ResumeAction(eventBus));
         mgr.add(new NextStepAction(eventBus));
         mgr.add(new OpenContributorsAction());
@@ -134,7 +132,7 @@ public class MuleDebuggerView extends ViewPart implements IMuleDebuggerEditor
             }
             else
             {
-                debuggerEditorLayout.topControl = disconnectedLabel;
+                debuggerEditorLayout.topControl = connectionEditor;
             }
             debuggerEditor.layout();
         }
@@ -149,6 +147,7 @@ public class MuleDebuggerView extends ViewPart implements IMuleDebuggerEditor
             if (!waiting)
             {
                 debuggerEditorLayout.topControl = tabFolder;
+                setMessageViewSelected();
             }
             else
             {
@@ -157,6 +156,12 @@ public class MuleDebuggerView extends ViewPart implements IMuleDebuggerEditor
             debuggerEditor.layout();
         }
         
+    }
+
+    
+    public void setMessageViewSelected()
+    {
+        tabFolder.setSelection(payload);
     }
 
 }

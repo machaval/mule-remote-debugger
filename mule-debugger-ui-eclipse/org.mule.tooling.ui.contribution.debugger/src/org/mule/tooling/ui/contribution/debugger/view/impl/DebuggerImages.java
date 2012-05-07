@@ -22,10 +22,10 @@ public class DebuggerImages
         "icons/small/disconnect.png");
 
     public static ImageDescriptor IMG_RESUME = AbstractUIPlugin.imageDescriptorFromPlugin(PLUGIN_ID,
-        "icons/small/next.png");
+        "icons/small/resume.png");
     
     public static ImageDescriptor IMG_NEXT_STEP = AbstractUIPlugin.imageDescriptorFromPlugin(PLUGIN_ID,
-    "icons/small/nextStep.png");
+    "icons/small/step_over.png");
 
     public static ImageDescriptor IMG_ATTR = AbstractUIPlugin.imageDescriptorFromPlugin(PLUGIN_ID,
         "icons/small/attribute.gif");

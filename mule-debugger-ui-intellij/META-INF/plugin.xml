@@ -21,6 +21,8 @@
   </actions>
 
   <extensions defaultExtensionNs="com.intellij">
-    <!-- Add your extensions here -->
+      <toolWindow id="MuleESB Debugger" icon="/org/mule/icons/mule.png" anchor="bottom" factoryClass="org.mule.debugger.ui.component.DebuggerWindow">
+
+      </toolWindow>
   </extensions>
 </idea-plugin>

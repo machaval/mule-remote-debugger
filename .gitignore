@@ -7,5 +7,7 @@ mule-debugger-ui-eclipse/org.mule.tooling.ui.contribution.debugger/mule-debugger
 */bin
 */*/bin
 **/target
+**/out
+**/classes
 **/**/target
 */mule*.zip

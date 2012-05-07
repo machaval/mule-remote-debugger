@@ -1,5 +1,5 @@
 
-package org.mule.tooling.ui.contribution.debugger.view;
+package org.mule.debugger.ui.view;
 
 public interface IMuleDebuggerEditor
 {
@@ -7,7 +7,5 @@ public interface IMuleDebuggerEditor
     void setDebuggerConnected(Boolean enabled);
     
     void setDebuggerWaiting(Boolean waiting);
-
-    
 
 }

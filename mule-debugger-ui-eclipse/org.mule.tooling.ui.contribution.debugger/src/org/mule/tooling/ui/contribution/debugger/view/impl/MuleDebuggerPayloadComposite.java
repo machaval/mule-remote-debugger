@@ -22,7 +22,7 @@ public class MuleDebuggerPayloadComposite extends Composite implements IPayloadE
     private Text valueText;
     private TreeViewer payloadTreeViewer;
     private Link className;
-    private Text encoding;
+   // private Text encoding;
     private Text uniqueId;
     private Link transformer;
 
@@ -93,10 +93,10 @@ public class MuleDebuggerPayloadComposite extends Composite implements IPayloadE
         uniqueId.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
         uniqueId.setEditable(false);
 
-        new Label(generalData, SWT.NULL).setText("Encoding");
-        encoding = new Text(generalData, SWT.BORDER);
-        encoding.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-        encoding.setEditable(false);
+//        new Label(generalData, SWT.NULL).setText("Encoding");
+//        encoding = new Text(generalData, SWT.BORDER);
+//        encoding.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+//        encoding.setEditable(false);
 
 
     }
@@ -137,7 +137,7 @@ public class MuleDebuggerPayloadComposite extends Composite implements IPayloadE
     @Override
     public void setEncoding(String encoding)
     {
-        this.encoding.setText(encoding);
+//        this.encoding.setText(encoding);
     }
 
     @Override

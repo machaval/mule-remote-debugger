@@ -44,7 +44,7 @@ public class MuleDebuggerViewController
                     public void run()
                     {
                         editor.setDebuggerConnected(true);
-                        showDebuggerView();
+                        //showDebuggerView();
                     }
                 });
 
@@ -64,7 +64,7 @@ public class MuleDebuggerViewController
                     public void run()
                     {
                         editor.setDebuggerConnected(false);
-                        showDebuggerView();
+                      //  showDebuggerView();
                     }
                 });
             }
@@ -83,7 +83,7 @@ public class MuleDebuggerViewController
                     public void run()
                     {
                         editor.setDebuggerWaiting(true);
-                        showDebuggerView();
+                       // showDebuggerView();
                     }
                 });
             }
@@ -123,11 +123,13 @@ public class MuleDebuggerViewController
                         public void run()
                         {
                             editor.setDebuggerWaiting(false);
-                            showDebuggerView();
+                          //  showDebuggerView();
                         }
                     });
                 }
             });
+        
+      
 
     }
 
@@ -138,7 +140,7 @@ public class MuleDebuggerViewController
             .getActivePage();
         try
         {
-            page.showView("org.mule.tooling.ui.contribution.debugger.view", null,IWorkbenchPage.VIEW_VISIBLE);
+            page.showView("org.mule.tooling.ui.contribution.debugger.view");
         }
         catch (PartInitException e)
         {

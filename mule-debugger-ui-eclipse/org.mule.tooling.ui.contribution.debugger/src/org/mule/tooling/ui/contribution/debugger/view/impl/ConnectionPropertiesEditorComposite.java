@@ -28,10 +28,14 @@ public class ConnectionPropertiesEditorComposite extends Composite implements IC
 
     protected void createControl(Composite parent)
     {
-        parent.setLayout(new FillLayout());
+        parent.setLayout(new GridLayout());
         Group group = new Group(parent, SWT.NULL);
         group.setText("Connection properties");
         group.setLayout(new GridLayout(4, false));
+        GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
+        gridData.verticalAlignment = SWT.CENTER;
+        gridData.grabExcessVerticalSpace = true;
+        group.setLayoutData(gridData);
         new Label(group, SWT.NULL).setText("URL");
         url = new Text(group, SWT.BORDER);
         url.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
@@ -48,10 +52,10 @@ public class ConnectionPropertiesEditorComposite extends Composite implements IC
     }
 
     @Override
-    public String getPort()
+    public int getPort()
     {
 
-        return port.getText();
+        return Integer.parseInt(port.getText());
     }
 
     @Override

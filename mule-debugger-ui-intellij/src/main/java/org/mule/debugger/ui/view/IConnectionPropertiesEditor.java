@@ -1,11 +1,11 @@
 
-package org.mule.tooling.ui.contribution.debugger.view;
+package org.mule.debugger.ui.view;
 
 public interface IConnectionPropertiesEditor
 {
     String getURL();
 
-    int getPort();
+    String getPort();
 
     void setURL(String url);
 

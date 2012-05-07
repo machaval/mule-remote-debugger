@@ -15,6 +15,7 @@ import org.mule.tooling.ui.contribution.debugger.controller.events.ConnectedEven
 import org.mule.tooling.ui.contribution.debugger.controller.events.DisconnectedEvent;
 import org.mule.tooling.ui.contribution.debugger.event.EventBus;
 import org.mule.tooling.ui.contribution.debugger.event.IEventHandler;
+import org.mule.tooling.ui.contribution.debugger.view.IConnectionPropertiesEditor;
 import org.mule.tooling.ui.contribution.debugger.view.impl.DebuggerImages;
 
 public class ConnectAction extends Action
@@ -23,8 +24,9 @@ public class ConnectAction extends Action
     private DebuggerClient client;
     private final EventBus bus;
     private final IDebuggerResponseCallback callback;
-    private String host = "localhost";
-    private int port = 6666;
+    private static String DEFAULT_HOST = "localhost";
+    private static int DEFAULT_PORT = 6666;
+    private IConnectionPropertiesEditor connectionProperties;
 
     public ConnectAction(EventBus bus, IDebuggerResponseCallback callback)
     {
@@ -52,6 +54,7 @@ public class ConnectAction extends Action
                 setConnectState();
                 client.disconnect();
                 client = null;
+
             }
         });
 
@@ -72,6 +75,7 @@ public class ConnectAction extends Action
         setToolTipText("Disconnect");
         setText("Disconnect");
         setEnabled(true);
+
     }
 
     @Override
@@ -79,8 +83,8 @@ public class ConnectAction extends Action
     {
         if (client == null)
         {
-         
-            client = new DebuggerClient(new DebuggerConnection(host, port));
+
+            client = new DebuggerClient(new DebuggerConnection(getHost(), getPort()));
             try
             {
                 client.start(callback);
@@ -91,20 +95,37 @@ public class ConnectAction extends Action
             {
                 client = null;
                 MessageDialog.openError(Display.getCurrent().getActiveShell(),
-                    "Error while trying to connect", e.getMessage() + ".\nVerify mule is up and running at '"+host+"' and debugger is running at port "+port);
+                    "Error while trying to connect", e.getMessage() + ".\nVerify mule is up and running at '"
+                                                     + getHost() + "' and debugger is running at port "
+                                                     + getPort());
 
             }
         }
         else
         {
-            try
-            {
-                client.exit();
-            }
-            finally
-            {
-                client = null;
-            }
+
+            client.exit();
+
         }
+    }
+
+    public String getHost()
+    {
+        return getConnectionProperties() != null ? getConnectionProperties().getURL() : DEFAULT_HOST;
+    }
+
+    public int getPort()
+    {
+        return getConnectionProperties() != null ? getConnectionProperties().getPort() : DEFAULT_PORT;
+    }
+
+    public void setConnectionProperties(IConnectionPropertiesEditor connectionProperties)
+    {
+        this.connectionProperties = connectionProperties;
+    }
+
+    public IConnectionPropertiesEditor getConnectionProperties()
+    {
+        return connectionProperties;
     }
 }
