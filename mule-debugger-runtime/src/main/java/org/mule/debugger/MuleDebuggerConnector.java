@@ -60,8 +60,8 @@ public class MuleDebuggerConnector {
     private transient static Log logger = LogFactory.getLog(MuleDebuggerConnector.class);
 
 
-    private static RemoteDebuggerService server;
-    private static DebuggerService handler;
+    private RemoteDebuggerService server;
+    private DebuggerService handler;
     public static final String MULE_DEBUG_SUSPEND = "mule.debug.suspend";
 
     @Inject
@@ -70,7 +70,7 @@ public class MuleDebuggerConnector {
     @Inject
     private ExpressionManager expressionManager;
 
-    private static final Object lock = new Object();
+    private MuleMessageDebuggerListener listener;
 
     public MuleDebuggerConnector() {
     }
@@ -78,11 +78,11 @@ public class MuleDebuggerConnector {
 
     @PostConstruct
     public void initialize() {
-        synchronized (lock) {
-            if (handler == null) {
-                setupDebuggerService();
-            }
+
+        if (handler == null) {
+            setupDebuggerService();
         }
+
 
     }
 
@@ -90,7 +90,7 @@ public class MuleDebuggerConnector {
         handler = new DebuggerService();
         final CountDownLatch suspendLatch = new CountDownLatch(1);
         boolean suspend = Boolean.getBoolean(MULE_DEBUG_SUSPEND);
-        logger.info("Supend property is "+suspend);
+        logger.info("Supend property is " + suspend);
         if (suspend) {
             handler.addListener(new IDebuggerServiceListener() {
                 public void onStart() {
@@ -110,7 +110,8 @@ public class MuleDebuggerConnector {
                 notificationManager.setNotificationDynamic(true);
             }
             registerNotificationType(notificationManager, MuleMessageDebuggerListener.class, MessageProcessorNotification.class);
-            this.context.registerListener(new MuleMessageDebuggerListener());
+            listener = new MuleMessageDebuggerListener();
+            this.context.registerListener(listener);
         } catch (NotificationException e) {
             e.printStackTrace();
         }
@@ -138,7 +139,14 @@ public class MuleDebuggerConnector {
 
     @Stop
     public void shutdown() {
-        server.stopService();
+
+        if (handler != null) {
+            this.context.unregisterListener(listener);
+            handler.stopDebugging();
+            server.stopService();
+            handler = null;
+        }
+
     }
 
 
