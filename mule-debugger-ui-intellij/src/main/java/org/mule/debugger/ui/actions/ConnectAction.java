@@ -36,7 +36,13 @@ public class ConnectAction extends AnAction {
         this.bus.registerListener(DebuggerEventType.CONNECTED, new IEventHandler<ConnectedEvent>() {
             @Override
             public void onEvent(ConnectedEvent event) {
-                setDisconnectStatus();
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        setDisconnectStatus();
+                    }
+                });
+
 
             }
         });
@@ -45,9 +51,16 @@ public class ConnectAction extends AnAction {
 
             @Override
             public void onEvent(DisconnectedEvent event) {
-                setConnectStatus();
-                client.disconnect();
-                client = null;
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        setConnectStatus();
+                        client.disconnect();
+                        client = null;
+                    }
+                });
+
+
             }
         });
 
@@ -57,14 +70,14 @@ public class ConnectAction extends AnAction {
     }
 
     private void setConnectStatus() {
-        ImageIcon imageIcon = new ImageIcon(ConnectAction.class.getResource("/org/mule/icons/connect.png"));
+        ImageIcon imageIcon = new ImageIcon(ConnectAction.class.getResource("/org/mule/icons/disconnect.png"));
         getTemplatePresentation().setIcon(imageIcon);
         getTemplatePresentation().setDescription("Connect");
         setShortcutSet(new CustomShortcutSet(KeyStroke.getKeyStroke('c', InputEvent.CTRL_MASK)));
     }
 
     private void setDisconnectStatus() {
-        ImageIcon imageIcon = new ImageIcon(ConnectAction.class.getResource("/org/mule/icons/disconnect.png"));
+        ImageIcon imageIcon = new ImageIcon(ConnectAction.class.getResource("/org/mule/icons/connect.png"));
         getTemplatePresentation().setIcon(imageIcon);
         getTemplatePresentation().setDescription("Disconnect");
         setShortcutSet(new CustomShortcutSet(KeyStroke.getKeyStroke(KeyEvent.VK_F10, InputEvent.CTRL_MASK)));
@@ -91,7 +104,7 @@ public class ConnectAction extends AnAction {
                 client.exit();
 
             } finally {
-                client = null;
+
                 setConnectStatus();
             }
         }

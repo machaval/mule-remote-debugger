@@ -19,25 +19,30 @@ import java.awt.event.KeyEvent;
 public class ResumeAction extends AnAction {
 
     private DebuggerClient client;
-    private final EventBus eventBus;
 
     public ResumeAction(EventBus eventBus) {
         super();
-        this.eventBus = eventBus;
+
         this.setClient(client);
 
         getTemplatePresentation().setEnabled(false);
-        this.eventBus.registerListener(DebuggerEventType.MULE_MESSAGE_ARRIVED,
+        eventBus.registerListener(DebuggerEventType.MULE_MESSAGE_ARRIVED,
                 new IEventHandler<NewMuleMessageArrivedEvent>() {
 
                     @Override
                     public void onEvent(NewMuleMessageArrivedEvent event) {
-                        getTemplatePresentation().setEnabled(true);
+                        SwingUtilities.invokeLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                getTemplatePresentation().setEnabled(true);
+                            }
+                        });
+
                     }
 
                 });
 
-        this.eventBus.registerListener(DebuggerEventType.CLIENT_INITIALIZED,
+        eventBus.registerListener(DebuggerEventType.CLIENT_INITIALIZED,
                 new IEventHandler<ClientInitializedEvent>() {
 
                     @Override

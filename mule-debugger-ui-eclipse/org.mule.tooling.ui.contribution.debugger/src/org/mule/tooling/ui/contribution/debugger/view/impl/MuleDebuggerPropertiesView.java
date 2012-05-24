@@ -69,6 +69,7 @@ public class MuleDebuggerPropertiesView extends Composite implements IMuleDebugg
         // column.setResizable(false);
 
         TableViewer tableViewer = new TableViewer(table);
+        
         tableViewer.setColumnProperties(COLUMN_PROPERTIES);
 
         return tableViewer;

@@ -40,7 +40,7 @@ public class ObjectFieldDefinitionTreeTableModel extends DefaultTreeModel
 
     @Override
     public Object getValueAt(Object node, int column) {
-        ObjectFieldDefinition objectDef = (ObjectFieldDefinition) node;
+        ObjectFieldDefinition objectDef = (ObjectFieldDefinition) ((DefaultMutableTreeNode) node).getUserObject();
         switch (column) {
             case 0:
                 return objectDef.getName();
@@ -72,12 +72,12 @@ public class ObjectFieldDefinitionTreeTableModel extends DefaultTreeModel
         ObjectFieldDefinition objectDef = (ObjectFieldDefinition) parent;
         List<ObjectFieldDefinition> innerElements = objectDef.getInnerElements();
 
-        return innerElements.get(index);
+        return new DefaultMutableTreeNode(innerElements.get(index));
     }
 
     @Override
     public int getChildCount(Object parent) {
-        ObjectFieldDefinition objectDef = (ObjectFieldDefinition) parent;
+        ObjectFieldDefinition objectDef = (ObjectFieldDefinition) ((DefaultMutableTreeNode) parent).getUserObject();
         List<ObjectFieldDefinition> innerElements = objectDef.getInnerElements();
 
         return innerElements == null ? 0 : innerElements.size();

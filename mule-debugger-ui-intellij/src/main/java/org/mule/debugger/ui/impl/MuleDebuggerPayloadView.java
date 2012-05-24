@@ -15,7 +15,7 @@ public class MuleDebuggerPayloadView extends JPanel implements IDebuggerMessageV
 
 
     private TreeTable payloadTreeViewer;
-    private TextField className;
+    private LinkLabel className;
     private Label uniqueId;
     private LinkLabel transformer;
     private JTextArea stringValue;
@@ -28,15 +28,15 @@ public class MuleDebuggerPayloadView extends JPanel implements IDebuggerMessageV
     protected void createControl() {
 
         payloadTreeViewer = new TreeTable(new ListTreeTableModel(null,new ColumnInfo[0]));
-        payloadTreeViewer.setBorder(BorderFactory.createTitledBorder("Payload"));
+//        payloadTreeViewer.setBorder(BorderFactory.createTitledBorder("Payload"));
 
         uniqueId = new Label();
         transformer = new LinkLabel();
 
         JPanel detailsContainer = new JPanel();
         detailsContainer.setBorder(BorderFactory.createTitledBorder("Details"));
-        className = new TextField(30);
-        className.setEditable(false);
+        className = new LinkLabel();
+
         stringValue = new JTextArea();
         stringValue.setBorder(BorderFactory.createLineBorder(Color.GRAY));
         stringValue.setEditable(false);

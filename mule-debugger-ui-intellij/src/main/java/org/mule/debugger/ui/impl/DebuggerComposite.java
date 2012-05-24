@@ -39,7 +39,7 @@ public class DebuggerComposite extends SimpleToolWindowPanel {
         toolBar = new DefaultActionGroup();
         toolBarPanel.add(
                 ActionManager.getInstance().createActionToolbar("MuleDebugger", toolBar, false).getComponent());
-
+        toolBarPanel.setBackground(Color.GRAY);
 
         this.setToolbar(toolBarPanel);
         this.setContent(debuggerTabs);
