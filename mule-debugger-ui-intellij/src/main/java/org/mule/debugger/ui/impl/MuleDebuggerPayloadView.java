@@ -4,7 +4,10 @@ package org.mule.debugger.ui.impl;
 import com.intellij.ui.components.labels.LinkLabel;
 import com.intellij.ui.treeStructure.treetable.ListTreeTableModel;
 import com.intellij.ui.treeStructure.treetable.TreeTable;
+import com.intellij.ui.treeStructure.treetable.TreeTableCellRenderer;
+import com.intellij.ui.treeStructure.treetable.TreeTableModel;
 import com.intellij.util.ui.ColumnInfo;
+import com.intellij.util.ui.UIUtil;
 import org.mule.debugger.ui.view.IDebuggerMessageViewer;
 
 
@@ -27,9 +30,17 @@ public class MuleDebuggerPayloadView extends JPanel implements IDebuggerMessageV
 
     protected void createControl() {
 
-        payloadTreeViewer = new TreeTable(new ListTreeTableModel(null,new ColumnInfo[0]));
-//        payloadTreeViewer.setBorder(BorderFactory.createTitledBorder("Payload"));
+        payloadTreeViewer = new TreeTable(new ListTreeTableModel(null,new ColumnInfo[0])){
+            @Override
+            public TreeTableCellRenderer createTableRenderer(TreeTableModel treeTableModel) {
+                TreeTableCellRenderer tableRenderer = super.createTableRenderer(treeTableModel);
+                UIUtil.setLineStyleAngled(tableRenderer);
+                tableRenderer.setRootVisible(false);
+                tableRenderer.setShowsRootHandles(true);
 
+                return tableRenderer;
+            }
+        };
         uniqueId = new Label();
         transformer = new LinkLabel();
 
@@ -55,7 +66,7 @@ public class MuleDebuggerPayloadView extends JPanel implements IDebuggerMessageV
 
         JPanel center = new JPanel();
         center.setLayout(new GridLayout(1, 2));
-        center.add(payloadTreeViewer);
+        center.add(new JScrollPane(payloadTreeViewer));
         center.add(detailsContainer);
 
         JPanel bottom = new JPanel();

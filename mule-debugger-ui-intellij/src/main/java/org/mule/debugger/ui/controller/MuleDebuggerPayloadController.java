@@ -11,6 +11,7 @@ import org.mule.debugger.ui.view.IDebuggerMessageViewer;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import java.util.Arrays;
 
 public class MuleDebuggerPayloadController {
 
@@ -30,6 +31,7 @@ public class MuleDebuggerPayloadController {
         payload.getPayloadTreeViewer().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
+                int firstIndex = e.getFirstIndex();
 
             }
         });
@@ -50,10 +52,13 @@ public class MuleDebuggerPayloadController {
                                 payload.setSelectionClassName(muleMessageInfo.getPayloadClassName());
                                 payload.setSelectionTextValue(muleMessageInfo.getPayloadString());
                                 payload.setCurrentProcessor(muleMessageInfo.getCurrentProcessor());
+
+
                                 ObjectFieldDefinition payloadDef = muleMessageInfo.getPayloadDefinition();
                                 ObjectFieldDefinition excPayloadDef = muleMessageInfo.getExceptionPayloadDefinition();
 
-                                payload.getPayloadTreeViewer().setModel(ObjectFieldDefinitionTreeTableModel.createTreeNode(payloadDef));
+                                ObjectFieldDefinition root = new ObjectFieldDefinition("Root", "", "", Arrays.asList(payloadDef, excPayloadDef));
+                                payload.getPayloadTreeViewer().setModel(ObjectFieldDefinitionTreeTableModel.createTreeNode(root));
 
                             }
                         });
