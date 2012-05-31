@@ -1,6 +1,9 @@
 package org.mule.debugger.ui.impl;
 
+import com.intellij.ui.IdeBorderFactory;
 import com.intellij.ui.TabbedPaneImpl;
+import com.intellij.ui.border.IdeaTitledBorder;
+import com.intellij.ui.components.JBScrollPane;
 import com.intellij.ui.components.JBTabbedPane;
 import com.intellij.ui.table.JBTable;
 import org.mule.debugger.ui.view.IMuleDebuggerProperties;
@@ -23,11 +26,13 @@ public class MuleDebuggerPropertiesView extends JPanel implements IMuleDebuggerP
         this.invocationProperties = new JBTable();
         this.sessionProperties = new JBTable();
 
-        debuggerTabs.add("Inbound", new JScrollPane(inboundProperties));
-        debuggerTabs.add("Invocation", new JScrollPane(invocationProperties));
-        debuggerTabs.add("Session", new JScrollPane(sessionProperties));
+        debuggerTabs.add("Inbound", new JBScrollPane(inboundProperties));
+        debuggerTabs.add("Invocation", new JBScrollPane(invocationProperties));
+        debuggerTabs.add("Session", new JBScrollPane(sessionProperties));
         this.setLayout(new GridLayout());
+
         this.add(debuggerTabs);
+        this.setBorder(IdeBorderFactory.createTitledBorder("Properties"));
     }
 
 

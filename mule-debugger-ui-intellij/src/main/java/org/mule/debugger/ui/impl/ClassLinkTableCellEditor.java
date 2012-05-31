@@ -7,6 +7,14 @@
  */
 package org.mule.debugger.ui.impl;
 
+import com.intellij.openapi.project.Project;
+import com.intellij.openapi.project.ProjectManager;
+import com.intellij.openapi.wm.WindowManager;
+import com.intellij.psi.JavaPsiFacade;
+import com.intellij.psi.PsiClass;
+import com.intellij.psi.search.GlobalSearchScope;
+import com.intellij.util.OpenSourceUtil;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellEditor;
@@ -29,18 +37,23 @@ public class ClassLinkTableCellEditor extends AbstractCellEditor implements Tabl
         text.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                JOptionPane.showMessageDialog(JOptionPane.getRootFrame(), className, "Error", JOptionPane.ERROR_MESSAGE);
+
+
             }
 
             @Override
             public void mousePressed(MouseEvent e) {
-                JOptionPane.showMessageDialog(JOptionPane.getRootFrame(), className, "Error", JOptionPane.ERROR_MESSAGE);
+                Project project = ProjectManager.getInstance().getOpenProjects()[0];
+                PsiClass aClass = JavaPsiFacade.getInstance(project).findClass(className, GlobalSearchScope.allScope(project));
+                if (aClass != null) {
+                    OpenSourceUtil.navigate(aClass);
+                }
 
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
-                JOptionPane.showMessageDialog(JOptionPane.getRootFrame(), className, "Error", JOptionPane.ERROR_MESSAGE);
+
 
             }
 

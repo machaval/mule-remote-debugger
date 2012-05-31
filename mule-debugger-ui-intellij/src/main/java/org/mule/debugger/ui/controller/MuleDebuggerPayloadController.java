@@ -1,12 +1,17 @@
 package org.mule.debugger.ui.controller;
 
 import com.intellij.ui.components.labels.LinkLabel;
+import com.intellij.ui.treeStructure.treetable.ListTreeTableModel;
 import com.intellij.ui.treeStructure.treetable.TreeTable;
+import com.intellij.ui.treeStructure.treetable.TreeTableModel;
+import com.intellij.util.ui.ColumnInfo;
 import org.mule.debugger.response.MuleMessageInfo;
 import org.mule.debugger.response.ObjectFieldDefinition;
 import org.mule.debugger.ui.event.EventBus;
+import org.mule.debugger.ui.event.IEvent;
 import org.mule.debugger.ui.event.IEventHandler;
 import org.mule.debugger.ui.events.DebuggerEventType;
+import org.mule.debugger.ui.events.DisconnectedEvent;
 import org.mule.debugger.ui.events.NewMuleMessageArrivedEvent;
 import org.mule.debugger.ui.impl.ClassLinkTableCellEditor;
 import org.mule.debugger.ui.impl.ClassLinkTableCellRenderer;
@@ -38,12 +43,12 @@ public class MuleDebuggerPayloadController {
 
 
         final TreeTable payloadTreeViewer = payload.getPayloadTreeViewer();
+        payloadTreeViewer.setModel(getEmptyTableModel());
 
         payloadTreeViewer.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                if(!e.getValueIsAdjusting())
-                {
+                if (!e.getValueIsAdjusting()) {
                     ListSelectionModel model = payloadTreeViewer.getSelectionModel();
                     int lead = model.getLeadSelectionIndex();
                     payload.setSelectionTextValue(String.valueOf(payloadTreeViewer.getModel().getValueAt(lead, 2)));
@@ -105,8 +110,7 @@ public class MuleDebuggerPayloadController {
                                 payloadTreeViewer.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
                                     @Override
                                     public void valueChanged(ListSelectionEvent e) {
-                                        if(!e.getValueIsAdjusting())
-                                        {
+                                        if (!e.getValueIsAdjusting()) {
                                             ListSelectionModel model = payloadTreeViewer.getSelectionModel();
                                             int lead = model.getLeadSelectionIndex();
                                             payload.setSelectionTextValue(String.valueOf(payloadTreeViewer.getModel().getValueAt(lead, 2)));
@@ -120,6 +124,41 @@ public class MuleDebuggerPayloadController {
 
                     }
                 });
+
+        this.eventBus.registerListener(DebuggerEventType.WAITING, new IEventHandler() {
+            @Override
+            public void onEvent(IEvent event) {
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        cleanUI();
+                    }
+                });
+            }
+        });
+
+        this.eventBus.registerListener(DebuggerEventType.DISCONNECTED, new IEventHandler<DisconnectedEvent>() {
+
+            @Override
+            public void onEvent(DisconnectedEvent event) {
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        cleanUI();
+                    }
+                });
+            }
+        });
+
+    }
+
+    private void cleanUI() {
+        payload.getPayloadTreeViewer().setModel(getEmptyTableModel());
+        payload.setSelectionTextValue("");
+    }
+
+    private TreeTableModel getEmptyTableModel() {
+        return ObjectFieldDefinitionTreeTableModel.createTreeNode(new ObjectFieldDefinition("Root", "", "", new ArrayList<ObjectFieldDefinition>()));
     }
 
 }

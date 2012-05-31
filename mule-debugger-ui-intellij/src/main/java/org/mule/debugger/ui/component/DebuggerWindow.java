@@ -18,6 +18,7 @@ import org.mule.debugger.ui.actions.StepOverAction;
 import org.mule.debugger.ui.controller.DebuggerResponseCallback;
 import org.mule.debugger.ui.controller.MuleDebuggerPayloadController;
 import org.mule.debugger.ui.controller.MuleDebuggerPropertiesController;
+import org.mule.debugger.ui.controller.ScriptEvaluationController;
 import org.mule.debugger.ui.event.EventBus;
 import org.mule.debugger.ui.impl.DebuggerComposite;
 import org.mule.debugger.ui.impl.MuleDebuggerPropertiesView;
@@ -35,6 +36,7 @@ public class DebuggerWindow implements ToolWindowFactory {
 
         new MuleDebuggerPayloadController(comp.getPayloadComposite(), eventBus);
         new MuleDebuggerPropertiesController(comp.getPropertiesView(), eventBus);
+        new ScriptEvaluationController(comp.getScriptView(), eventBus);
         Content content = contentFactory.createContent(comp, "Payload", false);
 
 

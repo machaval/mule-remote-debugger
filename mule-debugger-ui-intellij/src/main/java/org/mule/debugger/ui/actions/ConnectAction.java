@@ -39,7 +39,7 @@ public class ConnectAction extends AnAction {
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
-                        setDisconnectStatus();
+
                     }
                 });
 
@@ -51,16 +51,8 @@ public class ConnectAction extends AnAction {
 
             @Override
             public void onEvent(DisconnectedEvent event) {
-                SwingUtilities.invokeLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        setConnectStatus();
-                        client.disconnect();
-                        client = null;
-                    }
-                });
-
-
+                client.disconnect();
+                client = null;
             }
         });
 
@@ -76,14 +68,6 @@ public class ConnectAction extends AnAction {
         setShortcutSet(new CustomShortcutSet(KeyStroke.getKeyStroke('c', InputEvent.CTRL_MASK)));
     }
 
-    private void setDisconnectStatus() {
-        ImageIcon imageIcon = new ImageIcon(ConnectAction.class.getResource("/org/mule/icons/connect.png"));
-        getTemplatePresentation().setIcon(imageIcon);
-        getTemplatePresentation().setDescription("Disconnect");
-        setShortcutSet(new CustomShortcutSet(KeyStroke.getKeyStroke(KeyEvent.VK_F10, InputEvent.CTRL_MASK)));
-
-    }
-
 
     @Override
     public void actionPerformed(AnActionEvent anActionEvent) {
@@ -93,20 +77,32 @@ public class ConnectAction extends AnAction {
             try {
                 client.start(callback);
                 bus.fireEvent(new ClientInitializedEvent(client));
-                getTemplatePresentation().setEnabled(false);
+
             } catch (IOException ex) {
                 client = null;
                 JOptionPane.showMessageDialog(JOptionPane.getRootFrame(), ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 
             }
+
+
         } else {
-            try {
-                client.exit();
 
-            } finally {
+            client.exit();
 
-                setConnectStatus();
-            }
+
+        }
+    }
+
+    @Override
+    public void update(AnActionEvent e) {
+        if (client != null) {
+            ImageIcon imageIcon = new ImageIcon(ConnectAction.class.getResource("/org/mule/icons/connect.png"));
+            e.getPresentation().setIcon(imageIcon);
+            e.getPresentation().setDescription("Disconnect");
+        } else {
+            ImageIcon imageIcon = new ImageIcon(ConnectAction.class.getResource("/org/mule/icons/disconnect.png"));
+            e.getPresentation().setIcon(imageIcon);
+            e.getPresentation().setDescription("Connect");
         }
     }
 }

@@ -1,6 +1,7 @@
 package org.mule.debugger.ui.impl;
 
 
+import com.intellij.ui.components.JBScrollPane;
 import com.intellij.ui.components.labels.LinkLabel;
 import com.intellij.ui.treeStructure.treetable.ListTreeTableModel;
 import com.intellij.ui.treeStructure.treetable.TreeTable;
@@ -14,7 +15,7 @@ import org.mule.debugger.ui.view.IDebuggerMessageViewer;
 import javax.swing.*;
 import java.awt.*;
 
-public class MuleDebuggerPayloadView extends JSplitPane implements IDebuggerMessageViewer {
+public class MuleDebuggerPayloadView extends JPanel implements IDebuggerMessageViewer {
 
 
     private TreeTable payloadTreeViewer;
@@ -22,13 +23,13 @@ public class MuleDebuggerPayloadView extends JSplitPane implements IDebuggerMess
     private JTextArea stringValue;
 
     public MuleDebuggerPayloadView() {
-        super(JSplitPane.VERTICAL_SPLIT);
+        super();
         this.createControl();
 
     }
 
     protected void createControl() {
-
+        this.setLayout(new BorderLayout());
         payloadTreeViewer = new TreeTable(new ListTreeTableModel(null,new ColumnInfo[0])){
             @Override
             public TreeTableCellRenderer createTableRenderer(TreeTableModel treeTableModel) {
@@ -44,13 +45,13 @@ public class MuleDebuggerPayloadView extends JSplitPane implements IDebuggerMess
         payloadTreeViewer.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         stringValue = new JTextArea();
-        stringValue.setBorder(BorderFactory.createLineBorder(Color.GRAY));
         stringValue.setEditable(false);
+        stringValue.setRows(3);
+
+        this.add(new JBScrollPane(payloadTreeViewer),BorderLayout.CENTER);
+        this.add(new JBScrollPane(stringValue),BorderLayout.SOUTH);
 
 
-        this.setDividerLocation(0.7);
-        this.add(new JScrollPane(payloadTreeViewer));
-        this.add(stringValue);
 
     }
 

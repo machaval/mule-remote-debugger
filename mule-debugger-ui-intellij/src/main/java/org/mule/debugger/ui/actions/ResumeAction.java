@@ -4,12 +4,11 @@ import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CustomShortcutSet;
 import com.intellij.openapi.actionSystem.Presentation;
-import org.mule.debugger.ui.events.DebuggerEventType;
+import org.mule.debugger.ui.event.IEvent;
+import org.mule.debugger.ui.events.*;
 import org.mule.debugger.client.DebuggerClient;
 import org.mule.debugger.ui.event.EventBus;
 import org.mule.debugger.ui.event.IEventHandler;
-import org.mule.debugger.ui.events.ClientInitializedEvent;
-import org.mule.debugger.ui.events.NewMuleMessageArrivedEvent;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -19,9 +18,12 @@ import java.awt.event.KeyEvent;
 public class ResumeAction extends AnAction {
 
     private DebuggerClient client;
+    private boolean messageArrived = false;
+    private EventBus eventBus;
 
     public ResumeAction(EventBus eventBus) {
         super();
+        this.eventBus = eventBus;
 
         this.setClient(client);
 
@@ -31,13 +33,7 @@ public class ResumeAction extends AnAction {
 
                     @Override
                     public void onEvent(NewMuleMessageArrivedEvent event) {
-                        SwingUtilities.invokeLater(new Runnable() {
-                            @Override
-                            public void run() {
-                                getTemplatePresentation().setEnabled(true);
-                            }
-                        });
-
+                        messageArrived = true;
                     }
 
                 });
@@ -50,6 +46,16 @@ public class ResumeAction extends AnAction {
                         setClient(event.getClient());
                     }
                 });
+
+
+
+        this.eventBus.registerListener(DebuggerEventType.DISCONNECTED, new IEventHandler<DisconnectedEvent>() {
+
+            @Override
+            public void onEvent(DisconnectedEvent event) {
+                messageArrived = false;
+            }
+        });
 
         ImageIcon imageIcon = new ImageIcon(ConnectAction.class.getResource("/org/mule/icons/resume.png"));
         getTemplatePresentation().setIcon(imageIcon);
@@ -70,7 +76,18 @@ public class ResumeAction extends AnAction {
 
     @Override
     public void actionPerformed(AnActionEvent anActionEvent) {
-        getTemplatePresentation().setEnabled(false);
+        messageArrived = false;
         client.resume();
+        this.eventBus.fireEvent(new ResumeEvent());
+
+    }
+
+    @Override
+    public void update(AnActionEvent e) {
+        if (messageArrived) {
+            e.getPresentation().setEnabled(true);
+        } else {
+            e.getPresentation().setEnabled(false);
+        }
     }
 }

@@ -3,12 +3,10 @@ package org.mule.debugger.ui.actions;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CustomShortcutSet;
-import org.mule.debugger.ui.events.DebuggerEventType;
+import org.mule.debugger.ui.events.*;
 import org.mule.debugger.client.DebuggerClient;
 import org.mule.debugger.ui.event.EventBus;
 import org.mule.debugger.ui.event.IEventHandler;
-import org.mule.debugger.ui.events.ClientInitializedEvent;
-import org.mule.debugger.ui.events.NewMuleMessageArrivedEvent;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -18,6 +16,7 @@ public class StepOverAction extends AnAction {
 
     private DebuggerClient client;
     private final EventBus eventBus;
+    private boolean messageArrived = false;
 
     public StepOverAction(EventBus eventBus) {
         super();
@@ -30,10 +29,24 @@ public class StepOverAction extends AnAction {
 
                     @Override
                     public void onEvent(NewMuleMessageArrivedEvent event) {
-                        getTemplatePresentation().setEnabled(true);
+                        messageArrived = true;
                     }
 
                 });
+
+        this.eventBus.registerListener(DebuggerEventType.DISCONNECTED, new IEventHandler<DisconnectedEvent>() {
+
+            @Override
+            public void onEvent(DisconnectedEvent event) {
+                messageArrived = false;
+            }
+        });
+        this.eventBus.registerListener(DebuggerEventType.WAITING, new IEventHandler<ResumeEvent>() {
+            @Override
+            public void onEvent(ResumeEvent event) {
+                messageArrived = false;
+            }
+        });
 
         this.eventBus.registerListener(DebuggerEventType.CLIENT_INITIALIZED,
                 new IEventHandler<ClientInitializedEvent>() {
@@ -62,7 +75,16 @@ public class StepOverAction extends AnAction {
 
     @Override
     public void actionPerformed(AnActionEvent anActionEvent) {
-        getTemplatePresentation().setEnabled(false);
+        messageArrived = false;
         client.nextStep();
+    }
+
+    @Override
+    public void update(AnActionEvent e) {
+        if (messageArrived) {
+            e.getPresentation().setEnabled(true);
+        } else {
+            e.getPresentation().setEnabled(false);
+        }
     }
 }
