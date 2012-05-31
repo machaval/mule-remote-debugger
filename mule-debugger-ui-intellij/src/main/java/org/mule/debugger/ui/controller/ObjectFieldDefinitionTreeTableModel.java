@@ -1,6 +1,7 @@
 package org.mule.debugger.ui.controller;
 
 import com.intellij.ui.JBDefaultTreeCellRenderer;
+import com.intellij.ui.components.labels.LinkLabel;
 import com.intellij.ui.treeStructure.treetable.TreeTableModel;
 import org.mule.debugger.response.ObjectFieldDefinition;
 
@@ -38,11 +39,16 @@ public class ObjectFieldDefinitionTreeTableModel extends DefaultTreeModel
 
     @Override
     public Class getColumnClass(int column) {
-        if (column == 0) {
-            return TreeTableModel.class;
-        }
-        else {
-            return Object.class;
+        switch (column) {
+            case 0:
+                return TreeTableModel.class;
+            case 1:
+                return Class.class;
+            case 2:
+                return String.class;
+            default:
+                return Object.class;
+
         }
     }
 
@@ -52,7 +58,7 @@ public class ObjectFieldDefinitionTreeTableModel extends DefaultTreeModel
 
         switch (column) {
             case 0:
-                return "Pepe";
+                return node;
             case 1:
                 return objectDef.getClassName();
             default:
@@ -69,7 +75,7 @@ public class ObjectFieldDefinitionTreeTableModel extends DefaultTreeModel
 
     @Override
     public boolean isCellEditable(Object node, int column) {
-        return false;
+        return column == 1;
     }
 
     @Override
