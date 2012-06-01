@@ -1,6 +1,7 @@
 
 package org.mule.debugger.ui.impl;
 
+import com.intellij.ui.IdeBorderFactory;
 import com.intellij.ui.components.JBTabbedPane;
 import com.intellij.ui.treeStructure.treetable.ListTreeTableModel;
 import com.intellij.ui.treeStructure.treetable.TreeTable;
@@ -42,7 +43,7 @@ public class ScriptEvaluationComposite extends JPanel  implements IScriptEvaluat
         };
 
         this.setResultAsPayload = new JButton("Set result as payload");
-        this.setResultAsPayload.setToolTipText("Set result as payload");
+
 
         JPanel scriptContainer = new JPanel();
         scriptContainer.setLayout(new BorderLayout());
@@ -57,6 +58,7 @@ public class ScriptEvaluationComposite extends JPanel  implements IScriptEvaluat
         this.add(scriptContainer,BorderLayout.NORTH);
         this.add(debuggerTabs,BorderLayout.CENTER);
         this.add(setResultAsPayload,BorderLayout.SOUTH);
+
     }
 
     public JTextArea getResultText() {

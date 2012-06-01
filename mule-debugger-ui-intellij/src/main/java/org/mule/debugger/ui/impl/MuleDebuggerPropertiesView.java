@@ -32,7 +32,7 @@ public class MuleDebuggerPropertiesView extends JPanel implements IMuleDebuggerP
         this.setLayout(new GridLayout());
 
         this.add(debuggerTabs);
-        this.setBorder(IdeBorderFactory.createTitledBorder("Properties"));
+       // this.setBorder(IdeBorderFactory.createTitledBorder("Properties"));
     }
 
 

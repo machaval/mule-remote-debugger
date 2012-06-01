@@ -1,6 +1,7 @@
 package org.mule.debugger.ui.impl;
 
 
+import com.intellij.ui.IdeBorderFactory;
 import com.intellij.ui.components.JBScrollPane;
 import com.intellij.ui.components.labels.LinkLabel;
 import com.intellij.ui.treeStructure.treetable.ListTreeTableModel;
@@ -29,7 +30,7 @@ public class MuleDebuggerPayloadView extends JPanel implements IDebuggerMessageV
     }
 
     protected void createControl() {
-        this.setLayout(new BorderLayout());
+        this.setLayout(new BorderLayout(1,3));
         payloadTreeViewer = new TreeTable(new ListTreeTableModel(null,new ColumnInfo[0])){
             @Override
             public TreeTableCellRenderer createTableRenderer(TreeTableModel treeTableModel) {
@@ -52,6 +53,7 @@ public class MuleDebuggerPayloadView extends JPanel implements IDebuggerMessageV
         this.add(new JBScrollPane(stringValue),BorderLayout.SOUTH);
 
 
+        //this.setBorder(IdeBorderFactory.createTitledBorder("Message"));
 
     }
 

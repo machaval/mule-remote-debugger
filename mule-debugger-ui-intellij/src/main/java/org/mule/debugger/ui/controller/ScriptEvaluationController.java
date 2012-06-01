@@ -49,7 +49,7 @@ public class ScriptEvaluationController {
                     }
                 });
 
-        scriptEvaluation.getSetResultAsPayload().setAction(new AbstractAction() {
+        scriptEvaluation.getSetResultAsPayload().setAction(new AbstractAction("Set result as payload") {
 
             @Override
             public void actionPerformed(ActionEvent e) {

@@ -7,37 +7,33 @@
  */
 package org.mule.debugger.ui.component;
 
+import com.intellij.execution.ui.RunnerLayoutUi;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowFactory;
 import com.intellij.ui.content.Content;
 import com.intellij.ui.content.ContentFactory;
-import org.mule.debugger.ui.actions.ConnectAction;
-import org.mule.debugger.ui.actions.ResumeAction;
-import org.mule.debugger.ui.actions.StepOverAction;
-import org.mule.debugger.ui.controller.DebuggerResponseCallback;
 import org.mule.debugger.ui.controller.MuleDebuggerPayloadController;
 import org.mule.debugger.ui.controller.MuleDebuggerPropertiesController;
 import org.mule.debugger.ui.controller.ScriptEvaluationController;
 import org.mule.debugger.ui.event.EventBus;
-import org.mule.debugger.ui.impl.DebuggerComposite;
-import org.mule.debugger.ui.impl.MuleDebuggerPropertiesView;
+import org.mule.debugger.ui.impl.MuleDebuggerFactory;
 
 public class DebuggerWindow implements ToolWindowFactory {
     @Override
     public void createToolWindowContent(Project project, ToolWindow toolWindow) {
         EventBus eventBus = new EventBus();
-        DebuggerComposite comp = new DebuggerComposite();
-        ContentFactory contentFactory = ContentFactory.SERVICE.getInstance();
-        comp.getToolBar().add(new ConnectAction(eventBus, new DebuggerResponseCallback(eventBus)));
-        comp.getToolBar().add(new StepOverAction(eventBus));
-        comp.getToolBar().add(new ResumeAction(eventBus));
 
+        RunnerLayoutUi runnerLayoutUi = RunnerLayoutUi.Factory.getInstance(project).create(
+                "Mule-Debugger", "MuleESB Debugger", project.getName(), project);
+        MuleDebuggerFactory comp = new MuleDebuggerFactory(runnerLayoutUi, eventBus);
+        ContentFactory contentFactory = ContentFactory.SERVICE.getInstance();
+        Content content = contentFactory.createContent(comp.createControl(), "Payload", false);
 
         new MuleDebuggerPayloadController(comp.getPayloadComposite(), eventBus);
         new MuleDebuggerPropertiesController(comp.getPropertiesView(), eventBus);
         new ScriptEvaluationController(comp.getScriptView(), eventBus);
-        Content content = contentFactory.createContent(comp, "Payload", false);
+
 
 
         toolWindow.getContentManager().addContent(content);
