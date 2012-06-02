@@ -1,8 +1,8 @@
 <idea-plugin version="2">
-  <name>Plugin name here</name>
-  <description>short description of the plugin</description>
+  <name>Mule Remote Debugger</name>
+  <description>Allows the user to debug a mule esb</description>
   <version>1.0</version>
-  <vendor>YourCompany</vendor>
+  <vendor>Mule Soft</vendor>
   <idea-version since-build="8000"/>
 
   <application-components>

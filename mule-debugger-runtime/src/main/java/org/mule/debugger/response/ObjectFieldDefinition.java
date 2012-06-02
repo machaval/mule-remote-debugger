@@ -58,50 +58,50 @@ public class ObjectFieldDefinition implements Serializable {
 
     private static ObjectFieldDefinition createFromObject(Object value, String name, final int depth) {
         int nextDepth = depth + 1;
-        Class<? extends Object> valueClazz = value == null ? null : value.getClass();
-        if (nextDepth >= 5 || value == null || valueClazz.isPrimitive() || ClassUtils.isWrapperType(valueClazz) || String.class.isAssignableFrom(valueClazz)) {
-            return createSimpleField(value, valueClazz, name);
-        }
-        List<Field> fields = getInheritedPrivateFields(valueClazz);
-        List<ObjectFieldDefinition> elements = new ArrayList<ObjectFieldDefinition>();
-        for (Field field : fields) {
-            field.setAccessible(true);
-            try {
-                Object fieldValue = field.get(value);
-                if (field.getType().isPrimitive() || field.getType().isEnum() || fieldValue == null) {
-                    elements.add(createSimpleField(fieldValue, field.getType(), field.getName()));
-                } else if (field.getType().isArray()) {
-                    List<ObjectFieldDefinition> arrayElements = new ArrayList<ObjectFieldDefinition>();
-                    int length = Array.getLength(fieldValue);
-                    for (int i = 0; i < length; i++) {
-                        Object arrayElement = Array.get(fieldValue, i);
-                        arrayElements.add(createFromObject(arrayElement, String.valueOf(i), nextDepth));
-                    }
-                    elements.add(new ObjectFieldDefinition(name, valueClazz.getCanonicalName(), String.valueOf(value), arrayElements));
-                } else if (Iterable.class.isAssignableFrom(field.getType())) {
-                    List<ObjectFieldDefinition> arrayElements = new ArrayList<ObjectFieldDefinition>();
-                    Iterable iterableValue = (Iterable) fieldValue;
-                    int i = 0;
-                    for (Object iterableElement : iterableValue) {
-                        arrayElements.add(createFromObject(iterableElement, String.valueOf(i), nextDepth));
-                        i++;
-                    }
-                    elements.add(new ObjectFieldDefinition(name, valueClazz.getCanonicalName(), String.valueOf(value), arrayElements));
-                } else if (Map.class.isAssignableFrom(field.getType())) {
-                    Map<?, ?> mapValue = (Map) fieldValue;
-                    List<ObjectFieldDefinition> mapElements = new ArrayList<ObjectFieldDefinition>();
-                    for (Map.Entry entryElement : mapValue.entrySet()) {
-                        mapElements.add(createFromObject(entryElement.getValue(), String.valueOf(entryElement.getKey()), nextDepth));
-                    }
-                    elements.add(new ObjectFieldDefinition(name, valueClazz.getCanonicalName(), String.valueOf(value), mapElements));
-                } else {
-                    elements.add(createFromObject(fieldValue, field.getName(), nextDepth));
-                }
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
+        Class<?> type = value == null ? null : value.getClass();
+        if (nextDepth >= 5 || value == null || type.isPrimitive() || ClassUtils.isWrapperType(type) || String.class.isAssignableFrom(type)) {
+            return createSimpleField(value, type, name);
+        } else if (type.isArray()) {
+            List<ObjectFieldDefinition> arrayElements = new ArrayList<ObjectFieldDefinition>();
+            int length = Array.getLength(value);
+            for (int i = 0; i < length; i++) {
+                Object arrayElement = Array.get(value, i);
+                arrayElements.add(createFromObject(arrayElement, String.valueOf(i), nextDepth));
             }
+            return new ObjectFieldDefinition(name, type.getCanonicalName(), String.valueOf(value), arrayElements);
+        } else if (Iterable.class.isAssignableFrom(type)) {
+            List<ObjectFieldDefinition> arrayElements = new ArrayList<ObjectFieldDefinition>();
+            Iterable iterableValue = (Iterable) value;
+            int i = 0;
+            for (Object iterableElement : iterableValue) {
+                arrayElements.add(createFromObject(iterableElement, String.valueOf(i), nextDepth));
+                i++;
+            }
+            return new ObjectFieldDefinition(name, type.getCanonicalName(), String.valueOf(value), arrayElements);
+        } else if (Map.class.isAssignableFrom(type)) {
+            Map<?, ?> mapValue = (Map) value;
+            List<ObjectFieldDefinition> mapElements = new ArrayList<ObjectFieldDefinition>();
+            for (Map.Entry entryElement : mapValue.entrySet()) {
+                mapElements.add(createFromObject(entryElement.getValue(), String.valueOf(entryElement.getKey()), nextDepth));
+            }
+            return new ObjectFieldDefinition(name, type.getCanonicalName(), String.valueOf(value), mapElements);
+        } else {
+            List<Field> fields = getInheritedPrivateFields(type);
+            List<ObjectFieldDefinition> elements = new ArrayList<ObjectFieldDefinition>();
+            for (Field field : fields) {
+                field.setAccessible(true);
+                try {
+                    Object fieldValue = field.get(value);
+                    elements.add(createFromObject(fieldValue, field.getName(), depth + 1));
+
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            }
+            return new ObjectFieldDefinition(name, type.getCanonicalName(), String.valueOf(value), elements);
         }
-        return new ObjectFieldDefinition(name, valueClazz.getCanonicalName(), String.valueOf(value), elements);
+
+
     }
 
     private static List<Field> getInheritedPrivateFields(Class<?> type) {
