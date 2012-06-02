@@ -52,6 +52,12 @@ public class MuleMessageInfoBuilder {
             sessionProperties.put(sessionPropertyName, String.valueOf(message.getSessionProperty(sessionPropertyName)));
         }
         result.setSessionProperties(sessionProperties);
+        Map<String, String> outboundProperties = new HashMap<String, String>();
+        Set<String> outboundPropertyNames = message.getOutboundPropertyNames();
+        for (String outboundPropertyName : outboundPropertyNames) {
+            outboundProperties.put(outboundPropertyName, String.valueOf(message.getOutboundProperty(outboundPropertyName)));
+        }
+        result.setOutboundProperties(outboundProperties);
 
 
         return result;

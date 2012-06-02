@@ -22,6 +22,7 @@ public class MuleMessageInfo implements Serializable {
     private Map<String, String> inboundProperties;
     private Map<String, String> invocationProperties;
     private Map<String, String> sessionProperties;
+    private Map<String, String> outboundProperties;
 
     private String currentProcessor;
 
@@ -105,5 +106,13 @@ public class MuleMessageInfo implements Serializable {
 
     public void setExceptionPayloadDefinition(ObjectFieldDefinition exceptionPayloadDefinition) {
         this.exceptionPayloadDefinition = exceptionPayloadDefinition;
+    }
+
+    public Map<String, String> getOutboundProperties() {
+        return outboundProperties;
+    }
+
+    public void setOutboundProperties(Map<String, String> outboundProperties) {
+        this.outboundProperties = outboundProperties;
     }
 }
