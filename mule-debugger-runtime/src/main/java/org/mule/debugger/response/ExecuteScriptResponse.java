@@ -7,7 +7,10 @@
  */
 package org.mule.debugger.response;
 
+import org.mule.api.MuleMessage;
+import org.mule.debugger.MuleDebuggingContext;
 import org.mule.debugger.client.IDebuggerResponseCallback;
+import org.mule.debugger.server.MuleMessageInfoBuilder;
 
 public class ExecuteScriptResponse extends DebuggerResponse {
 
@@ -24,5 +27,6 @@ public class ExecuteScriptResponse extends DebuggerResponse {
 
     public void callCallback(IDebuggerResponseCallback callback) {
         callback.onScriptEvaluation(scriptEvaluationInfo);
+
     }
 }

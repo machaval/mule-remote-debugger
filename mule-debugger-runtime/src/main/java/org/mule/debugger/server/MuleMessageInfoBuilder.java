@@ -8,6 +8,7 @@
 package org.mule.debugger.server;
 
 import org.mule.api.MuleMessage;
+import org.mule.api.transport.PropertyScope;
 import org.mule.debugger.MuleDebuggingContext;
 import org.mule.debugger.response.MuleMessageInfo;
 import org.mule.debugger.response.ObjectFieldDefinition;
