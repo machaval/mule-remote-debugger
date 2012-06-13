@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         id="application"
+         point="org.eclipse.core.runtime.applications">
+      <application>
+         <run
+               class="org.mule.tooling.debugger.application.Application">
+         </run>
+      </application>
+   </extension>
+   <extension
+         id="org.mule.tooling.debugger.application"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="org.mule.tooling.debugger.application"
+            name="Mule Remote Debugger">
+         <property
+               name="appName"
+               value="Mule Remote Debugger">
+         </property>
+      </product>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            name="Mule Debugger Perspective"
+            class="org.mule.tooling.debugger.application.DebuggerPerspective"
+            id="org.mule.tooling.debugger.perspective">
+      </perspective>
+   </extension>
+
+</plugin>
