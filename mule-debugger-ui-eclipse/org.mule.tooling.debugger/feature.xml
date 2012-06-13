@@ -79,5 +79,12 @@ If to Customer: To the Contracts Manager at Customer’s corporate headquarters 
          install-size="0"
 		 unpack="true"
          version="0.0.0"/>
+     
+     <plugin
+         id="org.mule.tooling.debugger.application"
+         download-size="0"
+         install-size="0"
+		 unpack="false"
+         version="0.0.0"/>
 
 </feature>

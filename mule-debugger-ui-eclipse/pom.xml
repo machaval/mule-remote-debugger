@@ -1,89 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>org.mule.tooling.debugger</groupId>
-  <artifactId>mule-debugger-ui-eclipse</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
-  <packaging>pom</packaging>
-  
- <properties>
-    <tycho-version>0.14.1</tycho-version>
-    <maven.clean.plugin.version>2.4.1</maven.clean.plugin.version>
-    <eclipse-updatesite>http://download.eclipse.org/releases/helios</eclipse-updatesite>
-  </properties>
-  <modules>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.mule.tooling.debugger</groupId>
+	<artifactId>mule-debugger-ui-eclipse</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
 
-    <module>org.mule.tooling.ui.contribution.debugger</module>
-    <module>org.mule.tooling.debugger</module>
-    <module>org.mule.tooling.debugger.updatesite</module>
-  </modules>
-  
-  <build>
-	<pluginManagement>
-	      <plugins>
-	        <plugin>
-	          <groupId>org.apache.maven.plugins</groupId>
-	          <artifactId>maven-deploy-plugin</artifactId>
-	          <version>2.7</version>
-	        </plugin>
-	      </plugins>
-	    </pluginManagement>
-    <plugins>
-      <plugin>
-        <groupId>org.eclipse.tycho</groupId>
-        <artifactId>tycho-maven-plugin</artifactId>
-        <version>${tycho-version}</version>
-        <extensions>true</extensions>
-      </plugin>
-      <plugin>
-        <groupId>org.eclipse.tycho</groupId>
-        <artifactId>target-platform-configuration</artifactId>
-        <version>${tycho-version}</version>
-        <configuration>
-          <resolver>p2</resolver>
-          <pomDependencies>consider</pomDependencies>
-          <ignoreTychoRepositories>true</ignoreTychoRepositories>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
-  <repositories>
-    <repository>
-      <id>helios</id>
-      <layout>p2</layout>
-      <url>${eclipse-updatesite}</url>
-    </repository>
-	<repository>
-      <id>muleee.releases</id>
-      <name>MuleEE Releases Repository</name>
-      <url>
+	<properties>
+		<tycho-version>0.14.1</tycho-version>
+		<maven.clean.plugin.version>2.4.1</maven.clean.plugin.version>
+		<eclipse-updatesite>http://download.eclipse.org/releases/helios</eclipse-updatesite>
+	</properties>
+	<modules>
+
+		<module>org.mule.tooling.ui.contribution.debugger</module>
+		<module>org.mule.tooling.debugger</module>
+		<module>org.mule.tooling.debugger.application</module>
+		<module>org.mule.tooling.debugger.updatesite</module>
+		<module>org.mule.tooling.debugger.product</module>
+	</modules>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>2.7</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-maven-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<extensions>true</extensions>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+					<resolver>p2</resolver>
+					<pomDependencies>consider</pomDependencies>
+					<ignoreTychoRepositories>true</ignoreTychoRepositories>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<repositories>
+		<repository>
+			<id>helios</id>
+			<layout>p2</layout>
+			<url>${eclipse-updatesite}</url>
+		</repository>
+		<repository>
+			<id>muleee.releases</id>
+			<name>MuleEE Releases Repository</name>
+			<url>
       http://dev.ee.mulesource.com/repository/content/repositories/releases/</url>
-      <layout>default</layout>
-    </repository>
-    <repository>
-      <id>muleee.snapshots</id>
-      <name>MuleEE Snapshots Repository</name>
-      <layout>default</layout>
-      <url>
+			<layout>default</layout>
+		</repository>
+		<repository>
+			<id>muleee.snapshots</id>
+			<name>MuleEE Snapshots Repository</name>
+			<layout>default</layout>
+			<url>
       http://dev.ee.mulesource.com/repository/content/repositories/snapshots/</url>
-    </repository>
-  </repositories>
-  <distributionManagement>
+		</repository>
         <repository>
-            <id>mule-ee-releases</id>
-            <name>Mule Nexus EE Repository</name>
-	    <url>http://dev.ee.mulesource.com/repository/content/repositories/releases/</url>        
-	</repository>
-        <snapshotRepository>
-            <id>mule-ee-snapshots</id>
-            <name>Mule Nexus EE Repository</name>
-	    <url>http://dev.ee.mulesource.com/repository/content/repositories/snapshots/</url>
-            <uniqueVersion>false</uniqueVersion>        
-	</snapshotRepository>
-    </distributionManagement>
+            <id>scala-ide</id>
+            <name>Scala IDE</name>
+            <layout>p2</layout>
+            <url>http://download.scala-ide.org/releases-29/stable/site</url>
+        </repository>
+	</repositories>
+	<distributionManagement>
+		<repository>
+			<id>mule-ee-releases</id>
+			<name>Mule Nexus EE Repository</name>
+			<url>http://dev.ee.mulesource.com/repository/content/repositories/releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>mule-ee-snapshots</id>
+			<name>Mule Nexus EE Repository</name>
+			<url>http://dev.ee.mulesource.com/repository/content/repositories/snapshots/</url>
+			<uniqueVersion>false</uniqueVersion>
+		</snapshotRepository>
+	</distributionManagement>
 
 	<scm>
 		<connection>scm:git:git@github.com:machaval/mule-remote-debugger.git</connection>
