@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Mule Remote Debugger Standalone
+Bundle-SymbolicName: org.mule.tooling.debugger.application; singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Require-Bundle: org.eclipse.core.runtime,
+ org.scala-ide.scala.library,
+ org.eclipse.ui
