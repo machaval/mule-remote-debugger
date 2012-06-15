@@ -17,6 +17,7 @@
 
 		<module>org.mule.tooling.ui.contribution.debugger</module>
 		<module>org.mule.tooling.debugger</module>
+		<module>org.mule.tooling.debugger.standalone</module>
 		<module>org.mule.tooling.debugger.application</module>
 		<module>org.mule.tooling.debugger.updatesite</module>
 		<module>org.mule.tooling.debugger.product</module>

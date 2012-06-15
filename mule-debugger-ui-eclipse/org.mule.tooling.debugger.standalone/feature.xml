@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.mule.tooling.debugger"
+      id="org.mule.tooling.debugger.standalone"
       label="Mule Studio Debugger"
       version="1.0.0.qualifier"
       provider-name="MuleSoft Inc."
-      plugin="org.mule.tooling.ui.contribution.debugger"
+      plugin="org.mule.tooling.debugger.application"
       exclusive="true">
 
    <description url="http://www.mulesoft.org/">
-      Mule Studio Debugger Plugin
+      Mule Studio Debugger Standalone
    </description>
 
    <copyright url="http://www.mulesoft.org">
@@ -73,11 +73,11 @@ If to Customer: To the Contracts Manager at Customer’s corporate headquarters 
 .This Agreement will be governed by and construed in accordance with the laws of the State of New York without reference to its conflict of laws principles. All disputes arising out of or relating to this Agreement will be submitted to the exclusive jurisdiction of the state or federal courts located in New York, New York, and each party irrevocably consents to such personal jurisdiction and waives all objections to this venue.  The parties agree that neither the United Nations Convention on Contracts for the International Sale of Goods nor the Uniform Computer Information Transactions Act (UCITA) will apply in any respect to this Agreement.
    </license>
 
-   <plugin
-         id="org.mule.tooling.ui.contribution.debugger"
+     <plugin
+         id="org.mule.tooling.debugger.application"
          download-size="0"
          install-size="0"
-		 unpack="true"
+		 unpack="false"
          version="0.0.0"/>
-     
+
 </feature>
