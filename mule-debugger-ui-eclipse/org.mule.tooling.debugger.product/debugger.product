@@ -29,7 +29,7 @@
    </plugins>
 
    <features>
-      <feature id="org.mule.tooling.debugger" />
+      <feature id="org.mule.tooling.debugger.standalone" />
       <feature id="org.eclipse.rcp"/>
    </features>
    
