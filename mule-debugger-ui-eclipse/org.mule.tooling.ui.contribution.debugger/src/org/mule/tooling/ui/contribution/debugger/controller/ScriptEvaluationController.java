@@ -2,7 +2,6 @@
 package org.mule.tooling.ui.contribution.debugger.controller;
 
 import org.eclipse.jface.viewers.TreeNode;
-import org.eclipse.jface.viewers.TreeNodeContentProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
@@ -15,6 +14,7 @@ import org.mule.debugger.exception.RemoteDebugException;
 import org.mule.debugger.response.ObjectFieldDefinition;
 import org.mule.debugger.response.ScriptResultInfo;
 import org.mule.tooling.ui.contribution.debugger.controller.events.ClientInitializedEvent;
+import org.mule.tooling.ui.contribution.debugger.controller.events.NewMuleMessageArrivedEvent;
 import org.mule.tooling.ui.contribution.debugger.event.EventBus;
 import org.mule.tooling.ui.contribution.debugger.event.IEventHandler;
 import org.mule.tooling.ui.contribution.debugger.view.IScriptEvaluationEditor;
@@ -40,10 +40,18 @@ public class ScriptEvaluationController
     protected void bind()
     {
 
-        scriptEvaluation.setExpressionTypes(EXPRESSION_TYPES);
+        new AbstractObjectFieldDefinitionController(scriptEvaluation.getResult(), eventBus)
+        {
 
-        scriptEvaluation.getResultTree().setContentProvider(new TreeNodeContentProvider());
-        scriptEvaluation.getResultTree().setLabelProvider(new TreeNodeLabelProvider());
+            @Override
+            protected void populateData(NewMuleMessageArrivedEvent event)
+            {
+                // TODO Auto-generated method stub
+
+            }
+        };
+
+        scriptEvaluation.setExpressionTypes(EXPRESSION_TYPES);
 
         eventBus.registerListener(DebuggerEventType.CLIENT_INITIALIZED,
             new IEventHandler<ClientInitializedEvent>()
@@ -109,10 +117,11 @@ public class ScriptEvaluationController
                                     @Override
                                     public void run()
                                     {
-                                        scriptEvaluation.setResultText(info.getToStringResult());
+
                                         ObjectFieldDefinition excResultDef = info.getResult();
 
-                                        scriptEvaluation.getResultTree()
+                                        scriptEvaluation.getResult()
+                                            .getPayloadTreeViewer()
                                             .setInput(
                                                 new TreeNode[]{ObjectTreeNodeBuilder.createTreeNode(excResultDef)});
 
@@ -129,14 +138,14 @@ public class ScriptEvaluationController
                                     @Override
                                     public void run()
                                     {
-                                        scriptEvaluation.setResultText("ERROR :\n Remote exception  :\n"
-                                                                       + exception.getMessage());
 
                                         ObjectFieldDefinition excResultDef = exception.getException();
 
-                                        scriptEvaluation.getResultTree()
+                                        scriptEvaluation.getResult()
+                                            .getPayloadTreeViewer()
                                             .setInput(
                                                 new TreeNode[]{ObjectTreeNodeBuilder.createTreeNode(excResultDef)});
+
                                     }
                                 });
 

@@ -13,6 +13,7 @@ import org.mule.debugger.ui.event.IEventHandler;
 import org.mule.debugger.ui.events.ClientInitializedEvent;
 import org.mule.debugger.ui.events.DebuggerEventType;
 import org.mule.debugger.ui.events.DisconnectedEvent;
+import org.mule.debugger.ui.events.NewMuleMessageArrivedEvent;
 import org.mule.debugger.ui.view.IScriptEvaluationEditor;
 
 import javax.swing.*;
@@ -90,6 +91,7 @@ public class ScriptEvaluationController {
 
                                     scriptEvaluation.getResultTree()
                                             .setModel(ObjectFieldDefinitionTreeTableModel.createTreeNode(excResultDef));
+                                    eventBus.fireEvent(new NewMuleMessageArrivedEvent(info.getMessage()));
 
                                 }
                             });

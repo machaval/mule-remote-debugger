@@ -541,15 +541,15 @@
         <root url="jar://$MAVEN_REPOSITORY$/junit/junit/4.8.2/junit-4.8.2-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: log4j:log4j:1.2.14">
+    <library name="Maven: log4j:log4j:1.2.16">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/log4j/log4j/1.2.14/log4j-1.2.14.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/log4j/log4j/1.2.16/log4j-1.2.16.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/log4j/log4j/1.2.14/log4j-1.2.14-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/log4j/log4j/1.2.16/log4j-1.2.16-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/log4j/log4j/1.2.14/log4j-1.2.14-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/log4j/log4j/1.2.16/log4j-1.2.16-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.apache.geronimo.specs:geronimo-j2ee-connector_1.5_spec:1.1-osgi">
@@ -574,26 +574,15 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/apache/geronimo/specs/geronimo-jta_1.1_spec/1.1.1/geronimo-jta_1.1_spec-1.1.1-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.eclipse:eclipse-runtime:3.6.0.v20100505">
+    <library name="Maven: org.jgrapht:jgrapht-jdk1.5:0.7.3">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/eclipse/eclipse-runtime/3.6.0.v20100505/eclipse-runtime-3.6.0.v20100505.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/jgrapht/jgrapht-jdk1.5/0.7.3/jgrapht-jdk1.5-0.7.3.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/eclipse/eclipse-runtime/3.6.0.v20100505/eclipse-runtime-3.6.0.v20100505-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/jgrapht/jgrapht-jdk1.5/0.7.3/jgrapht-jdk1.5-0.7.3-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/eclipse/eclipse-runtime/3.6.0.v20100505/eclipse-runtime-3.6.0.v20100505-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.eclipse:eclipse-workbench:3.6.1.M20100826-1330">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/eclipse/eclipse-workbench/3.6.1.M20100826-1330/eclipse-workbench-3.6.1.M20100826-1330.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/eclipse/eclipse-workbench/3.6.1.M20100826-1330/eclipse-workbench-3.6.1.M20100826-1330-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/eclipse/eclipse-workbench/3.6.1.M20100826-1330/eclipse-workbench-3.6.1.M20100826-1330-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/jgrapht/jgrapht-jdk1.5/0.7.3/jgrapht-jdk1.5-0.7.3-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.mockito:mockito-all:1.8.2">
@@ -607,81 +596,81 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/mockito/mockito-all/1.8.2/mockito-all-1.8.2-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.mule.modules:mule-module-annotations:3.2.1">
+    <library name="Maven: org.mule.modules:mule-module-annotations:3.3.0">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/mule/modules/mule-module-annotations/3.2.1/mule-module-annotations-3.2.1.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/mule/modules/mule-module-annotations/3.3.0/mule-module-annotations-3.3.0.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/mule/modules/mule-module-annotations/3.2.1/mule-module-annotations-3.2.1-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/mule/modules/mule-module-annotations/3.3.0/mule-module-annotations-3.3.0-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/mule/modules/mule-module-annotations/3.2.1/mule-module-annotations-3.2.1-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/mule/modules/mule-module-annotations/3.3.0/mule-module-annotations-3.3.0-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.mule.modules:mule-module-spring-config:3.2.1">
+    <library name="Maven: org.mule.modules:mule-module-spring-config:3.3.0">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/mule/modules/mule-module-spring-config/3.2.1/mule-module-spring-config-3.2.1.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/mule/modules/mule-module-spring-config/3.3.0/mule-module-spring-config-3.3.0.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/mule/modules/mule-module-spring-config/3.2.1/mule-module-spring-config-3.2.1-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/mule/modules/mule-module-spring-config/3.3.0/mule-module-spring-config-3.3.0-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/mule/modules/mule-module-spring-config/3.2.1/mule-module-spring-config-3.2.1-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/mule/modules/mule-module-spring-config/3.3.0/mule-module-spring-config-3.3.0-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.mule.tests:mule-tests-functional:3.2.1">
+    <library name="Maven: org.mule.tests:mule-tests-functional:3.3.0">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/mule/tests/mule-tests-functional/3.2.1/mule-tests-functional-3.2.1.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/mule/tests/mule-tests-functional/3.3.0/mule-tests-functional-3.3.0.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/mule/tests/mule-tests-functional/3.2.1/mule-tests-functional-3.2.1-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/mule/tests/mule-tests-functional/3.3.0/mule-tests-functional-3.3.0-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/mule/tests/mule-tests-functional/3.2.1/mule-tests-functional-3.2.1-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/mule/tests/mule-tests-functional/3.3.0/mule-tests-functional-3.3.0-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.mule.tools.devkit:mule-devkit-annotations:3.3-SNAPSHOT">
+    <library name="Maven: org.mule.tools.devkit:mule-devkit-annotations:3.3.0-EA">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/mule/tools/devkit/mule-devkit-annotations/3.3-SNAPSHOT/mule-devkit-annotations-3.3-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/mule/tools/devkit/mule-devkit-annotations/3.3.0-EA/mule-devkit-annotations-3.3.0-EA.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/mule/tools/devkit/mule-devkit-annotations/3.3-SNAPSHOT/mule-devkit-annotations-3.3-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/mule/tools/devkit/mule-devkit-annotations/3.3.0-EA/mule-devkit-annotations-3.3.0-EA-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/mule/tools/devkit/mule-devkit-annotations/3.3-SNAPSHOT/mule-devkit-annotations-3.3-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/mule/tools/devkit/mule-devkit-annotations/3.3.0-EA/mule-devkit-annotations-3.3.0-EA-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.mule:mule-core:3.2.1">
+    <library name="Maven: org.mule:mule-core:3.3.0">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/mule/mule-core/3.2.1/mule-core-3.2.1.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/mule/mule-core/3.3.0/mule-core-3.3.0.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/mule/mule-core/3.2.1/mule-core-3.2.1-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/mule/mule-core/3.3.0/mule-core-3.3.0-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/mule/mule-core/3.2.1/mule-core-3.2.1-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/mule/mule-core/3.3.0/mule-core-3.3.0-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.mule:mule-core:test-jar:tests:3.2.1">
+    <library name="Maven: org.mule:mule-core:test-jar:tests:3.3.0">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/mule/mule-core/3.2.1/mule-core-3.2.1-tests.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/mule/mule-core/3.3.0/mule-core-3.3.0-tests.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/mule/mule-core/3.2.1/mule-core-3.2.1-test-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/mule/mule-core/3.3.0/mule-core-3.3.0-test-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/mule/mule-core/3.2.1/mule-core-3.2.1-test-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/mule/mule-core/3.3.0/mule-core-3.3.0-test-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.osgi:core:4.3.0">
+    <library name="Maven: org.mvel:mvel2:2.0.19">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/osgi/core/4.3.0/core-4.3.0.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/mvel/mvel2/2.0.19/mvel2-2.0.19.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/osgi/core/4.3.0/core-4.3.0-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/mvel/mvel2/2.0.19/mvel2-2.0.19-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/osgi/core/4.3.0/core-4.3.0-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/mvel/mvel2/2.0.19/mvel2-2.0.19-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.safehaus.jug:jug:asl:2.0.0">
@@ -728,70 +717,70 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/slf4j/slf4j-log4j12/1.6.1/slf4j-log4j12-1.6.1-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.springframework:spring-aop:3.0.3.RELEASE">
+    <library name="Maven: org.springframework:spring-aop:3.1.1.RELEASE">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/3.0.3.RELEASE/spring-aop-3.0.3.RELEASE.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/3.1.1.RELEASE/spring-aop-3.1.1.RELEASE.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/3.0.3.RELEASE/spring-aop-3.0.3.RELEASE-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/3.1.1.RELEASE/spring-aop-3.1.1.RELEASE-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/3.0.3.RELEASE/spring-aop-3.0.3.RELEASE-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/3.1.1.RELEASE/spring-aop-3.1.1.RELEASE-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.springframework:spring-asm:3.0.3.RELEASE">
+    <library name="Maven: org.springframework:spring-asm:3.1.1.RELEASE">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-asm/3.0.3.RELEASE/spring-asm-3.0.3.RELEASE.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-asm/3.1.1.RELEASE/spring-asm-3.1.1.RELEASE.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-asm/3.0.3.RELEASE/spring-asm-3.0.3.RELEASE-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-asm/3.1.1.RELEASE/spring-asm-3.1.1.RELEASE-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-asm/3.0.3.RELEASE/spring-asm-3.0.3.RELEASE-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-asm/3.1.1.RELEASE/spring-asm-3.1.1.RELEASE-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.springframework:spring-beans:3.0.3.RELEASE">
+    <library name="Maven: org.springframework:spring-beans:3.1.1.RELEASE">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/3.0.3.RELEASE/spring-beans-3.0.3.RELEASE.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/3.1.1.RELEASE/spring-beans-3.1.1.RELEASE.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/3.0.3.RELEASE/spring-beans-3.0.3.RELEASE-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/3.1.1.RELEASE/spring-beans-3.1.1.RELEASE-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/3.0.3.RELEASE/spring-beans-3.0.3.RELEASE-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/3.1.1.RELEASE/spring-beans-3.1.1.RELEASE-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.springframework:spring-context:3.0.3.RELEASE">
+    <library name="Maven: org.springframework:spring-context:3.1.1.RELEASE">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/3.0.3.RELEASE/spring-context-3.0.3.RELEASE.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/3.1.1.RELEASE/spring-context-3.1.1.RELEASE.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/3.0.3.RELEASE/spring-context-3.0.3.RELEASE-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/3.1.1.RELEASE/spring-context-3.1.1.RELEASE-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/3.0.3.RELEASE/spring-context-3.0.3.RELEASE-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/3.1.1.RELEASE/spring-context-3.1.1.RELEASE-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.springframework:spring-core:3.0.3.RELEASE">
+    <library name="Maven: org.springframework:spring-core:3.1.1.RELEASE">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/3.0.3.RELEASE/spring-core-3.0.3.RELEASE.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/3.1.1.RELEASE/spring-core-3.1.1.RELEASE.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/3.0.3.RELEASE/spring-core-3.0.3.RELEASE-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/3.1.1.RELEASE/spring-core-3.1.1.RELEASE-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/3.0.3.RELEASE/spring-core-3.0.3.RELEASE-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/3.1.1.RELEASE/spring-core-3.1.1.RELEASE-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.springframework:spring-expression:3.0.3.RELEASE">
+    <library name="Maven: org.springframework:spring-expression:3.1.1.RELEASE">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-expression/3.0.3.RELEASE/spring-expression-3.0.3.RELEASE.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-expression/3.1.1.RELEASE/spring-expression-3.1.1.RELEASE.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-expression/3.0.3.RELEASE/spring-expression-3.0.3.RELEASE-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-expression/3.1.1.RELEASE/spring-expression-3.1.1.RELEASE-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-expression/3.0.3.RELEASE/spring-expression-3.0.3.RELEASE-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-expression/3.1.1.RELEASE/spring-expression-3.1.1.RELEASE-sources.jar!/" />
       </SOURCES>
     </library>
   </component>

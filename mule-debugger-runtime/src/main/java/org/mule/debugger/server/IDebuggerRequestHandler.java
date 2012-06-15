@@ -14,5 +14,5 @@ public interface IDebuggerRequestHandler {
 
     IDebuggerResponse handleRequest(IDebuggerRequest request);
 
-    void setMuleDebuggingContext(MuleDebuggingContext debuggingContext);
+    void setCurrentMuleDebuggingEvent(MuleDebuggingContext debuggingContext);
 }

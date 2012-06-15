@@ -29,7 +29,7 @@ public class DebuggerServerFactory {
     }
 
 
-    public MuleMessageDebuggerRequestHandler createMuleMessageRequestHandler(DebuggerService debuggerService) {
+    public MuleMessageDebuggerRequestHandler createMuleMessageRequestHandler(DebuggerHandler debuggerService) {
         return new MuleMessageDebuggerRequestHandler(debuggerService);
     }
 }

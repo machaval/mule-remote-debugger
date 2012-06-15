@@ -8,14 +8,16 @@
 package org.mule.debugger.response;
 
 import org.junit.Test;
-import org.mule.debugger.MuleDebuggingContext;
-import org.mule.debugger.server.DebuggerService;
+import org.mockito.Mockito;
+import org.mule.api.MuleMessage;
+import org.mule.debugger.server.DebuggerHandler;
 
 public class DebuggerServiceTest {
     @Test
     public void debuggerServiceTest() {
-        DebuggerService service = new DebuggerService();
-        service.onBreakPoint(new MuleDebuggingContext(null, null, getClass().getClassLoader(), String.class));
+        DebuggerHandler service = new DebuggerHandler();
+
+        service.breakPoint(Mockito.mock(MuleMessage.class));
         System.out.println("Break point done");
     }
 }

@@ -15,7 +15,7 @@ public class ResumeCommandImpl extends AbstractCommand {
     public static final String RESUME = "resume";
 
     public IDebuggerResponse execute() {
-        getHandler().onResume();
+        getHandler().resume();
         return new ResumeResponse();
     }
 

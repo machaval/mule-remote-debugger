@@ -11,6 +11,7 @@ import com.intellij.execution.ui.RunnerLayoutUi;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowFactory;
+import com.intellij.openapi.wm.ToolWindowManager;
 import com.intellij.ui.content.Content;
 import com.intellij.ui.content.ContentFactory;
 import org.mule.debugger.ui.controller.MuleDebuggerPayloadController;
@@ -30,10 +31,9 @@ public class DebuggerWindow implements ToolWindowFactory {
         ContentFactory contentFactory = ContentFactory.SERVICE.getInstance();
         Content content = contentFactory.createContent(comp.createControl(), "Payload", false);
 
-        new MuleDebuggerPayloadController(comp.getPayloadComposite(), eventBus);
+        new MuleDebuggerPayloadController(comp.getPayloadComposite(), eventBus, project);
         new MuleDebuggerPropertiesController(comp.getPropertiesView(), eventBus);
         new ScriptEvaluationController(comp.getScriptView(), eventBus);
-
 
 
         toolWindow.getContentManager().addContent(content);

@@ -19,6 +19,7 @@ public class ExecuteScriptCommandImpl extends AbstractCommand {
     public IDebuggerResponse execute() {
         MuleDebuggingContext debuggingMessage = getMuleDebuggingMessage();
         MuleMessage message = debuggingMessage.getMessage();
+
         ClassLoader oldContext = Thread.currentThread().getContextClassLoader();
         try {
             Thread.currentThread().setContextClassLoader(debuggingMessage.getContextClassLoader());

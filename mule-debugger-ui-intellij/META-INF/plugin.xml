@@ -6,7 +6,8 @@
   <idea-version since-build="8000"/>
 
   <application-components>
-    <!-- Add your application components here -->
+
+
   </application-components>
 
   <project-components>
@@ -17,6 +18,8 @@
   </project-components>
 
   <actions>
+      <group>Mule Debugger</group>
+
     <!-- Add your actions here -->
   </actions>
 

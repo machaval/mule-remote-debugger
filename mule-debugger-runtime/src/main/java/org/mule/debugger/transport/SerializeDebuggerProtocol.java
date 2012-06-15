@@ -13,8 +13,12 @@ import org.mule.debugger.response.ExitDebuggerResponse;
 import org.mule.debugger.response.IDebuggerResponse;
 
 import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class SerializeDebuggerProtocol implements IClientDebuggerProtocol, IServerDebuggerProtocol {
+
+    private static Logger logger = Logger.getLogger(SerializeDebuggerProtocol.class.getName());
 
     private InputStream input;
     private OutputStream output;
@@ -32,7 +36,7 @@ public class SerializeDebuggerProtocol implements IClientDebuggerProtocol, IServ
             output.writeObject(request);
             output.flush();
         } catch (IOException e) {
-            //  e.printStackTrace();
+            logger.log(Level.WARNING, "Error while trying to send a request", e);
         }
 
 
@@ -45,8 +49,7 @@ public class SerializeDebuggerProtocol implements IClientDebuggerProtocol, IServ
             System.out.println("iDebuggerResponse = " + iDebuggerResponse);
             return iDebuggerResponse;
         } catch (IOException e) {
-            //Server disconnect unfriendly
-            //e.printStackTrace();
+            logger.log(Level.WARNING, "Error while trying to get a response", e);
             return new ExitDebuggerResponse();
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
@@ -61,8 +64,7 @@ public class SerializeDebuggerProtocol implements IClientDebuggerProtocol, IServ
             System.out.println("iDebuggerRequest = " + iDebuggerRequest);
             return iDebuggerRequest;
         } catch (IOException e) {
-            //Client disconnect unfriendly
-            //e.printStackTrace();
+            logger.log(Level.WARNING, "Error while trying to get a request", e);
             return new ExitDebuggerRequest();
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
@@ -78,7 +80,7 @@ public class SerializeDebuggerProtocol implements IClientDebuggerProtocol, IServ
             output.writeObject(response);
             output.flush();
         } catch (IOException e) {
-            //     e.printStackTrace();
+            logger.log(Level.WARNING, "Error while trying to send a response", e);
         }
 
     }

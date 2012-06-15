@@ -9,8 +9,8 @@
   	<version>1.0.0-SNAPSHOT</version>
 
     <properties>
-        <mule.version>3.2.1</mule.version>
-        <mule.devkit.version>3.3-SNAPSHOT</mule.devkit.version>
+        <mule.version>3.3.0</mule.version>
+        <mule.devkit.version>3.3.0-EA</mule.devkit.version>
         <junit.version>4.8.2</junit.version>
         <mockito.version>1.8.2</mockito.version>
     </properties>
@@ -168,24 +168,7 @@
             <artifactId>mule-devkit-annotations</artifactId>
             <version>${mule.devkit.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.eclipse</groupId>
-            <artifactId>eclipse-workbench</artifactId>
-            <version>3.6.1.M20100826-1330</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse</groupId>
-            <artifactId>eclipse-runtime</artifactId>
-            <version>3.6.0.v20100505</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.osgi</groupId>
-            <artifactId>core</artifactId>
-            <version>4.3.0</version>
-            <scope>provided</scope>
-        </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -213,7 +196,6 @@
             <id>muleforge-releases</id>
             <name>MuleForge Releases Repository</name>
             <url>http://repository.mulesoft.org/releases/</url>
-            <layout>default</layout>
         </repository>
         <repository>
             <id>muleforge-snapshots</id>
@@ -221,6 +203,11 @@
             <url>http://repository.mulesoft.org/snapshots/</url>
             <layout>default</layout>
         </repository>
+       <repository>
+           <id>mule-ee-releases</id>
+           <name>MuleEE Releases Repository</name>
+           <url>http://dev.ee.mulesource.com/repository/content/repositories/releases/</url>
+       </repository>
     </repositories>
 
  <distributionManagement>

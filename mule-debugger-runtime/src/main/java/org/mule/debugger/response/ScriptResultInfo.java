@@ -11,11 +11,13 @@ import java.io.Serializable;
 
 public class ScriptResultInfo implements Serializable {
 
+    private MuleMessageInfo message;
     private ObjectFieldDefinition result;
     private String className;
     private String toStringResult;
 
-    public ScriptResultInfo(ObjectFieldDefinition result, String className, String toStringResult) {
+    public ScriptResultInfo(MuleMessageInfo message, ObjectFieldDefinition result, String className, String toStringResult) {
+        this.message = message;
         this.result = result;
         this.className = className;
         this.toStringResult = toStringResult;
@@ -40,5 +42,9 @@ public class ScriptResultInfo implements Serializable {
                 ", className='" + className + '\'' +
                 ", toStringResult='" + toStringResult + '\'' +
                 '}';
+    }
+
+    public MuleMessageInfo getMessage() {
+        return message;
     }
 }

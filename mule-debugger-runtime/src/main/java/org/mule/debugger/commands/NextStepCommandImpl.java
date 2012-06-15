@@ -15,7 +15,7 @@ public class NextStepCommandImpl extends AbstractCommand {
     public static final String MESSAGE_PROCESSED = "MessageProcessed";
 
     public IDebuggerResponse execute() {
-        getHandler().onMessageProcessed();
+        getHandler().stepOver();
         return new ResumeResponse();
     }
 

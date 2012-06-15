@@ -2,15 +2,66 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f16d3c40-be8a-4109-b573-db3b89ce774a" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../mule-debugger-ui-intellij/sources.zip" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/mule/debugger/response/MessageProcessorInfo.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/mule/debugger/server/DebuggerAgent.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../mule-debugger-ui-intellij/src/main/java/org/ContentGenerator.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../mule-debugger-ui-intellij/src/main/java/org/mule/debugger/ui/impl/NewPropertyDialog.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../mule-debugger-ui-eclipse/org.mule.tooling.ui.contribution.debugger/src/org/mule/tooling/ui/contribution/debugger/controller/MuleDebuggerPayloadController.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../mule-debugger-ui-eclipse/org.mule.tooling.ui.contribution.debugger/src/org/mule/tooling/ui/contribution/debugger/view/IPayloadEditor.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../mule-debugger-ui-eclipse/org.mule.tooling.ui.contribution.debugger/src/org/mule/tooling/ui/contribution/debugger/view/impl/MuleDebuggerPayloadComposite.java" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/org/mule/debugger/server/DebuggerService.java" afterPath="$PROJECT_DIR$/src/main/java/org/mule/debugger/server/DebuggerHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mule-debugger-ui-eclipse/org.mule.tooling.ui.contribution.debugger/icons/small/debugger-connector-24x16.png" afterPath="$PROJECT_DIR$/../mule-debugger-ui-eclipse/org.mule.tooling.ui.contribution.debugger/icons/small/debugger-connector-24x16.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mule-debugger-ui-eclipse/org.mule.tooling.ui.contribution.debugger/lib/mule-debugger-runtime.jar" afterPath="$PROJECT_DIR$/../mule-debugger-ui-eclipse/org.mule.tooling.ui.contribution.debugger/lib/mule-debugger-runtime.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mule-debugger-ui-eclipse/org.mule.tooling.ui.contribution.debugger/mule-debugger-runtime.zip" afterPath="$PROJECT_DIR$/../mule-debugger-ui-eclipse/org.mule.tooling.ui.contribution.debugger/mule-debugger-runtime.zip" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mule-debugger-runtime.iml" afterPath="$PROJECT_DIR$/mule-debugger-runtime.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mule-debugger-runtime.ipr" afterPath="$PROJECT_DIR$/mule-debugger-runtime.ipr" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mule-debugger-runtime.iws" afterPath="$PROJECT_DIR$/mule-debugger-runtime.iws" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/mule/debugger/MuleDebuggerConnector.java" afterPath="$PROJECT_DIR$/src/main/java/org/mule/debugger/MuleDebuggerConnector.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/mule/debugger/MuleDebuggingContext.java" afterPath="$PROJECT_DIR$/src/main/java/org/mule/debugger/MuleDebuggingContext.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/mule/debugger/client/DebuggerClient.java" afterPath="$PROJECT_DIR$/src/main/java/org/mule/debugger/client/DebuggerClient.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/mule/debugger/client/DebuggerConnection.java" afterPath="$PROJECT_DIR$/src/main/java/org/mule/debugger/client/DebuggerConnection.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/mule/debugger/commands/AbstractCommand.java" afterPath="$PROJECT_DIR$/src/main/java/org/mule/debugger/commands/AbstractCommand.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/mule/debugger/commands/ExecuteScriptCommandImpl.java" afterPath="$PROJECT_DIR$/src/main/java/org/mule/debugger/commands/ExecuteScriptCommandImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/mule/debugger/commands/ExitDebuggerCommandImpl.java" afterPath="$PROJECT_DIR$/src/main/java/org/mule/debugger/commands/ExitDebuggerCommandImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/mule/debugger/commands/ICommand.java" afterPath="$PROJECT_DIR$/src/main/java/org/mule/debugger/commands/ICommand.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/mule/debugger/commands/NextStepCommandImpl.java" afterPath="$PROJECT_DIR$/src/main/java/org/mule/debugger/commands/NextStepCommandImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/mule/debugger/commands/ResumeCommandImpl.java" afterPath="$PROJECT_DIR$/src/main/java/org/mule/debugger/commands/ResumeCommandImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/mule/debugger/remote/RemoteDebuggerService.java" afterPath="$PROJECT_DIR$/src/main/java/org/mule/debugger/remote/RemoteDebuggerService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/mule/debugger/remote/RemoteDebuggerSession.java" afterPath="$PROJECT_DIR$/src/main/java/org/mule/debugger/remote/RemoteDebuggerSession.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/mule/debugger/response/ExecuteScriptResponse.java" afterPath="$PROJECT_DIR$/src/main/java/org/mule/debugger/response/ExecuteScriptResponse.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/mule/debugger/response/MuleMessageInfo.java" afterPath="$PROJECT_DIR$/src/main/java/org/mule/debugger/response/MuleMessageInfo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/mule/debugger/response/ScriptResultInfo.java" afterPath="$PROJECT_DIR$/src/main/java/org/mule/debugger/response/ScriptResultInfo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/mule/debugger/server/DebuggerCommunicationService.java" afterPath="$PROJECT_DIR$/src/main/java/org/mule/debugger/server/DebuggerCommunicationService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/mule/debugger/server/DebuggerServerFactory.java" afterPath="$PROJECT_DIR$/src/main/java/org/mule/debugger/server/DebuggerServerFactory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/mule/debugger/server/IDebuggerRequestHandler.java" afterPath="$PROJECT_DIR$/src/main/java/org/mule/debugger/server/IDebuggerRequestHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/mule/debugger/server/MuleMessageDebuggerRequestHandler.java" afterPath="$PROJECT_DIR$/src/main/java/org/mule/debugger/server/MuleMessageDebuggerRequestHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/mule/debugger/server/MuleMessageInfoBuilder.java" afterPath="$PROJECT_DIR$/src/main/java/org/mule/debugger/server/MuleMessageInfoBuilder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/mule/debugger/transport/SerializeDebuggerProtocol.java" afterPath="$PROJECT_DIR$/src/main/java/org/mule/debugger/transport/SerializeDebuggerProtocol.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/org/mule/debugger/response/DebuggerServiceTest.java" afterPath="$PROJECT_DIR$/src/test/java/org/mule/debugger/response/DebuggerServiceTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mule-debugger-ui-eclipse/org.mule.tooling.ui.contribution.debugger/debugger.xml" afterPath="$PROJECT_DIR$/../mule-debugger-ui-eclipse/org.mule.tooling.ui.contribution.debugger/debugger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mule-debugger-ui-eclipse/org.mule.tooling.ui.contribution.debugger/src/org/mule/tooling/ui/contribution/debugger/controller/DebuggerResponseCallback.java" afterPath="$PROJECT_DIR$/../mule-debugger-ui-eclipse/org.mule.tooling.ui.contribution.debugger/src/org/mule/tooling/ui/contribution/debugger/controller/DebuggerResponseCallback.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mule-debugger-ui-eclipse/org.mule.tooling.ui.contribution.debugger/src/org/mule/tooling/ui/contribution/debugger/controller/MuleDebuggerPropertiesController.java" afterPath="$PROJECT_DIR$/../mule-debugger-ui-eclipse/org.mule.tooling.ui.contribution.debugger/src/org/mule/tooling/ui/contribution/debugger/controller/MuleDebuggerPropertiesController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mule-debugger-ui-eclipse/org.mule.tooling.ui.contribution.debugger/src/org/mule/tooling/ui/contribution/debugger/controller/ObjectTreeNodeBuilder.java" afterPath="$PROJECT_DIR$/../mule-debugger-ui-eclipse/org.mule.tooling.ui.contribution.debugger/src/org/mule/tooling/ui/contribution/debugger/controller/ObjectTreeNodeBuilder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mule-debugger-ui-eclipse/org.mule.tooling.ui.contribution.debugger/src/org/mule/tooling/ui/contribution/debugger/controller/ScriptEvaluationController.java" afterPath="$PROJECT_DIR$/../mule-debugger-ui-eclipse/org.mule.tooling.ui.contribution.debugger/src/org/mule/tooling/ui/contribution/debugger/controller/ScriptEvaluationController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mule-debugger-ui-eclipse/org.mule.tooling.ui.contribution.debugger/src/org/mule/tooling/ui/contribution/debugger/view/IMuleDebuggerProperties.java" afterPath="$PROJECT_DIR$/../mule-debugger-ui-eclipse/org.mule.tooling.ui.contribution.debugger/src/org/mule/tooling/ui/contribution/debugger/view/IMuleDebuggerProperties.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mule-debugger-ui-eclipse/org.mule.tooling.ui.contribution.debugger/src/org/mule/tooling/ui/contribution/debugger/view/IScriptEvaluationEditor.java" afterPath="$PROJECT_DIR$/../mule-debugger-ui-eclipse/org.mule.tooling.ui.contribution.debugger/src/org/mule/tooling/ui/contribution/debugger/view/IScriptEvaluationEditor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mule-debugger-ui-eclipse/org.mule.tooling.ui.contribution.debugger/src/org/mule/tooling/ui/contribution/debugger/view/actions/ConnectAction.java" afterPath="$PROJECT_DIR$/../mule-debugger-ui-eclipse/org.mule.tooling.ui.contribution.debugger/src/org/mule/tooling/ui/contribution/debugger/view/actions/ConnectAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mule-debugger-ui-eclipse/org.mule.tooling.ui.contribution.debugger/src/org/mule/tooling/ui/contribution/debugger/view/actions/OpenContributorsAction.java" afterPath="$PROJECT_DIR$/../mule-debugger-ui-eclipse/org.mule.tooling.ui.contribution.debugger/src/org/mule/tooling/ui/contribution/debugger/view/actions/OpenContributorsAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mule-debugger-ui-eclipse/org.mule.tooling.ui.contribution.debugger/src/org/mule/tooling/ui/contribution/debugger/view/impl/ConnectionPropertiesEditorComposite.java" afterPath="$PROJECT_DIR$/../mule-debugger-ui-eclipse/org.mule.tooling.ui.contribution.debugger/src/org/mule/tooling/ui/contribution/debugger/view/impl/ConnectionPropertiesEditorComposite.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mule-debugger-ui-eclipse/org.mule.tooling.ui.contribution.debugger/src/org/mule/tooling/ui/contribution/debugger/view/impl/MuleDebuggerPropertiesView.java" afterPath="$PROJECT_DIR$/../mule-debugger-ui-eclipse/org.mule.tooling.ui.contribution.debugger/src/org/mule/tooling/ui/contribution/debugger/view/impl/MuleDebuggerPropertiesView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mule-debugger-ui-intellij/src/main/java/org/mule/debugger/ui/actions/ConnectAction.java" afterPath="$PROJECT_DIR$/../mule-debugger-ui-intellij/src/main/java/org/mule/debugger/ui/actions/ConnectAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mule-debugger-ui-intellij/src/main/java/org/mule/debugger/ui/actions/ResumeAction.java" afterPath="$PROJECT_DIR$/../mule-debugger-ui-intellij/src/main/java/org/mule/debugger/ui/actions/ResumeAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mule-debugger-ui-intellij/src/main/java/org/mule/debugger/ui/controller/ObjectFieldDefinitionTreeTableModel.java" afterPath="$PROJECT_DIR$/../mule-debugger-ui-intellij/src/main/java/org/mule/debugger/ui/controller/ObjectFieldDefinitionTreeTableModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mule-debugger-ui-intellij/src/main/java/org/mule/debugger/ui/impl/ConnectionPropertiesView.java" afterPath="$PROJECT_DIR$/../mule-debugger-ui-intellij/src/main/java/org/mule/debugger/ui/impl/ConnectionPropertiesView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mule-debugger-ui-intellij/src/main/java/org/mule/debugger/ui/impl/DebuggerComposite.java" afterPath="$PROJECT_DIR$/../mule-debugger-ui-intellij/src/main/java/org/mule/debugger/ui/impl/DebuggerComposite.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mule-debugger-ui-intellij/src/main/java/org/mule/debugger/ui/impl/MuleDebuggerPayloadView.java" afterPath="$PROJECT_DIR$/../mule-debugger-ui-intellij/src/main/java/org/mule/debugger/ui/impl/MuleDebuggerPayloadView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mule-debugger-ui-eclipse/org.mule.tooling.ui.contribution.debugger/src/org/mule/tooling/ui/contribution/debugger/view/impl/MuleDebuggerView.java" afterPath="$PROJECT_DIR$/../mule-debugger-ui-eclipse/org.mule.tooling.ui.contribution.debugger/src/org/mule/tooling/ui/contribution/debugger/view/impl/MuleDebuggerView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mule-debugger-ui-eclipse/org.mule.tooling.ui.contribution.debugger/src/org/mule/tooling/ui/contribution/debugger/view/impl/ScriptEvaluationComposite.java" afterPath="$PROJECT_DIR$/../mule-debugger-ui-eclipse/org.mule.tooling.ui.contribution.debugger/src/org/mule/tooling/ui/contribution/debugger/view/impl/ScriptEvaluationComposite.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mule-debugger-ui-intellij/META-INF/plugin.xml" afterPath="$PROJECT_DIR$/../mule-debugger-ui-intellij/META-INF/plugin.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mule-debugger-ui-intellij/src/main/java/org/mule/debugger/ui/component/DebuggerComponent.java" afterPath="$PROJECT_DIR$/../mule-debugger-ui-intellij/src/main/java/org/mule/debugger/ui/component/DebuggerComponent.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mule-debugger-ui-intellij/src/main/java/org/mule/debugger/ui/component/DebuggerWindow.java" afterPath="$PROJECT_DIR$/../mule-debugger-ui-intellij/src/main/java/org/mule/debugger/ui/component/DebuggerWindow.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mule-debugger-ui-intellij/src/main/java/org/mule/debugger/ui/controller/MuleDebuggerPayloadController.java" afterPath="$PROJECT_DIR$/../mule-debugger-ui-intellij/src/main/java/org/mule/debugger/ui/controller/MuleDebuggerPayloadController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mule-debugger-ui-intellij/src/main/java/org/mule/debugger/ui/controller/MuleDebuggerPropertiesController.java" afterPath="$PROJECT_DIR$/../mule-debugger-ui-intellij/src/main/java/org/mule/debugger/ui/controller/MuleDebuggerPropertiesController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mule-debugger-ui-intellij/src/main/java/org/mule/debugger/ui/controller/ScriptEvaluationController.java" afterPath="$PROJECT_DIR$/../mule-debugger-ui-intellij/src/main/java/org/mule/debugger/ui/controller/ScriptEvaluationController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mule-debugger-ui-intellij/src/main/java/org/mule/debugger/ui/impl/ClassLinkTableCellEditor.java" afterPath="$PROJECT_DIR$/../mule-debugger-ui-intellij/src/main/java/org/mule/debugger/ui/impl/ClassLinkTableCellEditor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mule-debugger-ui-intellij/src/main/java/org/mule/debugger/ui/impl/MuleDebuggerPropertiesView.java" afterPath="$PROJECT_DIR$/../mule-debugger-ui-intellij/src/main/java/org/mule/debugger/ui/impl/MuleDebuggerPropertiesView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mule-debugger-ui-intellij/src/main/java/org/mule/debugger/ui/view/IMuleDebuggerProperties.java" afterPath="$PROJECT_DIR$/../mule-debugger-ui-intellij/src/main/java/org/mule/debugger/ui/view/IMuleDebuggerProperties.java" />
     </list>
     <ignored path="mule-debugger-runtime.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,33 +80,7 @@
   </component>
   <component name="DebuggerManager">
     <line_breakpoints>
-      <breakpoint url="file://$PROJECT_DIR$/src/test/java/org/mule/debugger/response/functional/DebuggerFunctionalTestCase.java" line="41" class="org.mule.debugger.response.functional.DebuggerFunctionalTestCase" package="org.mule.debugger.response.functional">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
       <breakpoint url="file://$PROJECT_DIR$/src/main/java/org/mule/debugger/response/ExitDebuggerResponse.java" line="13" class="org.mule.debugger.response.ExitDebuggerResponse" package="org.mule.debugger.response">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/main/java/org/mule/debugger/transport/SerializeDebuggerProtocol.java" line="65" class="org.mule.debugger.transport.SerializeDebuggerProtocol" package="org.mule.debugger.transport">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -81,7 +106,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/main/java/org/mule/debugger/MuleDebuggerConnector.java" line="82" class="org.mule.debugger.MuleDebuggerConnector" package="org.mule.debugger">
+      <breakpoint url="file://$PROJECT_DIR$/src/main/java/org/mule/debugger/commands/ExecuteScriptCommandImpl.java" line="31" class="org.mule.debugger.commands.ExecuteScriptCommandImpl" package="org.mule.debugger.commands">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -94,7 +119,150 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/main/java/org/mule/debugger/MuleDebuggerConnector.java" line="143" class="org.mule.debugger.MuleDebuggerConnector" package="org.mule.debugger">
+      <breakpoint url="file://$PROJECT_DIR$/src/test/java/org/mule/debugger/response/functional/DebuggerFunctionalTestCase.java" line="51" class="org.mule.debugger.response.functional.DebuggerFunctionalTestCase$1" package="org.mule.debugger.response.functional">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/test/java/org/mule/debugger/response/functional/DebuggerFunctionalTestCase.java" line="60" class="org.mule.debugger.response.functional.DebuggerFunctionalTestCase$1" package="org.mule.debugger.response.functional">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/test/java/org/mule/debugger/response/functional/DebuggerFunctionalTestCase.java" line="64" class="org.mule.debugger.response.functional.DebuggerFunctionalTestCase$1" package="org.mule.debugger.response.functional">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/test/java/org/mule/debugger/response/functional/DebuggerFunctionalTestCase.java" line="68" class="org.mule.debugger.response.functional.DebuggerFunctionalTestCase$1" package="org.mule.debugger.response.functional">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/main/java/org/mule/debugger/client/DebuggerClient.java" line="40" class="org.mule.debugger.client.DebuggerClient" package="org.mule.debugger.client">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/main/java/org/mule/debugger/remote/RemoteDebuggerSession.java" line="33" class="org.mule.debugger.remote.RemoteDebuggerSession" package="org.mule.debugger.remote">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/test/java/org/mule/debugger/response/functional/DebuggerFunctionalTestCase.java" line="56" class="org.mule.debugger.response.functional.DebuggerFunctionalTestCase$1" package="org.mule.debugger.response.functional">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/main/java/org/mule/debugger/transport/SerializeDebuggerProtocol.java" line="46" class="org.mule.debugger.transport.SerializeDebuggerProtocol" package="org.mule.debugger.transport">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/main/java/org/mule/debugger/server/DebuggerHandler.java" line="97" class="org.mule.debugger.server.DebuggerHandler" package="org.mule.debugger.server">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/main/java/org/mule/debugger/server/DebuggerHandler.java" line="94" class="org.mule.debugger.server.DebuggerHandler" package="org.mule.debugger.server">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/main/java/org/mule/debugger/transport/SerializeDebuggerProtocol.java" line="33" class="org.mule.debugger.transport.SerializeDebuggerProtocol" package="org.mule.debugger.transport">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/main/java/org/mule/debugger/transport/SerializeDebuggerProtocol.java" line="31" class="org.mule.debugger.transport.SerializeDebuggerProtocol" package="org.mule.debugger.transport">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -148,19 +316,58 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="DebuggerServerFactory.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/mule/debugger/server/DebuggerServerFactory.java">
+      <file leaf-file-name="SerializeDebuggerProtocol.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/mule/debugger/transport/SerializeDebuggerProtocol.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="0" selection-start="1022" selection-end="1022" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="47" column="73" selection-start="1750" selection-end="1750" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DebuggerService.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/mule/debugger/server/DebuggerService.java">
+      <file leaf-file-name="DebuggerAgent.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/mule/debugger/server/DebuggerAgent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="13" selection-start="270" selection-end="270" vertical-scroll-proportion="0.0">
+            <state line="167" column="108" selection-start="6588" selection-end="6588" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MessageProcessorInfo.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/mule/debugger/response/MessageProcessorInfo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="17" column="26" selection-start="604" selection-end="604" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MuleMessageInfoBuilder.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/mule/debugger/server/MuleMessageInfoBuilder.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="38" column="67" selection-start="1859" selection-end="1869" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#1519#1535#0" expanded="true" />
+                <element signature="e#2501#2532#0" expanded="true" />
+                <element signature="e#3049#3080#0" expanded="true" />
+                <element signature="e#3483#3514#0" expanded="true" />
+                <element signature="e#3968#3999#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="QName.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar:///System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/src.jar!/src/javax/xml/namespace/QName.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="411" column="18" selection-start="16102" selection-end="16102" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -169,73 +376,49 @@
       <file leaf-file-name="MuleDebuggerConnector.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/mule/debugger/MuleDebuggerConnector.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="79" column="8" selection-start="2756" selection-end="2756" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ConnectAction.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../mule-debugger-ui-intellij/src/main/java/org/mule/debugger/ui/actions/ConnectAction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ConnectionPropertiesView.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../mule-debugger-ui-intellij/src/main/java/org/mule/debugger/ui/impl/ConnectionPropertiesView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DebuggerComposite.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../mule-debugger-ui-intellij/src/main/java/org/mule/debugger/ui/impl/DebuggerComposite.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+            <state line="45" column="57" selection-start="1660" selection-end="1660" vertical-scroll-proportion="0.0">
               <folding>
-                <element signature="n#!!doc" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RemoteDebuggerService.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/mule/debugger/remote/RemoteDebuggerService.java">
+      <file leaf-file-name="pom.xml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="67" column="16" selection-start="2022" selection-end="2022" vertical-scroll-proportion="0.0">
+            <state line="12" column="37" selection-start="597" selection-end="597" vertical-scroll-proportion="0.25641027">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ExitDebuggerRequest.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/mule/debugger/request/ExitDebuggerRequest.java">
+      <file leaf-file-name="RemoteDebuggerSession.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/mule/debugger/remote/RemoteDebuggerSession.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="0" selection-start="603" selection-end="603" vertical-scroll-proportion="0.0">
+            <state line="38" column="74" selection-start="1332" selection-end="1332" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ExitDebuggerResponse.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/mule/debugger/response/ExitDebuggerResponse.java">
+      <file leaf-file-name="DebuggerHandler.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/mule/debugger/server/DebuggerHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="0" selection-start="548" selection-end="548" vertical-scroll-proportion="0.0">
+            <state line="19" column="16" selection-start="511" selection-end="511" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PlainSocketImpl.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar:///System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/src.jar!/src/java/net/PlainSocketImpl.java">
+      <file leaf-file-name="Semaphore.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar:///System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/src.jar!/src/java/util/concurrent/Semaphore.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="694" column="24" selection-start="18686" selection-end="18686" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="200" column="65" selection-start="7580" selection-end="7580" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#0#27778#0" expanded="false" />
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -254,28 +437,29 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/org/mule/debugger/server/DebuggerService.java" />
-        <option value="$PROJECT_DIR$/src/test/resources/mule-config-suspend.xml" />
-        <option value="$PROJECT_DIR$/src/test/java/org/mule/debugger/response/functional/DebuggerSuspendFunctionalTestCase.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/mule/debugger/test/MuleDebuggerClientTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/mule/debugger/remote/RemoteDebuggerService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/mule/debugger/client/DebuggerConnection.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/mule/debugger/client/DebuggerClient.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/mule/debugger/response/ExceptionResponse.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/mule/debugger/exception/RemoteDebugException.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/mule/debugger/commands/AssignScriptResultToPayloadCommandImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/mule/debugger/commands/ExecuteScriptCommandImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/mule/debugger/server/MuleMessageDebuggerRequestHandler.java" />
-        <option value="$PROJECT_DIR$/src/test/resources/mule-config.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/org/mule/debugger/test/ServerRunnerTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/org/mule/debugger/response/functional/DebuggerFunctionalTestCase.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/mule/debugger/MuleDebuggingEvent.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/mule/debugger/MuleDebuggingContext.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/mule/debugger/remote/RemoteDebuggerService.java" />
+        <option value="$PROJECT_DIR$/src/test/java/org/mule/debugger/response/RemoteSerializableTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/mule/debugger/client/DebuggerClient.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/mule/debugger/client/DebuggerConnection.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/mule/debugger/transport/ServerSerializeDebuggerProtocol.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/mule/debugger/transport/ClienSerializeDebuggerProtocol.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/mule/debugger/remote/RemoteDebuggerSession.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/mule/debugger/server/DebuggerAgent.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/mule/debugger/server/DebuggerHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/mule/debugger/transport/SerializeDebuggerProtocol.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/mule/debugger/server/MuleMessageInfoBuilder.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/mule/debugger/MuleDebuggerConnector.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
   </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
       <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
         <option name="keepSourceFolders" value="false" />
       </MavenImportingSettings>
     </option>
@@ -298,10 +482,9 @@
     <option name="LAST_EDITED_TAB_NAME" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="405" />
-    <option name="y" value="296" />
+    <option name="y" value="511" />
     <option name="width" value="1440" />
-    <option name="height" value="832" />
+    <option name="height" value="827" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -327,34 +510,10 @@
       <hideEmptyPackages />
       <abbreviatePackageNames />
       <autoscrollToSource />
-      <autoscrollFromSource />
+      <autoscrollFromSource ProjectPane="true" />
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="PackagesPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mule-debugger-runtime" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mule-debugger-runtime" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -362,15 +521,9 @@
               <option name="myItemId" value="mule-debugger-runtime" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="mule-debugger-runtime" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mule-debugger-runtime" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -379,30 +532,12 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="mule-debugger-runtime" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="target" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mule-debugger-runtime" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mule-debugger-runtime" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="target" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="generated-sources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemId" value="&lt; 1.6 &gt;" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -411,23 +546,15 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="mule-debugger-runtime" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="target" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemId" value="&lt; 1.6 &gt;" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="generated-sources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mule" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="debugger" />
+              <option name="myItemId" value="classes.jar" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -437,27 +564,119 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="&lt; 1.6 &gt;" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="classes.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="javax" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xml" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
               <option name="myItemId" value="mule-debugger-runtime" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="&lt; 1.6 &gt;" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="classes.jar" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="target" />
+              <option name="myItemId" value="javax" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mule-debugger-runtime" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="&lt; 1.6 &gt;" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="classes.jar" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="generated-sources" />
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mule-debugger-runtime" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="&lt; 1.6 &gt;" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="classes.jar" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="mule" />
+              <option name="myItemId" value="java" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="debugger" />
+              <option name="myItemId" value="net" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mule-debugger-runtime" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="&lt; 1.6 &gt;" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="classes.jar" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="adapters" />
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="io" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -468,18 +687,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="mule-debugger-runtime" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="target" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="generated-sources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mule" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -605,6 +812,300 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mule-debugger-runtime" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mule-debugger-runtime" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="debugger" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="transport" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mule-debugger-runtime" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mule-debugger-runtime" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="debugger" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mule-debugger-runtime" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mule-debugger-runtime" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="debugger" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mule-debugger-runtime" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mule-debugger-runtime" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="debugger" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="response" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mule-debugger-runtime" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mule-debugger-runtime" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="debugger" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="request" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mule-debugger-runtime" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mule-debugger-runtime" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="debugger" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="remote" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mule-debugger-runtime" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mule-debugger-runtime" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="debugger" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="exception" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mule-debugger-runtime" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mule-debugger-runtime" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="debugger" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="commands" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mule-debugger-runtime" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mule-debugger-runtime" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="debugger" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="PackagesPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mule-debugger-runtime" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mule-debugger-runtime" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Favorites" />
@@ -630,13 +1131,14 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.mule.debugger.transport" />
       <recent name="org.mule.debugger.response.functional" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/test/resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Remote.Remote">
+  <component name="RunManager" selected="JUnit.DebuggerFunctionalTestCase">
     <configuration default="false" name="DebuggerFunctionalTestCase" type="JUnit" factoryName="JUnit" temporary="true">
       <extension name="coverage" enabled="false" merge="false" />
       <module name="mule-debugger-runtime" />
@@ -698,6 +1200,29 @@
       <option name="MAIN_CLASS_NAME" value="org.mule.debugger.response.functional.DebuggerFunctionalTestCase" />
       <option name="METHOD_NAME" value="testDebugger" />
       <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="ObjectFieldDefinitionTest" type="JUnit" factoryName="JUnit" temporary="true">
+      <extension name="coverage" enabled="false" merge="false" />
+      <module name="mule-debugger-runtime" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="org.mule.debugger.response" />
+      <option name="MAIN_CLASS_NAME" value="org.mule.debugger.response.ObjectFieldDefinitionTest" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -823,12 +1348,13 @@
       <ConfigurationWrapper RunnerId="Debug" />
       <method />
     </configuration>
-    <list size="5">
+    <list size="6">
       <item index="0" class="java.lang.String" itemvalue="JUnit.DebuggerFunctionalTestCase" />
       <item index="1" class="java.lang.String" itemvalue="JUnit.DebuggerSuspendFunctionalTestCase" />
       <item index="2" class="java.lang.String" itemvalue="JUnit.DebuggerFunctionalTestCase.testDebugger" />
-      <item index="3" class="java.lang.String" itemvalue="Application.MuleDebuggerClientTest" />
-      <item index="4" class="java.lang.String" itemvalue="Remote.Remote" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.ObjectFieldDefinitionTest" />
+      <item index="4" class="java.lang.String" itemvalue="Application.MuleDebuggerClientTest" />
+      <item index="5" class="java.lang.String" itemvalue="Remote.Remote" />
     </list>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
@@ -883,33 +1409,33 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="405" y="296" width="1440" height="832" extended-state="0" />
-    <editor active="false" />
+    <frame x="0" y="511" width="1440" height="827" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32630098" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32606542" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.55925435" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39820743" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3769339" sideWeight="0.24568966" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3981358" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2596538" sideWeight="0.24965613" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="MuleESB Debugger" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3769339" sideWeight="0.7492816" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32756326" sideWeight="0.0" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Regex Tester" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905984" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.55818963" sideWeight="0.6230661" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2672414" sideWeight="0.6230661" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44854882" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26077586" sideWeight="0.44074568" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4460719" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Phing Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Regex Tester" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="MuleESB Debugger" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4858357" sideWeight="0.99743426" order="7" side_tool="false" content_ui="tabs" x="24" y="304" width="1372" height="460" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298153" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298153" sideWeight="0.0" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -973,84 +1499,133 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/mule/debugger/commands/ExitDebuggerCommandImpl.java">
+    <entry file="jar:///System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/src.jar!/src/java/io/ObjectInputStream.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="0" selection-start="691" selection-end="691" vertical-scroll-proportion="0.0" />
+        <state line="469" column="16" selection-start="21203" selection-end="21203" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/mule/debugger/server/MuleMessageDebuggerRequestHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/mule/debugger/transport/IClientDebuggerProtocol.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="0" selection-start="1068" selection-end="1068" vertical-scroll-proportion="0.0" />
+        <state line="14" column="22" selection-start="608" selection-end="608" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/mule/debugger/server/DebuggerCommunicationService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/mule/debugger/response/ConnectionEstablishedResponse.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="58" selection-start="1045" selection-end="1045" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/mule/debugger/transport/IServerDebuggerProtocol.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="0" selection-start="537" selection-end="537" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/mule/debugger/transport/SerializeDebuggerProtocol.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="12" selection-start="1005" selection-end="1005" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/mule/debugger/response/MuleMessageArrivedResponse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="0" selection-start="648" selection-end="648" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/mule/debugger/server/DebuggerServerFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="0" selection-start="1022" selection-end="1022" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/mule/debugger/server/DebuggerService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="13" selection-start="270" selection-end="270" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/mule/debugger/MuleDebuggerConnector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="79" column="8" selection-start="2756" selection-end="2756" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../mule-debugger-ui-intellij/src/main/java/org/mule/debugger/ui/actions/ConnectAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../mule-debugger-ui-intellij/src/main/java/org/mule/debugger/ui/impl/ConnectionPropertiesView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/mule/debugger/remote/RemoteDebuggerService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="67" column="16" selection-start="2022" selection-end="2022" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/mule/debugger/request/ExitDebuggerRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="0" selection-start="603" selection-end="603" vertical-scroll-proportion="0.0" />
+        <state line="14" column="0" selection-start="583" selection-end="583" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/mule/debugger/response/ExitDebuggerResponse.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="0" selection-start="548" selection-end="548" vertical-scroll-proportion="0.0" />
+        <state line="13" column="0" selection-start="548" selection-end="548" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="jar:///System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/src.jar!/src/java/net/PlainSocketImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/mule/debugger/client/DebuggerClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="694" column="24" selection-start="18686" selection-end="18686" vertical-scroll-proportion="0.0" />
+        <state line="40" column="0" selection-start="1301" selection-end="1301" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../mule-debugger-ui-intellij/src/main/java/org/mule/debugger/ui/impl/DebuggerComposite.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/org/mule/debugger/response/functional/DebuggerFunctionalTestCase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+        <state line="38" column="0" selection-start="1413" selection-end="1413" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/mule/debugger/remote/RemoteDebuggerSession.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="74" selection-start="1332" selection-end="1332" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/mule/debugger/server/DebuggerHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="16" selection-start="511" selection-end="511" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/src.jar!/src/java/util/concurrent/Semaphore.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="200" column="65" selection-start="7580" selection-end="7580" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#27778#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/mule/debugger/server/DebuggerAgent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="167" column="108" selection-start="6588" selection-end="6588" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/mule/debugger/transport/SerializeDebuggerProtocol.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="47" column="73" selection-start="1750" selection-end="1750" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/mule/debugger/response/MessageProcessorInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="26" selection-start="604" selection-end="604" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/src.jar!/src/javax/xml/namespace/QName.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="411" column="18" selection-start="16102" selection-end="16102" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/mule/debugger/server/MuleMessageInfoBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="67" selection-start="1859" selection-end="1869" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#1519#1535#0" expanded="true" />
+            <element signature="e#2501#2532#0" expanded="true" />
+            <element signature="e#3049#3080#0" expanded="true" />
+            <element signature="e#3483#3514#0" expanded="true" />
+            <element signature="e#3968#3999#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/mule/debugger/MuleDebuggerConnector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="45" column="57" selection-start="1660" selection-end="1660" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="37" selection-start="597" selection-end="597" vertical-scroll-proportion="0.25641027">
+          <folding />
+        </state>
       </provider>
     </entry>
   </component>

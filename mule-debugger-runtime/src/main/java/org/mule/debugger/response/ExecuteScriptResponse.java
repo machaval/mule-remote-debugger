@@ -7,10 +7,7 @@
  */
 package org.mule.debugger.response;
 
-import org.mule.api.MuleMessage;
-import org.mule.debugger.MuleDebuggingContext;
 import org.mule.debugger.client.IDebuggerResponseCallback;
-import org.mule.debugger.server.MuleMessageInfoBuilder;
 
 public class ExecuteScriptResponse extends DebuggerResponse {
 

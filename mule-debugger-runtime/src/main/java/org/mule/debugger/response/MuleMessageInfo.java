@@ -15,39 +15,36 @@ public class MuleMessageInfo implements Serializable {
     private ObjectFieldDefinition payloadDefinition;
     private ObjectFieldDefinition exceptionPayloadDefinition;
 
-    private String payloadClassName;
-    private String payloadString;
+
     private String uniqueId;
+    private String correlationId;
+    private String messageRootId;
     private String encoding;
-    private Map<String, String> inboundProperties;
-    private Map<String, String> invocationProperties;
-    private Map<String, String> sessionProperties;
-    private Map<String, String> outboundProperties;
+    private Map<String, ObjectFieldDefinition> inboundProperties;
+    private Map<String, ObjectFieldDefinition> invocationProperties;
+    private Map<String, ObjectFieldDefinition> sessionProperties;
+    private Map<String, ObjectFieldDefinition> outboundProperties;
 
-    private String currentProcessor;
+    private MessageProcessorInfo messageProcessorInfo;
 
 
-    public String getCurrentProcessor() {
-        return currentProcessor;
+    public MessageProcessorInfo getMessageProcessorInfo() {
+        return messageProcessorInfo;
     }
 
-    public void setCurrentProcessor(String currentProcessor) {
-        this.currentProcessor = currentProcessor;
-    }
-
-    public String getPayloadString() {
-        return payloadString;
+    public void setMessageProcessorInfo(MessageProcessorInfo messageProcessorInfo) {
+        this.messageProcessorInfo = messageProcessorInfo;
     }
 
     public String getUniqueId() {
         return uniqueId;
     }
 
-    public Map<String, String> getInboundProperties() {
+    public Map<String, ObjectFieldDefinition> getInboundProperties() {
         return inboundProperties;
     }
 
-    public Map<String, String> getInvocationProperties() {
+    public Map<String, ObjectFieldDefinition> getInvocationProperties() {
         return invocationProperties;
     }
 
@@ -55,13 +52,11 @@ public class MuleMessageInfo implements Serializable {
         return encoding;
     }
 
-    public Map<String, String> getSessionProperties() {
+    public Map<String, ObjectFieldDefinition> getSessionProperties() {
         return sessionProperties;
     }
 
-    public String getPayloadClassName() {
-        return payloadClassName;
-    }
+
 
 
     public void setPayloadDefinition(ObjectFieldDefinition payloadDefinition) {
@@ -72,13 +67,6 @@ public class MuleMessageInfo implements Serializable {
         return payloadDefinition;
     }
 
-    public void setPayloadClassName(String payloadClassName) {
-        this.payloadClassName = payloadClassName;
-    }
-
-    public void setPayloadString(String payloadString) {
-        this.payloadString = payloadString;
-    }
 
     public void setUniqueId(String uniqueId) {
         this.uniqueId = uniqueId;
@@ -88,15 +76,15 @@ public class MuleMessageInfo implements Serializable {
         this.encoding = encoding;
     }
 
-    public void setInboundProperties(Map<String, String> inboundProperties) {
+    public void setInboundProperties(Map<String, ObjectFieldDefinition> inboundProperties) {
         this.inboundProperties = inboundProperties;
     }
 
-    public void setInvocationProperties(Map<String, String> invocationProperties) {
+    public void setInvocationProperties(Map<String, ObjectFieldDefinition> invocationProperties) {
         this.invocationProperties = invocationProperties;
     }
 
-    public void setSessionProperties(Map<String, String> sessionProperties) {
+    public void setSessionProperties(Map<String, ObjectFieldDefinition> sessionProperties) {
         this.sessionProperties = sessionProperties;
     }
 
@@ -108,11 +96,27 @@ public class MuleMessageInfo implements Serializable {
         this.exceptionPayloadDefinition = exceptionPayloadDefinition;
     }
 
-    public Map<String, String> getOutboundProperties() {
+    public Map<String, ObjectFieldDefinition> getOutboundProperties() {
         return outboundProperties;
     }
 
-    public void setOutboundProperties(Map<String, String> outboundProperties) {
+    public void setOutboundProperties(Map<String, ObjectFieldDefinition> outboundProperties) {
         this.outboundProperties = outboundProperties;
+    }
+
+    public String getCorrelationId() {
+        return correlationId;
+    }
+
+    public void setCorrelationId(String correlationId) {
+        this.correlationId = correlationId;
+    }
+
+    public String getMessageRootId() {
+        return messageRootId;
+    }
+
+    public void setMessageRootId(String messageRootId) {
+        this.messageRootId = messageRootId;
     }
 }

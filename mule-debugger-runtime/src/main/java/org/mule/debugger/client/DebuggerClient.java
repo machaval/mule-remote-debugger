@@ -9,6 +9,7 @@ package org.mule.debugger.client;
 
 import org.mule.debugger.request.*;
 import org.mule.debugger.response.IDebuggerResponse;
+import org.mule.debugger.transport.IClientDebuggerProtocol;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -37,11 +38,12 @@ public class DebuggerClient {
     public void start(final IDebuggerResponseCallback defaultHandler) throws IOException {
 
         this.connection.connect();
+        final IClientDebuggerProtocol protocol = connection.createProtocol();
         new Thread() {
             @Override
             public void run() {
                 while (connection.isConnected()) {
-                    IDebuggerResponse response = connection.getProtocol().getResponse();
+                    IDebuggerResponse response = protocol.getResponse();
                     IDebuggerRequest request = response.getRequest();
                     if (request != null && handler.containsKey(request)) {
                         response.callCallback(handler.get(request));
@@ -62,7 +64,7 @@ public class DebuggerClient {
      * Exit the connection
      */
     public void exit() {
-        this.connection.getProtocol().sendRequest(new ExitDebuggerRequest());
+        this.connection.createProtocol().sendRequest(new ExitDebuggerRequest());
 
     }
 
@@ -70,14 +72,14 @@ public class DebuggerClient {
      * Resume current mule message
      */
     public void resume() {
-        this.connection.getProtocol().sendRequest(new ResumeDebuggerRequest());
+        this.connection.createProtocol().sendRequest(new ResumeDebuggerRequest());
     }
 
     /**
      * Move till next message processor
      */
     public void nextStep() {
-        this.connection.getProtocol().sendRequest(new NextStepDebuggerRequest());
+        this.connection.createProtocol().sendRequest(new NextStepDebuggerRequest());
     }
 
 
@@ -92,7 +94,7 @@ public class DebuggerClient {
         if (callback != null) {
             registerCallback(callback, request);
         }
-        this.connection.getProtocol().sendRequest(request);
+        this.connection.createProtocol().sendRequest(request);
     }
 
     /**
@@ -106,7 +108,7 @@ public class DebuggerClient {
         if (callback != null) {
             registerCallback(callback, request);
         }
-        this.connection.getProtocol().sendRequest(request);
+        this.connection.createProtocol().sendRequest(request);
     }
 
     protected void registerCallback(IDebuggerResponseCallback callback, IDebuggerRequest request) {

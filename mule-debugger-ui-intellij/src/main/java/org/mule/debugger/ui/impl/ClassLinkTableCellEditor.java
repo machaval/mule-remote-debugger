@@ -29,7 +29,7 @@ public class ClassLinkTableCellEditor extends AbstractCellEditor implements Tabl
     private String className;
 
 
-    public ClassLinkTableCellEditor() {
+    public ClassLinkTableCellEditor(final Project project) {
 
         text = new Label();
 
@@ -43,7 +43,6 @@ public class ClassLinkTableCellEditor extends AbstractCellEditor implements Tabl
 
             @Override
             public void mousePressed(MouseEvent e) {
-                Project project = ProjectManager.getInstance().getOpenProjects()[0];
                 PsiClass aClass = JavaPsiFacade.getInstance(project).findClass(className, GlobalSearchScope.allScope(project));
                 if (aClass != null) {
                     OpenSourceUtil.navigate(aClass);

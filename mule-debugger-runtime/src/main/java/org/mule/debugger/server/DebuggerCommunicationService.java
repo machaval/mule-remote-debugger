@@ -11,7 +11,7 @@ import org.mule.debugger.request.IDebuggerRequest;
 import org.mule.debugger.response.IDebuggerResponse;
 import org.mule.debugger.transport.IServerDebuggerProtocol;
 
-public class DebuggerCommunicationService implements Runnable {
+public class DebuggerCommunicationService  {
 
     private IServerDebuggerProtocol protocol;
     private IDebuggerRequestHandler requestHandler;
@@ -23,10 +23,6 @@ public class DebuggerCommunicationService implements Runnable {
     }
 
     public void start() {
-        run();
-    }
-
-    public void run() {
         while (keepRunning) {
             IDebuggerRequest request = this.protocol.getRequest();
             if (requestHandler != null) {
@@ -34,7 +30,6 @@ public class DebuggerCommunicationService implements Runnable {
                 this.protocol.sendResponse(response);
             }
         }
-
     }
 
     public void sendResponse(IDebuggerResponse response) {

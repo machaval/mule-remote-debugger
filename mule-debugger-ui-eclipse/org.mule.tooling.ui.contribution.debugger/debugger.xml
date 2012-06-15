@@ -2,7 +2,7 @@
 
 <namespace xmlns="http://www.mulesoft.org/schema/mule/tooling.attributes" xmlns:mule="http://www.mulesoft.org/schema/mule/core" prefix="debugger" url="http://www.mulesoft.org/schema/mule/debugger">
   
-  <cloud-connector extends="http://www.mulesoft.org/schema/mule/debugger/abstractDebuggerConnectorGeneric" image="icons/large/debugger-connector-48x32.png" localId="debugger-connector" icon="icons/small/debugger-connector-24x16.png" description="The mule debugger allows to inspect the content of the mule message, and go through all the message processor on the flow." caption="Debugger" aliasId="org.mule.tooling.ui.modules.core.pattern.debugger">
+  <cloud-connector extends="http://www.mulesoft.org/schema/mule/debugger/abstractDebuggerConnectorGeneric" image="icons/large/debugger-connector-48x32.png" localId="debugger-connector" icon="icons/small/debugger-connector-24x16.png" description="The mule debugger allows to inspect the content of the mule message, and go through all the message processor on the flow." caption="Breakpoint" aliasId="org.mule.tooling.ui.modules.core.pattern.debugger">
     <attribute-category description="General." caption="General">
       <group caption="Generic" id="debuggerConnectorGeneric">
         <modeSwitch description="Operation." caption="Operation" name="Debugger operations to execute">

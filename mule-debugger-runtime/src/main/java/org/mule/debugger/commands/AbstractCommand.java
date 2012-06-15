@@ -9,20 +9,20 @@ package org.mule.debugger.commands;
 
 
 import org.mule.debugger.MuleDebuggingContext;
-import org.mule.debugger.server.DebuggerService;
+import org.mule.debugger.server.DebuggerHandler;
 
 public abstract class AbstractCommand implements ICommand {
 
-    private DebuggerService handler;
+    private DebuggerHandler handler;
     private MuleDebuggingContext muleDebuggingMessage;
 
 
-    public DebuggerService getHandler() {
+    public DebuggerHandler getHandler() {
         return handler;
     }
 
 
-    public void setHandler(DebuggerService handler) {
+    public void setHandler(DebuggerHandler handler) {
         this.handler = handler;
     }
 

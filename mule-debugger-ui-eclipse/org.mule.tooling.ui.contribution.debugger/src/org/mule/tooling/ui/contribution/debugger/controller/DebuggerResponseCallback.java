@@ -10,8 +10,8 @@ import org.mule.tooling.ui.contribution.debugger.controller.events.DebuggerError
 import org.mule.tooling.ui.contribution.debugger.controller.events.DebuggerExceptionEvent;
 import org.mule.tooling.ui.contribution.debugger.controller.events.DisconnectedEvent;
 import org.mule.tooling.ui.contribution.debugger.controller.events.NewMuleMessageArrivedEvent;
-import org.mule.tooling.ui.contribution.debugger.controller.events.ScriptEvaluatedEvent;
 import org.mule.tooling.ui.contribution.debugger.controller.events.ResumeEvent;
+import org.mule.tooling.ui.contribution.debugger.controller.events.ScriptEvaluatedEvent;
 import org.mule.tooling.ui.contribution.debugger.event.EventBus;
 
 public class DebuggerResponseCallback implements IDebuggerResponseCallback

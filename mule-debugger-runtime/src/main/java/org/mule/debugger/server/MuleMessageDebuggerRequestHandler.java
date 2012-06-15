@@ -7,16 +7,20 @@ import org.mule.debugger.request.IDebuggerRequest;
 import org.mule.debugger.response.ExceptionResponse;
 import org.mule.debugger.response.IDebuggerResponse;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Handles the request from the debugger client.
+ */
 public class MuleMessageDebuggerRequestHandler implements IDebuggerRequestHandler {
 
 
     private static Logger log = Logger.getLogger(MuleMessageDebuggerRequestHandler.class.getName());
     private MuleDebuggingContext debuggingContext;
-    private DebuggerService debuggerHandler;
+    private DebuggerHandler debuggerHandler;
 
-    public MuleMessageDebuggerRequestHandler(DebuggerService debuggerHandler) {
+    public MuleMessageDebuggerRequestHandler(DebuggerHandler debuggerHandler) {
         this.debuggerHandler = debuggerHandler;
     }
 
@@ -29,13 +33,14 @@ public class MuleMessageDebuggerRequestHandler implements IDebuggerRequestHandle
         try {
             response = command.execute();
         } catch (Exception e) {
+            log.log(Level.WARNING, "Exception while executing command", e);
             response = new ExceptionResponse(new RemoteDebugException(e.getMessage(), e));
         }
         response.setRequest(request);
         return response;
     }
 
-    public void setMuleDebuggingContext(MuleDebuggingContext debuggingContext) {
+    public void setCurrentMuleDebuggingEvent(MuleDebuggingContext debuggingContext) {
 
         this.debuggingContext = debuggingContext;
     }

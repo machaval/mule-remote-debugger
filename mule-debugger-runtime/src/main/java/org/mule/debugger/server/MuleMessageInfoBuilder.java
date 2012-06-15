@@ -7,12 +7,15 @@
  */
 package org.mule.debugger.server;
 
+import org.mule.api.AnnotatedObject;
 import org.mule.api.MuleMessage;
-import org.mule.api.transport.PropertyScope;
+import org.mule.api.processor.MessageProcessor;
 import org.mule.debugger.MuleDebuggingContext;
+import org.mule.debugger.response.MessageProcessorInfo;
 import org.mule.debugger.response.MuleMessageInfo;
 import org.mule.debugger.response.ObjectFieldDefinition;
 
+import javax.xml.namespace.QName;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -27,36 +30,47 @@ public class MuleMessageInfoBuilder {
 
         result.setPayloadDefinition(ObjectFieldDefinition.createFromObject(messagePayload, "payload"));
         result.setExceptionPayloadDefinition(ObjectFieldDefinition.createFromObject(message.getExceptionPayload(), "exceptionPayload"));
-        String currentProcessorName = String.valueOf(debuggingContext.getMessageProcessor().getName());
+        MessageProcessor messageProcessor = debuggingContext.getMessageProcessor();
+        Map<String,String> processorAnnotations = new HashMap<String, String>();
+        if(messageProcessor instanceof AnnotatedObject)
+        {
+            Map<QName, Object> annotations = ((AnnotatedObject) messageProcessor).getAnnotations();
+            for (Map.Entry<QName, Object> qNameObjectEntry : annotations.entrySet()) {
+                processorAnnotations.put(qNameObjectEntry.getKey().toString(),String.valueOf(qNameObjectEntry.getValue()));
+            }
+        }
+        String processorClassName = messageProcessor.getClass().getName();
+        result.setMessageProcessorInfo(new MessageProcessorInfo(processorClassName,processorAnnotations));
 
-        result.setCurrentProcessor(currentProcessorName);
-        result.setPayloadString(String.valueOf(messagePayload));
         result.setUniqueId(message.getUniqueId());
         result.setEncoding(message.getEncoding());
-        result.setPayloadClassName(messagePayload.getClass().getCanonicalName());
+        result.setMessageRootId(message.getMessageRootId());
+        result.setCorrelationId(message.getCorrelationId());
+
+
         Set<String> inboundPropertyNames = message.getInboundPropertyNames();
-        Map<String, String> inboundProperties = new HashMap<String, String>();
+        Map<String, ObjectFieldDefinition> inboundProperties = new HashMap<String, ObjectFieldDefinition>();
         for (String inboundPropertyName : inboundPropertyNames) {
             Object inboundProperty = message.getInboundProperty(inboundPropertyName);
-            inboundProperties.put(inboundPropertyName, String.valueOf(inboundProperty));
+            inboundProperties.put(inboundPropertyName, ObjectFieldDefinition.createFromObject(inboundProperty, inboundPropertyName));
         }
         result.setInboundProperties(inboundProperties);
         Set<String> invocationPropertyNames = message.getInvocationPropertyNames();
-        Map<String, String> invocationProperties = new HashMap<String, String>();
+        Map<String, ObjectFieldDefinition> invocationProperties = new HashMap<String, ObjectFieldDefinition>();
         for (String invocationPropertyName : invocationPropertyNames) {
-            invocationProperties.put(invocationPropertyName, String.valueOf(message.getInvocationProperty(invocationPropertyName)));
+            invocationProperties.put(invocationPropertyName, ObjectFieldDefinition.createFromObject(message.getInvocationProperty(invocationPropertyName), invocationPropertyName));
         }
         result.setInvocationProperties(invocationProperties);
-        Map<String, String> sessionProperties = new HashMap<String, String>();
+        Map<String, ObjectFieldDefinition> sessionProperties = new HashMap<String, ObjectFieldDefinition>();
         Set<String> sessionPropertyNames = message.getSessionPropertyNames();
         for (String sessionPropertyName : sessionPropertyNames) {
-            sessionProperties.put(sessionPropertyName, String.valueOf(message.getSessionProperty(sessionPropertyName)));
+            sessionProperties.put(sessionPropertyName, ObjectFieldDefinition.createFromObject(message.getSessionProperty(sessionPropertyName),sessionPropertyName));
         }
         result.setSessionProperties(sessionProperties);
-        Map<String, String> outboundProperties = new HashMap<String, String>();
+        Map<String, ObjectFieldDefinition> outboundProperties = new HashMap<String, ObjectFieldDefinition>();
         Set<String> outboundPropertyNames = message.getOutboundPropertyNames();
         for (String outboundPropertyName : outboundPropertyNames) {
-            outboundProperties.put(outboundPropertyName, String.valueOf(message.getOutboundProperty(outboundPropertyName)));
+            outboundProperties.put(outboundPropertyName, ObjectFieldDefinition.createFromObject(message.getOutboundProperty(outboundPropertyName), outboundPropertyName));
         }
         result.setOutboundProperties(outboundProperties);
 

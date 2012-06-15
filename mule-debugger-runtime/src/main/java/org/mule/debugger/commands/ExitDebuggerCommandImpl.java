@@ -15,7 +15,7 @@ public class ExitDebuggerCommandImpl extends AbstractCommand {
     public static final String EXIT = "exit";
 
     public IDebuggerResponse execute() {
-        getHandler().stopDebugging();
+        getHandler().disconnectClient();
         return new ExitDebuggerResponse();
     }
 

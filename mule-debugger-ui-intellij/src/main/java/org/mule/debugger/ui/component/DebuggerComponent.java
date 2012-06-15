@@ -3,6 +3,7 @@ package org.mule.debugger.ui.component;
 import com.intellij.openapi.components.ProjectComponent;
 import com.intellij.openapi.project.Project;
 import org.jetbrains.annotations.NotNull;
+import org.mule.debugger.ui.event.EventBus;
 
 /**
  * (c) 2012 MuleSoft, Inc. This software is protected under international copyright
@@ -11,15 +12,21 @@ import org.jetbrains.annotations.NotNull;
  * MuleSoft. If such an agreement is not in place, you may not use the software.
  */
 public class DebuggerComponent implements ProjectComponent {
+
+    private EventBus bus;
+    private Project project;
+
     public DebuggerComponent(Project project) {
+        this.project = project;
+
     }
 
     public void initComponent() {
-        // TODO: insert component initialization logic here
+        bus = new EventBus();
     }
 
     public void disposeComponent() {
-        // TODO: insert component disposal logic here
+
     }
 
     @NotNull

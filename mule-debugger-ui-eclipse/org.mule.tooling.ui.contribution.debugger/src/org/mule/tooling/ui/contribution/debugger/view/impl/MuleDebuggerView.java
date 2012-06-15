@@ -4,16 +4,16 @@ package org.mule.tooling.ui.contribution.debugger.view.impl;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
+import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.TabFolder;
-import org.eclipse.swt.widgets.TabItem;
+import org.eclipse.swt.widgets.Group;
 import org.eclipse.ui.part.ViewPart;
 import org.mule.tooling.ui.contribution.debugger.controller.ConnectionPropertiesController;
 import org.mule.tooling.ui.contribution.debugger.controller.DebuggerResponseCallback;
-import org.mule.tooling.ui.contribution.debugger.controller.MuleDebuggerPayloadController;
+import org.mule.tooling.ui.contribution.debugger.controller.MessageDefinitionController;
 import org.mule.tooling.ui.contribution.debugger.controller.MuleDebuggerPropertiesController;
 import org.mule.tooling.ui.contribution.debugger.controller.MuleDebuggerViewController;
 import org.mule.tooling.ui.contribution.debugger.controller.ScriptEvaluationController;
@@ -27,7 +27,7 @@ import org.mule.tooling.ui.contribution.debugger.view.actions.ResumeAction;
 public class MuleDebuggerView extends ViewPart implements IMuleDebuggerEditor
 {
 
-    private MuleDebuggerPayloadComposite muleDebuggerComposite;
+    private ObjectFieldDefinitionComposite muleDebuggerComposite;
     private ConnectionPropertiesEditorComposite connectionEditor;
     private MuleDebuggerPropertiesView debuggerPropertiesView;
     private EventBus eventBus;
@@ -36,8 +36,9 @@ public class MuleDebuggerView extends ViewPart implements IMuleDebuggerEditor
     private StackLayout debuggerEditorLayout;
     
     private CLabel waitingLabel;
-    private TabFolder tabFolder;
-    private TabItem payload;
+    private SashForm messageView ;
+    
+    
 
     @Override
     public void createPartControl(Composite parent)
@@ -58,33 +59,31 @@ public class MuleDebuggerView extends ViewPart implements IMuleDebuggerEditor
         
         waitingLabel = new CLabel(debuggerEditor, SWT.CENTER);
         waitingLabel.setText("Connected with mule ESB.\nWaiting for a mule message to arrive!!!");
+        messageView = new SashForm(debuggerEditor, SWT.NULL);
         
-        tabFolder = new TabFolder(debuggerEditor, SWT.NULL);
-        muleDebuggerComposite = new MuleDebuggerPayloadComposite(tabFolder, SWT.NULL);
+        final Group messageGroup = new Group(messageView,SWT.NULL);
+        messageGroup.setText("Message");
+        messageGroup.setLayout(new FillLayout());
+        muleDebuggerComposite = new ObjectFieldDefinitionComposite(messageGroup, SWT.NULL);
         muleDebuggerComposite.setLayoutData(new GridData(GridData.FILL_BOTH));
-        new MuleDebuggerPayloadController(muleDebuggerComposite, eventBus);
-        
-        
+        new MessageDefinitionController(muleDebuggerComposite, eventBus);
 
-         payload = new TabItem(tabFolder, SWT.NULL);
-        payload.setText("Message");
-        payload.setControl(muleDebuggerComposite);
-        
-        
-        debuggerPropertiesView = new MuleDebuggerPropertiesView(tabFolder, SWT.NULL);
+        final Group propertiesGroup = new Group(messageView,SWT.NULL);
+        propertiesGroup.setText("Properties");
+        propertiesGroup.setLayout(new FillLayout());
+        debuggerPropertiesView = new MuleDebuggerPropertiesView(propertiesGroup, SWT.NULL);
         new MuleDebuggerPropertiesController(debuggerPropertiesView, eventBus);
-        TabItem properties = new TabItem(tabFolder, SWT.NULL);
-        properties.setText("Properties");
-        properties.setControl(debuggerPropertiesView);
-
-        ScriptEvaluationComposite scriptEvaluationComposite = new ScriptEvaluationComposite(tabFolder,
+        
+        final Group evalGroup = new Group(messageView,SWT.NULL);
+        evalGroup.setText("Evaluate");
+        evalGroup.setLayout(new FillLayout());
+        ScriptEvaluationComposite scriptEvaluationComposite = new ScriptEvaluationComposite(evalGroup,
             SWT.NULL);
         scriptEvaluationComposite.setLayoutData(new GridData(GridData.FILL_BOTH));
         new ScriptEvaluationController(scriptEvaluationComposite, eventBus);
 
-        TabItem evaluate = new TabItem(tabFolder, SWT.NULL);
-        evaluate.setText("Evaluate");
-        evaluate.setControl(scriptEvaluationComposite);
+        
+        
 
         createToolBar();
 
@@ -146,8 +145,8 @@ public class MuleDebuggerView extends ViewPart implements IMuleDebuggerEditor
         {
             if (!waiting)
             {
-                debuggerEditorLayout.topControl = tabFolder;
-                setMessageViewSelected();
+                debuggerEditorLayout.topControl = messageView;
+                
             }
             else
             {
@@ -159,9 +158,6 @@ public class MuleDebuggerView extends ViewPart implements IMuleDebuggerEditor
     }
 
     
-    public void setMessageViewSelected()
-    {
-        tabFolder.setSelection(payload);
-    }
+    
 
 }

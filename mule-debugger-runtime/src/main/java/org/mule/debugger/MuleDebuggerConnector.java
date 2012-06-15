@@ -20,57 +20,42 @@
  */
 package org.mule.debugger;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+
 import org.mule.api.MuleContext;
+import org.mule.api.MuleException;
 import org.mule.api.MuleMessage;
-import org.mule.api.annotations.Configurable;
 import org.mule.api.annotations.Module;
 import org.mule.api.annotations.Processor;
 import org.mule.api.annotations.lifecycle.Stop;
 import org.mule.api.annotations.param.Default;
 import org.mule.api.annotations.param.Optional;
 import org.mule.api.context.notification.MessageProcessorNotificationListener;
-import org.mule.api.context.notification.ServerNotification;
-import org.mule.api.context.notification.ServerNotificationListener;
-import org.mule.api.expression.ExpressionManager;
-import org.mule.api.processor.MessageProcessor;
 import org.mule.context.notification.MessageProcessorNotification;
-import org.mule.context.notification.NotificationException;
-import org.mule.context.notification.ServerNotificationManager;
-import org.mule.debugger.remote.RemoteDebuggerService;
-import org.mule.debugger.server.DebuggerService;
-import org.mule.debugger.server.IDebuggerServiceListener;
+import org.mule.debugger.server.DebuggerAgent;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.CountDownLatch;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * The mule debugger allows to inspect the content of the mule message, and go through all the message processor on the flow.
  *
  * @author MuleSoft, Inc.
  */
-@Module(name = "debugger", schemaVersion = "3.2.1")
+@Module(name = "debugger", description = "Mule Debugger" )
 public class MuleDebuggerConnector {
 
 
-    private transient static Log logger = LogFactory.getLog(MuleDebuggerConnector.class);
+    private transient static Logger logger = Logger.getLogger(MuleDebuggerConnector.class.getName());
 
 
-    private RemoteDebuggerService server;
-    private DebuggerService handler;
-    public static final String MULE_DEBUG_SUSPEND = "mule.debug.suspend";
+    private DebuggerAgent agent;
 
     @Inject
     private MuleContext context;
 
-    @Inject
-    private ExpressionManager expressionManager;
-
-    private MuleMessageDebuggerListener listener;
+    private MessageProcessorNotificationListener<MessageProcessorNotification> listener;
 
     public MuleDebuggerConnector() {
     }
@@ -78,75 +63,29 @@ public class MuleDebuggerConnector {
 
     @PostConstruct
     public void initialize() {
-
-        if (handler == null) {
-            setupDebuggerService();
+        //This code should be removed when the agent is implemented with the mule framework
+        if(agent != null){
+            return;
         }
-
-
-    }
-
-    private void setupDebuggerService() {
-        handler = new DebuggerService();
-        final CountDownLatch suspendLatch = new CountDownLatch(1);
-        boolean suspend = Boolean.getBoolean(MULE_DEBUG_SUSPEND);
-        logger.info("Supend property is " + suspend);
-        if (suspend) {
-            handler.addListener(new IDebuggerServiceListener() {
-                public void onStart() {
-                    suspendLatch.countDown();
-                }
-
-                public void onStop() {
-
-                }
-            });
-        }
-        server = new RemoteDebuggerService(Integer.getInteger("mule.debug.port", 6666), handler);
-        server.startService();
+        agent = new DebuggerAgent();
         try {
-            final ServerNotificationManager notificationManager = this.context.getNotificationManager();
-            if (!notificationManager.isNotificationDynamic()) {
-                notificationManager.setNotificationDynamic(true);
-            }
-            registerNotificationType(notificationManager, MuleMessageDebuggerListener.class, MessageProcessorNotification.class);
-            listener = new MuleMessageDebuggerListener();
-            this.context.registerListener(listener);
-        } catch (NotificationException e) {
-            e.printStackTrace();
-        }
-        if (suspend) {
-            try {
-                logger.info("Waiting for client to connect");
-                suspendLatch.await();
-            } catch (InterruptedException e) {
+            agent.start();
+            listener = agent.registerForApplicationNotifications(context);
 
-            }
-            logger.info("Debugger started");
+        } catch (MuleException e) {
+            logger.log(Level.WARNING, "Error", e);
         }
-    }
 
-
-    protected final void registerNotificationType(final ServerNotificationManager notificationManager,
-                                                  @SuppressWarnings("rawtypes") final Class<? extends ServerNotificationListener> listenerType,
-                                                  final Class<? extends ServerNotification> notificationType) {
-        @SuppressWarnings("rawtypes")
-        final Map<Class<? extends ServerNotificationListener>, Set<Class<? extends ServerNotification>>> mapping = notificationManager.getInterfaceToTypes();
-        if (!mapping.containsKey(listenerType)) {
-            notificationManager.addInterfaceToType(listenerType, notificationType);
-        }
     }
 
     @Stop
     public void shutdown() {
-
-        if (handler != null) {
-            this.context.unregisterListener(listener);
-            handler.stopDebugging();
-            server.stopService();
-            handler = null;
+        context.unregisterListener(listener);
+        try {
+            agent.stop();
+        } catch (MuleException e) {
+            logger.log(Level.WARNING, "Error", e);
         }
-
     }
 
 
@@ -163,15 +102,14 @@ public class MuleDebuggerConnector {
     public Object breakpoint(MuleMessage message, @Optional @Default("true") Boolean condition) {
 
 
-        if (handler.isRunning()) {
+        if (agent.getHandler().isClientConnected()) {
 
             boolean debug = true;
             if (condition != null) {
                 debug = condition;
             }
             if (debug) {
-                handler.onBreakPoint(new MuleDebuggingContext(message, getExpressionManager(), Thread.currentThread().getContextClassLoader(), this.getClass()));
-
+                agent.getHandler().breakPoint(message);
             }
         }
 
@@ -179,28 +117,9 @@ public class MuleDebuggerConnector {
     }
 
 
-    public ExpressionManager getExpressionManager() {
-        return expressionManager;
-    }
-
-    public void setExpressionManager(ExpressionManager expressionManager) {
-        this.expressionManager = expressionManager;
-    }
-
     public void setContext(MuleContext context) {
         this.context = context;
     }
 
-    private class MuleMessageDebuggerListener implements MessageProcessorNotificationListener<MessageProcessorNotification> {
-        public void onNotification(MessageProcessorNotification notification) {
-            if (notification.getAction() == MessageProcessorNotification.MESSAGE_PROCESSOR_PRE_INVOKE) {
-                MuleMessage message = notification.getSource().getMessage();
-                if (handler.isRunning() && handler.isDebuggingThisMessage(message)) {
-                    MessageProcessor processor = notification.getProcessor();
 
-                    handler.onProcessMessage(new MuleDebuggingContext(message, getExpressionManager(), Thread.currentThread().getContextClassLoader(), processor.getClass()));
-                }
-            }
-        }
-    }
 }

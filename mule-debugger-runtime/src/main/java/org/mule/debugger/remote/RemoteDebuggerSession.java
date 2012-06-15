@@ -3,8 +3,8 @@ package org.mule.debugger.remote;
 
 import org.mule.debugger.response.ConnectionEstablishedResponse;
 import org.mule.debugger.response.ErrorResponse;
+import org.mule.debugger.server.DebuggerHandler;
 import org.mule.debugger.server.DebuggerServerFactory;
-import org.mule.debugger.server.DebuggerService;
 import org.mule.debugger.transport.IServerDebuggerProtocol;
 import org.mule.debugger.transport.SerializeDebuggerProtocol;
 
@@ -20,11 +20,11 @@ public class RemoteDebuggerSession implements Runnable {
 
     protected Socket clientSocket = null;
     protected String serverText = null;
-    private final DebuggerService handler;
+    private final DebuggerHandler handler;
     private static Logger log = Logger.getLogger(RemoteDebuggerSession.class.getName());
 
 
-    public RemoteDebuggerSession(Socket clientSocket, String serverText, DebuggerService handler) {
+    public RemoteDebuggerSession(Socket clientSocket, String serverText, DebuggerHandler handler) {
         this.clientSocket = clientSocket;
         this.serverText = serverText;
         this.handler = handler;
@@ -38,11 +38,11 @@ public class RemoteDebuggerSession implements Runnable {
             output = clientSocket.getOutputStream();
             IServerDebuggerProtocol serverDebuggerProtocol = new SerializeDebuggerProtocol(input, output);
 
-            if (handler.lockForStart()) {
+            if (!handler.isClientConnected()) {
                 serverDebuggerProtocol.sendResponse(new ConnectionEstablishedResponse());
                 handler.setDebuggerFactory(new DebuggerServerFactory(serverDebuggerProtocol));
-                handler.startDebugging();
-                handler.stopDebugging();
+                handler.connectClient();
+                handler.disconnectClient();
             } else {
                 serverDebuggerProtocol.sendResponse(new ErrorResponse("I can not attend you right now someone else is already connected. Try later!"));
             }
@@ -56,20 +56,20 @@ public class RemoteDebuggerSession implements Runnable {
                 try {
                     input.close();
                 } catch (IOException e) {
-
+                    log.log(Level.WARNING, "Exception while closing stream", e);
                 }
             }
             if (output != null) {
                 try {
                     output.close();
                 } catch (IOException e) {
-
+                    log.log(Level.WARNING, "Exception while closing stream", e);
                 }
             }
             try {
                 clientSocket.close();
             } catch (IOException e) {
-
+                log.log(Level.WARNING, "Exception while closing socket", e);
             }
         }
     }

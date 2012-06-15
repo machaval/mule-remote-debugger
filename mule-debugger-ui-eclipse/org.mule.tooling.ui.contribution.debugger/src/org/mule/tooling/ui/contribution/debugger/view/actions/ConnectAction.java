@@ -93,6 +93,7 @@ public class ConnectAction extends Action
             }
             catch (IOException e)
             {
+                
                 client = null;
                 MessageDialog.openError(Display.getCurrent().getActiveShell(),
                     "Error while trying to connect", e.getMessage() + ".\nVerify mule is up and running at '"

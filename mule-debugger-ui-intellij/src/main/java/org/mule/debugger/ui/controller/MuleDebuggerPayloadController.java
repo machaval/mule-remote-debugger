@@ -1,5 +1,6 @@
 package org.mule.debugger.ui.controller;
 
+import com.intellij.openapi.project.Project;
 import com.intellij.ui.components.labels.LinkLabel;
 import com.intellij.ui.treeStructure.treetable.ListTreeTableModel;
 import com.intellij.ui.treeStructure.treetable.TreeTable;
@@ -31,11 +32,13 @@ public class MuleDebuggerPayloadController {
 
     private IDebuggerMessageViewer payload;
     private final EventBus eventBus;
+    private Project project;
 
-    public MuleDebuggerPayloadController(IDebuggerMessageViewer payload, EventBus eventBus) {
+    public MuleDebuggerPayloadController(IDebuggerMessageViewer payload, EventBus eventBus,Project project) {
         super();
         this.payload = payload;
         this.eventBus = eventBus;
+        this.project = project;
         bind();
     }
 
@@ -60,7 +63,7 @@ public class MuleDebuggerPayloadController {
 
 
         payloadTreeViewer.setDefaultRenderer(Class.class, new ClassLinkTableCellRenderer());
-        payloadTreeViewer.setDefaultEditor(Class.class, new ClassLinkTableCellEditor());
+        payloadTreeViewer.setDefaultEditor(Class.class, new ClassLinkTableCellEditor(project));
 
         final MouseMotionAdapter mma = new MouseMotionAdapter() {
             public void mouseMoved(MouseEvent e) {

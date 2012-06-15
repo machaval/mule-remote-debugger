@@ -46,7 +46,7 @@ public class DebuggerConnection {
 
     }
 
-    public IClientDebuggerProtocol getProtocol() {
+    public IClientDebuggerProtocol createProtocol() {
         return new SerializeDebuggerProtocol(inputStream, outputStream);
     }
 

@@ -1,27 +1,27 @@
 package org.mule.debugger.remote;
 
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.mule.debugger.server.DebuggerService;
+
+import org.mule.debugger.server.DebuggerHandler;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.logging.Logger;
 
 public class RemoteDebuggerService extends Thread {
 
     private int serverPort = 8080;
-    private DebuggerService handler;
+    private DebuggerHandler handler;
     private ServerSocket serverSocket = null;
     private volatile boolean isStopped = false;
     private ExecutorService threadPool = Executors.newFixedThreadPool(1);
 
-    private transient static Log logger = LogFactory.getLog(RemoteDebuggerService.class);
+    private transient static Logger logger = Logger.getLogger(RemoteDebuggerService.class.getName());
 
-    public RemoteDebuggerService(int port, DebuggerService handler) {
+    public RemoteDebuggerService(int port, DebuggerHandler handler) {
         this.serverPort = port;
         this.handler = handler;
     }
@@ -60,6 +60,8 @@ public class RemoteDebuggerService extends Thread {
     private synchronized boolean isStopped() {
         return this.isStopped;
     }
+
+
 
     public void startService() {
         start();

@@ -9,6 +9,7 @@ package org.mule.debugger;
 
 import org.mule.api.MuleMessage;
 import org.mule.api.expression.ExpressionManager;
+import org.mule.api.processor.MessageProcessor;
 
 public class MuleDebuggingContext {
 
@@ -16,10 +17,10 @@ public class MuleDebuggingContext {
     private MuleMessage message;
     private ExpressionManager expressionManager;
     private ClassLoader contextClassLoader;
-    private Class messageProcessor;
+    private MessageProcessor messageProcessor;
 
 
-    public MuleDebuggingContext(MuleMessage message, ExpressionManager manager, ClassLoader contextClassLoader, Class messageProcessor) {
+    public MuleDebuggingContext(MuleMessage message, ExpressionManager manager, ClassLoader contextClassLoader, MessageProcessor messageProcessor) {
         this.message = message;
         this.expressionManager = manager;
         this.contextClassLoader = contextClassLoader;
@@ -45,7 +46,7 @@ public class MuleDebuggingContext {
     }
 
 
-    public Class getMessageProcessor() {
+    public MessageProcessor getMessageProcessor() {
         return messageProcessor;
     }
 }

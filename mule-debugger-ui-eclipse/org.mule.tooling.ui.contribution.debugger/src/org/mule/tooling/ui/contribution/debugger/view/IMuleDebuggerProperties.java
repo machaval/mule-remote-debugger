@@ -1,12 +1,14 @@
 package org.mule.tooling.ui.contribution.debugger.view;
 
-import org.eclipse.jface.viewers.TableViewer;
+import org.mule.tooling.ui.contribution.debugger.view.impl.ObjectFieldDefinitionComposite;
 
 public interface IMuleDebuggerProperties
 {
-    TableViewer getInvocationProperties();
+    ObjectFieldDefinitionComposite getInvocationProperties();
     
-    TableViewer getSessionProperties();
+    ObjectFieldDefinitionComposite getSessionProperties();
     
-    TableViewer getInboudProperties();
+    ObjectFieldDefinitionComposite getInboudProperties();
+    
+    ObjectFieldDefinitionComposite getOutboundProperties();
 }
