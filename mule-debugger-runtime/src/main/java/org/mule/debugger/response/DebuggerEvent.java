@@ -9,19 +9,13 @@ package org.mule.debugger.response;
 
 import org.mule.debugger.request.IDebuggerRequest;
 
-public abstract class DebuggerResponse implements IDebuggerResponse {
-
+public abstract class DebuggerEvent implements IDebuggerServerEvent {
 
     private IDebuggerRequest request;
-
-
-    public DebuggerResponse() {
-
+    public DebuggerEvent() {
     }
 
-
     public void setRequest(IDebuggerRequest request) {
-
         this.request = request;
     }
 

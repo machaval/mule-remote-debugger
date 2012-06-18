@@ -2,7 +2,7 @@ package org.mule.debugger.server;
 
 import org.mule.debugger.MuleDebuggingContext;
 import org.mule.debugger.request.IDebuggerRequest;
-import org.mule.debugger.response.IDebuggerResponse;
+import org.mule.debugger.response.IDebuggerServerEvent;
 
 /**
  * (c) 2012 MuleSoft, Inc. This software is protected under international copyright
@@ -12,7 +12,7 @@ import org.mule.debugger.response.IDebuggerResponse;
  */
 public interface IDebuggerRequestHandler {
 
-    IDebuggerResponse handleRequest(IDebuggerRequest request);
+    IDebuggerServerEvent handleRequest(IDebuggerRequest request);
 
     void setCurrentMuleDebuggingEvent(MuleDebuggingContext debuggingContext);
 }

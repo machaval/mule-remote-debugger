@@ -9,7 +9,7 @@ package org.mule.debugger.response;
 
 import org.mule.debugger.client.IDebuggerResponseCallback;
 
-public class ExecuteScriptResponse extends DebuggerResponse {
+public class ExecuteScriptResponse extends DebuggerEvent {
 
     private ScriptResultInfo scriptEvaluationInfo;
 

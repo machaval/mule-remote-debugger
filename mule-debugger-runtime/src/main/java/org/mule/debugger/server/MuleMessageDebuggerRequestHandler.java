@@ -5,7 +5,7 @@ import org.mule.debugger.commands.ICommand;
 import org.mule.debugger.exception.RemoteDebugException;
 import org.mule.debugger.request.IDebuggerRequest;
 import org.mule.debugger.response.ExceptionResponse;
-import org.mule.debugger.response.IDebuggerResponse;
+import org.mule.debugger.response.IDebuggerServerEvent;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,11 +25,11 @@ public class MuleMessageDebuggerRequestHandler implements IDebuggerRequestHandle
     }
 
 
-    public IDebuggerResponse handleRequest(IDebuggerRequest request) {
+    public IDebuggerServerEvent handleRequest(IDebuggerRequest request) {
         ICommand command = request.createCommand();
         command.setHandler(debuggerHandler);
         command.setDebuggingContext(debuggingContext);
-        IDebuggerResponse response;
+        IDebuggerServerEvent response;
         try {
             response = command.execute();
         } catch (Exception e) {

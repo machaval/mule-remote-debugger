@@ -7,14 +7,14 @@
  */
 package org.mule.debugger.commands;
 
-import org.mule.debugger.response.IDebuggerResponse;
+import org.mule.debugger.response.IDebuggerServerEvent;
 import org.mule.debugger.response.ResumeResponse;
 
 public class NextStepCommandImpl extends AbstractCommand {
 
     public static final String MESSAGE_PROCESSED = "MessageProcessed";
 
-    public IDebuggerResponse execute() {
+    public IDebuggerServerEvent execute() {
         getHandler().stepOver();
         return new ResumeResponse();
     }

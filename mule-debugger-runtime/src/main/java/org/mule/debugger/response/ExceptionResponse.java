@@ -10,7 +10,7 @@ package org.mule.debugger.response;
 import org.mule.debugger.client.IDebuggerResponseCallback;
 import org.mule.debugger.exception.RemoteDebugException;
 
-public class ExceptionResponse extends DebuggerResponse {
+public class ExceptionResponse extends DebuggerEvent {
 
     private RemoteDebugException exception;
 

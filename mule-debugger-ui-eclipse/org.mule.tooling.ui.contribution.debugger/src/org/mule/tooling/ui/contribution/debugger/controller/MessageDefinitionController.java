@@ -17,10 +17,8 @@ public class MessageDefinitionController extends AbstractObjectFieldDefinitionCo
 
     public MessageDefinitionController(IObjectFieldDefinitionEditor editor, EventBus eventBus)
     {
-        super(editor,eventBus);
-        
-        
-    
+        super(editor, eventBus);
+
     }
 
     @Override
@@ -30,8 +28,21 @@ public class MessageDefinitionController extends AbstractObjectFieldDefinitionCo
         final List<ObjectFieldDefinition> emptyList = Collections.emptyList();
         final MessageProcessorInfo messageProcessorInfo = muleMessageInfo.getMessageProcessorInfo();
         final String messageProcessorClassName = messageProcessorInfo.getClassName();
-        final String messageProcessorName = messageProcessorInfo.getAnnotations().get(
+        String messageProcessorName = messageProcessorInfo.getAnnotations().get(
             "{http://www.mulesoft.org/schema/mule/documentation}name");
+        if (messageProcessorName == null)
+        {
+            int indexOfDot = messageProcessorClassName.lastIndexOf(".");
+            if (indexOfDot < 0)
+            {
+                indexOfDot = 0;
+            }
+            else
+            {
+                indexOfDot++;
+            }
+            messageProcessorName = messageProcessorClassName.substring(indexOfDot);
+        }
         final ObjectFieldDefinition encoding = new ObjectFieldDefinition("Encoding", String.class.getName(),
             muleMessageInfo.getEncoding(), emptyList);
         final ObjectFieldDefinition uniqueId = new ObjectFieldDefinition("Id", String.class.getName(),

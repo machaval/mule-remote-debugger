@@ -8,13 +8,13 @@
 package org.mule.debugger.commands;
 
 import org.mule.debugger.response.ExitDebuggerResponse;
-import org.mule.debugger.response.IDebuggerResponse;
+import org.mule.debugger.response.IDebuggerServerEvent;
 
 public class ExitDebuggerCommandImpl extends AbstractCommand {
 
     public static final String EXIT = "exit";
 
-    public IDebuggerResponse execute() {
+    public IDebuggerServerEvent execute() {
         getHandler().disconnectClient();
         return new ExitDebuggerResponse();
     }

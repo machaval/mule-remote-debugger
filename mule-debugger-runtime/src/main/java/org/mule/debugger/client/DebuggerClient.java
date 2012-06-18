@@ -8,7 +8,7 @@
 package org.mule.debugger.client;
 
 import org.mule.debugger.request.*;
-import org.mule.debugger.response.IDebuggerResponse;
+import org.mule.debugger.response.IDebuggerServerEvent;
 import org.mule.debugger.transport.IClientDebuggerProtocol;
 
 import java.io.IOException;
@@ -36,24 +36,9 @@ public class DebuggerClient {
      * @throws IOException If any connection issue
      */
     public void start(final IDebuggerResponseCallback defaultHandler) throws IOException {
-
         this.connection.connect();
-        final IClientDebuggerProtocol protocol = connection.createProtocol();
-        new Thread() {
-            @Override
-            public void run() {
-                while (connection.isConnected()) {
-                    IDebuggerResponse response = protocol.getResponse();
-                    IDebuggerRequest request = response.getRequest();
-                    if (request != null && handler.containsKey(request)) {
-                        response.callCallback(handler.get(request));
-                        unRegisterRequest(request);
-                    } else {
-                        response.callCallback(defaultHandler);
-                    }
-                }
-            }
-        }.start();
+        final Runnable runnable = new ServerResponseService(defaultHandler);
+        new Thread(runnable).start();
     }
 
     private void unRegisterRequest(IDebuggerRequest request) {
@@ -64,7 +49,7 @@ public class DebuggerClient {
      * Exit the connection
      */
     public void exit() {
-        this.connection.createProtocol().sendRequest(new ExitDebuggerRequest());
+        this.connection.getProtocol().sendRequest(new ExitDebuggerRequest());
 
     }
 
@@ -72,14 +57,14 @@ public class DebuggerClient {
      * Resume current mule message
      */
     public void resume() {
-        this.connection.createProtocol().sendRequest(new ResumeDebuggerRequest());
+        this.connection.getProtocol().sendRequest(new ResumeDebuggerRequest());
     }
 
     /**
      * Move till next message processor
      */
     public void nextStep() {
-        this.connection.createProtocol().sendRequest(new NextStepDebuggerRequest());
+        this.connection.getProtocol().sendRequest(new NextStepDebuggerRequest());
     }
 
 
@@ -94,7 +79,7 @@ public class DebuggerClient {
         if (callback != null) {
             registerCallback(callback, request);
         }
-        this.connection.createProtocol().sendRequest(request);
+        this.connection.getProtocol().sendRequest(request);
     }
 
     /**
@@ -108,7 +93,7 @@ public class DebuggerClient {
         if (callback != null) {
             registerCallback(callback, request);
         }
-        this.connection.createProtocol().sendRequest(request);
+        this.connection.getProtocol().sendRequest(request);
     }
 
     protected void registerCallback(IDebuggerResponseCallback callback, IDebuggerRequest request) {
@@ -123,4 +108,27 @@ public class DebuggerClient {
     }
 
 
+    private class ServerResponseService implements Runnable {
+
+        private IClientDebuggerProtocol protocol;
+        private final IDebuggerResponseCallback defaultHandler;
+
+        public ServerResponseService(IDebuggerResponseCallback defaultHandler) {
+            this.defaultHandler = defaultHandler;
+        }
+
+        public void run() {
+            protocol = connection.getProtocol();
+            while (connection.isConnected()) {
+                IDebuggerServerEvent response = protocol.getResponse();
+                IDebuggerRequest request = response.getRequest();
+                if (request != null && handler.containsKey(request)) {
+                    response.callCallback(handler.get(request));
+                    unRegisterRequest(request);
+                } else {
+                    response.callCallback(defaultHandler);
+                }
+            }
+        }
+    }
 }

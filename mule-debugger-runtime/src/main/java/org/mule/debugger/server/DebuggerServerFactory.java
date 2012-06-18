@@ -8,28 +8,46 @@
 package org.mule.debugger.server;
 
 import org.mule.debugger.MuleDebuggingContext;
-import org.mule.debugger.response.MuleMessageArrivedResponse;
+import org.mule.debugger.response.ConnectionEstablishedEvent;
+import org.mule.debugger.response.MuleMessageArrivedEvent;
 import org.mule.debugger.transport.IServerDebuggerProtocol;
+import org.mule.debugger.transport.IServerProtocolFactory;
+import org.mule.debugger.transport.SerializeDebuggerProtocol;
 
-public class DebuggerServerFactory {
+import java.io.InputStream;
+import java.io.OutputStream;
 
-    private IServerDebuggerProtocol protocolServer;
+public class DebuggerServerFactory implements IServerProtocolFactory {
 
-    public DebuggerServerFactory(IServerDebuggerProtocol protocolServer) {
 
-        this.protocolServer = protocolServer;
+    private final InputStream input;
+    private final OutputStream output;
+
+    public DebuggerServerFactory(InputStream input, OutputStream output) {
+
+
+        this.input = input;
+        this.output = output;
     }
 
-    public DebuggerCommunicationService createDebuggerConnectionService() {
-        return new DebuggerCommunicationService(protocolServer);
+    public ClientRequestService createDebuggerRequestService() {
+        return new ClientRequestService(this);
     }
 
-    public MuleMessageArrivedResponse createNewMessageResponse(MuleDebuggingContext message) {
-        return new MuleMessageArrivedResponse(MuleMessageInfoBuilder.createFromMuleMessage(message));
+    public MuleMessageArrivedEvent createNewMessageEvent(MuleDebuggingContext message) {
+        return new MuleMessageArrivedEvent(MuleMessageInfoBuilder.createFromMuleMessage(message));
+    }
+
+    public ConnectionEstablishedEvent createConnectionEstablishedEvent() {
+        return new ConnectionEstablishedEvent();
     }
 
 
     public MuleMessageDebuggerRequestHandler createMuleMessageRequestHandler(DebuggerHandler debuggerService) {
         return new MuleMessageDebuggerRequestHandler(debuggerService);
+    }
+
+    public IServerDebuggerProtocol createProtocol() {
+        return new SerializeDebuggerProtocol(input, output);
     }
 }

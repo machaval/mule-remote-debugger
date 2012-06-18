@@ -9,12 +9,12 @@ package org.mule.debugger.response;
 
 import org.mule.debugger.client.IDebuggerResponseCallback;
 
-public class MuleMessageArrivedResponse extends DebuggerResponse {
+public class MuleMessageArrivedEvent extends DebuggerEvent {
 
     private MuleMessageInfo messageInfo;
 
 
-    public MuleMessageArrivedResponse(MuleMessageInfo messageInfo) {
+    public MuleMessageArrivedEvent(MuleMessageInfo messageInfo) {
         super();
         this.messageInfo = messageInfo;
     }

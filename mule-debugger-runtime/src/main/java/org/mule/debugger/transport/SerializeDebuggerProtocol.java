@@ -10,9 +10,11 @@ package org.mule.debugger.transport;
 import org.mule.debugger.request.ExitDebuggerRequest;
 import org.mule.debugger.request.IDebuggerRequest;
 import org.mule.debugger.response.ExitDebuggerResponse;
-import org.mule.debugger.response.IDebuggerResponse;
+import org.mule.debugger.response.IDebuggerServerEvent;
 
 import java.io.*;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,68 +22,90 @@ public class SerializeDebuggerProtocol implements IClientDebuggerProtocol, IServ
 
     private static Logger logger = Logger.getLogger(SerializeDebuggerProtocol.class.getName());
 
-    private InputStream input;
-    private OutputStream output;
+    private ObjectInputStream input;
+    private ObjectOutputStream output;
+    private final Lock singleSend = new ReentrantLock();
 
     public SerializeDebuggerProtocol(InputStream input, OutputStream output) {
-        this.input = input;
-        this.output = output;
+
+        try {
+            this.output = new ObjectOutputStream(output);
+            this.input = new ObjectInputStream(input);
+        } catch (IOException e) {
+            logger.log(Level.INFO, "Error on creating ", e);
+        }
+
     }
 
     public void sendRequest(IDebuggerRequest request) {
         System.out.println("SerializeDebuggerProtocol.sendRequest" + request);
-        ObjectOutputStream output;
         try {
-            output = new ObjectOutputStream(this.output);
+            singleSend.lock();
             output.writeObject(request);
             output.flush();
         } catch (IOException e) {
             logger.log(Level.WARNING, "Error while trying to send a request", e);
+        } finally {
+            singleSend.unlock();
         }
 
 
     }
 
-    public IDebuggerResponse getResponse() {
+    public IDebuggerServerEvent getResponse() {
         try {
-            ObjectInputStream input = new ObjectInputStream(this.input);
-            IDebuggerResponse iDebuggerResponse = (IDebuggerResponse) input.readObject();
+            IDebuggerServerEvent iDebuggerResponse = (IDebuggerServerEvent) input.readObject();
             System.out.println("iDebuggerResponse = " + iDebuggerResponse);
             return iDebuggerResponse;
         } catch (IOException e) {
             logger.log(Level.WARNING, "Error while trying to get a response", e);
             return new ExitDebuggerResponse();
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
+        } catch (Exception e) {
+            logger.log(Level.WARNING, "Error while trying to get a request", e);
+            return new ExitDebuggerResponse();
         }
 
     }
 
     public IDebuggerRequest getRequest() {
         try {
-            ObjectInputStream input = new ObjectInputStream(this.input);
             IDebuggerRequest iDebuggerRequest = (IDebuggerRequest) input.readObject();
             System.out.println("iDebuggerRequest = " + iDebuggerRequest);
             return iDebuggerRequest;
         } catch (IOException e) {
             logger.log(Level.WARNING, "Error while trying to get a request", e);
             return new ExitDebuggerRequest();
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
+        } catch (Exception e) {
+            logger.log(Level.WARNING, "Error while trying to get a request", e);
+            return new ExitDebuggerRequest();
         }
 
     }
 
-    public void sendResponse(IDebuggerResponse response) {
+    public void sendResponse(IDebuggerServerEvent response) {
         System.out.println("response = " + response);
-        ObjectOutputStream output;
         try {
-            output = new ObjectOutputStream(this.output);
+            singleSend.lock();
             output.writeObject(response);
             output.flush();
         } catch (IOException e) {
             logger.log(Level.WARNING, "Error while trying to send a response", e);
+        } finally {
+            singleSend.unlock();
         }
 
+    }
+
+    public void close() {
+        try {
+            this.output.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            this.input.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

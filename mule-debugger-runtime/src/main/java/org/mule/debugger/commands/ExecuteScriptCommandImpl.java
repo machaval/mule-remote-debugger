@@ -16,7 +16,7 @@ public class ExecuteScriptCommandImpl extends AbstractCommand {
         this.script = script;
     }
 
-    public IDebuggerResponse execute() {
+    public IDebuggerServerEvent execute() {
         MuleDebuggingContext debuggingMessage = getMuleDebuggingMessage();
         MuleMessage message = debuggingMessage.getMessage();
 

@@ -8,31 +8,41 @@
 package org.mule.debugger.server;
 
 import org.mule.debugger.request.IDebuggerRequest;
-import org.mule.debugger.response.IDebuggerResponse;
+import org.mule.debugger.response.IDebuggerServerEvent;
 import org.mule.debugger.transport.IServerDebuggerProtocol;
+import org.mule.debugger.transport.IServerProtocolFactory;
 
-public class DebuggerCommunicationService  {
+public class ClientRequestService implements Runnable {
 
-    private IServerDebuggerProtocol protocol;
+    private IServerProtocolFactory protocolFactory;
     private IDebuggerRequestHandler requestHandler;
     private volatile boolean keepRunning = true;
+    private IServerDebuggerProtocol protocol;
 
 
-    public DebuggerCommunicationService(IServerDebuggerProtocol protocol) {
-        this.protocol = protocol;
+    public ClientRequestService(IServerProtocolFactory protocolFactory) {
+        this.protocolFactory = protocolFactory;
     }
 
-    public void start() {
+    public void run() {
+        initProtocol();
         while (keepRunning) {
-            IDebuggerRequest request = this.protocol.getRequest();
+            IDebuggerRequest request = protocol.getRequest();
             if (requestHandler != null) {
-                IDebuggerResponse response = requestHandler.handleRequest(request);
-                this.protocol.sendResponse(response);
+                IDebuggerServerEvent response = requestHandler.handleRequest(request);
+                protocol.sendResponse(response);
             }
         }
     }
 
-    public void sendResponse(IDebuggerResponse response) {
+    private void initProtocol() {
+        if (protocol == null) {
+            protocol = this.protocolFactory.createProtocol();
+        }
+    }
+
+    public void sendEvent(IDebuggerServerEvent response) {
+        initProtocol();
         protocol.sendResponse(response);
     }
 

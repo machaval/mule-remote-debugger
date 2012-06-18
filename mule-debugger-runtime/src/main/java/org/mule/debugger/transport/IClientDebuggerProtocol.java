@@ -1,7 +1,7 @@
 package org.mule.debugger.transport;
 
 import org.mule.debugger.request.IDebuggerRequest;
-import org.mule.debugger.response.IDebuggerResponse;
+import org.mule.debugger.response.IDebuggerServerEvent;
 
 /**
  * (c) 2012 MuleSoft, Inc. This software is protected under international copyright
@@ -12,5 +12,5 @@ import org.mule.debugger.response.IDebuggerResponse;
 public interface IClientDebuggerProtocol {
     void sendRequest(IDebuggerRequest request);
 
-    IDebuggerResponse getResponse();
+    IDebuggerServerEvent getResponse();
 }

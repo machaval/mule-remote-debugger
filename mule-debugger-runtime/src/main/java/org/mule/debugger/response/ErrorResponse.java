@@ -9,7 +9,7 @@ package org.mule.debugger.response;
 
 import org.mule.debugger.client.IDebuggerResponseCallback;
 
-public class ErrorResponse extends DebuggerResponse {
+public class ErrorResponse extends DebuggerEvent {
     private String errorMessage;
 
     public ErrorResponse(String errorMessage) {

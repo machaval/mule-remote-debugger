@@ -25,7 +25,7 @@ public class DebuggerHandler {
 
 
     private DebuggerServerFactory debuggerFactory;
-    private DebuggerCommunicationService connectionService;
+    private ClientRequestService requestService;
     private MuleMessageDebuggerRequestHandler requestHandler;
     private List<IDebuggerServiceListener> listeners;
 
@@ -66,7 +66,7 @@ public class DebuggerHandler {
             try {
                 //only one event can be processed at the same time
                 singleMessage.lock();
-                connectionService.sendResponse(debuggerFactory.createNewMessageResponse(event));
+                requestService.sendEvent(debuggerFactory.createNewMessageEvent(event));
                 requestHandler.setCurrentMuleDebuggingEvent(event);
 
                 try {
@@ -98,10 +98,12 @@ public class DebuggerHandler {
                 for (IDebuggerServiceListener listener : listeners) {
                     listener.onStart();
                 }
-                connectionService = debuggerFactory.createDebuggerConnectionService();
+                requestService = debuggerFactory.createDebuggerRequestService();
                 requestHandler = debuggerFactory.createMuleMessageRequestHandler(this);
-                connectionService.setRequestHandler(requestHandler);
-                connectionService.start();
+                requestService.setRequestHandler(requestHandler);
+                requestService.sendEvent(debuggerFactory.createConnectionEstablishedEvent());
+                requestService.run();
+
             } finally {
                 if (isClientConnected()) {
                     disconnectClient();
@@ -123,7 +125,7 @@ public class DebuggerHandler {
                 for (IDebuggerServiceListener listener : listeners) {
                     listener.onStop();
                 }
-                connectionService.stop();
+                requestService.stop();
                 clientConnected = false;
             } finally {
                 resume();

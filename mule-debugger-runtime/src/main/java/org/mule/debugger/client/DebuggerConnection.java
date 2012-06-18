@@ -23,8 +23,7 @@ public class DebuggerConnection {
     private String hostName;
     private int port;
     private Socket client;
-    private InputStream inputStream;
-    private OutputStream outputStream;
+    private SerializeDebuggerProtocol protocol;
 
 
     public DebuggerConnection(String hostName, int port) {
@@ -37,8 +36,8 @@ public class DebuggerConnection {
 
         if (!isConnected()) {
             client = new Socket(hostName, port);
-            inputStream = client.getInputStream();
-            outputStream = client.getOutputStream();
+
+            protocol = new SerializeDebuggerProtocol(client.getInputStream(), client.getOutputStream());
             return true;
         }
 
@@ -46,17 +45,17 @@ public class DebuggerConnection {
 
     }
 
-    public IClientDebuggerProtocol createProtocol() {
-        return new SerializeDebuggerProtocol(inputStream, outputStream);
+    public IClientDebuggerProtocol getProtocol() {
+        return protocol;
     }
 
 
     public void disconnect() {
         try {
             if (isConnected()) {
+                protocol.close();
                 client.close();
-                inputStream.close();
-                outputStream.close();
+
             }
 
 

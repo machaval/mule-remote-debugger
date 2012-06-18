@@ -29,7 +29,7 @@ public class ObjectFieldDefinitionComposite extends Composite implements IObject
     {
         SashForm form = new SashForm(parent, SWT.VERTICAL);
         form.setLayoutData(new GridData(GridData.FILL_BOTH));
-        
+
         setPayloadTreeViewer(DebuggerWidgetsBuilder.createObjectDefinitionTreeTable(form));
         getPayloadTreeViewer().getTree().setLayoutData(new GridData(GridData.FILL_BOTH));
         setValueText(new Text(form, SWT.MULTI | SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL | SWT.WRAP));
@@ -54,7 +54,10 @@ public class ObjectFieldDefinitionComposite extends Composite implements IObject
     @Override
     public void setSelectionTextValue(String value)
     {
-        getValueText().setText(value);
+        if (value != null){
+            getValueText().setText(value);
+        }
+        
 
     }
 

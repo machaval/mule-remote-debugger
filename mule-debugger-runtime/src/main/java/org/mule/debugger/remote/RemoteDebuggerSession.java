@@ -1,12 +1,9 @@
 package org.mule.debugger.remote;
 
 
-import org.mule.debugger.response.ConnectionEstablishedResponse;
 import org.mule.debugger.response.ErrorResponse;
 import org.mule.debugger.server.DebuggerHandler;
 import org.mule.debugger.server.DebuggerServerFactory;
-import org.mule.debugger.transport.IServerDebuggerProtocol;
-import org.mule.debugger.transport.SerializeDebuggerProtocol;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -36,15 +33,13 @@ public class RemoteDebuggerSession implements Runnable {
         try {
             input = clientSocket.getInputStream();
             output = clientSocket.getOutputStream();
-            IServerDebuggerProtocol serverDebuggerProtocol = new SerializeDebuggerProtocol(input, output);
-
+            final DebuggerServerFactory debuggerFactory = new DebuggerServerFactory(input, output);
             if (!handler.isClientConnected()) {
-                serverDebuggerProtocol.sendResponse(new ConnectionEstablishedResponse());
-                handler.setDebuggerFactory(new DebuggerServerFactory(serverDebuggerProtocol));
+                handler.setDebuggerFactory(debuggerFactory);
                 handler.connectClient();
                 handler.disconnectClient();
             } else {
-                serverDebuggerProtocol.sendResponse(new ErrorResponse("I can not attend you right now someone else is already connected. Try later!"));
+                debuggerFactory.createProtocol().sendResponse(new ErrorResponse("I can not attend you right now someone else is already connected. Try later!"));
             }
 
 

@@ -4,8 +4,8 @@ import org.mule.api.MuleMessage;
 import org.mule.debugger.MuleDebuggingContext;
 import org.mule.debugger.exception.RemoteDebugException;
 import org.mule.debugger.response.ExceptionResponse;
-import org.mule.debugger.response.IDebuggerResponse;
-import org.mule.debugger.response.MuleMessageArrivedResponse;
+import org.mule.debugger.response.IDebuggerServerEvent;
+import org.mule.debugger.response.MuleMessageArrivedEvent;
 import org.mule.debugger.server.MuleMessageInfoBuilder;
 
 public class AssignScriptResultToPayloadCommandImpl extends AbstractCommand {
@@ -18,7 +18,7 @@ public class AssignScriptResultToPayloadCommandImpl extends AbstractCommand {
         this.script = script;
     }
 
-    public IDebuggerResponse execute() {
+    public IDebuggerServerEvent execute() {
         MuleDebuggingContext debuggingMessage = getMuleDebuggingMessage();
         MuleMessage message = debuggingMessage.getMessage();
         ClassLoader oldContext = Thread.currentThread().getContextClassLoader();
@@ -27,7 +27,7 @@ public class AssignScriptResultToPayloadCommandImpl extends AbstractCommand {
 
             Object result = debuggingMessage.getExpressionManager().evaluate(script, message);
             debuggingMessage.getMessage().setPayload(result);
-            return new MuleMessageArrivedResponse(MuleMessageInfoBuilder.createFromMuleMessage(getMuleDebuggingMessage()));
+            return new MuleMessageArrivedEvent(MuleMessageInfoBuilder.createFromMuleMessage(getMuleDebuggingMessage()));
         } catch (Exception e) {
             return new ExceptionResponse(new RemoteDebugException(e.getMessage(), e));
         } finally {
