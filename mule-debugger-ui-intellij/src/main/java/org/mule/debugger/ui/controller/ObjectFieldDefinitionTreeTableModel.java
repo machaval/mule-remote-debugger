@@ -11,6 +11,8 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
 import java.awt.*;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 public class ObjectFieldDefinitionTreeTableModel extends DefaultTreeModel
@@ -22,8 +24,13 @@ public class ObjectFieldDefinitionTreeTableModel extends DefaultTreeModel
         super(new DefaultMutableTreeNode(root));
     }
 
-    public static TreeTableModel createTreeNode(ObjectFieldDefinition object) {
-        return new ObjectFieldDefinitionTreeTableModel(object);
+    public static TreeTableModel createTreeNode(ObjectFieldDefinition... object) {
+        return createTreeNode(Arrays.asList(object));
+    }
+
+    public static TreeTableModel createTreeNode(Collection<ObjectFieldDefinition> objects) {
+
+        return new ObjectFieldDefinitionTreeTableModel(ObjectFieldDefinitionHelper.createRootNode(objects));
     }
 
 
@@ -84,17 +91,16 @@ public class ObjectFieldDefinitionTreeTableModel extends DefaultTreeModel
     }
 
 
-
     @Override
     public void setTree(JTree tree) {
-        tree.setCellRenderer(new JBDefaultTreeCellRenderer(tree){
+        tree.setCellRenderer(new JBDefaultTreeCellRenderer(tree) {
             @Override
             public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded, boolean leaf, int row, boolean hasFocus) {
                 Component treeCellRendererComponent = super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
-                if(value instanceof DefaultMutableTreeNode){
+                if (value instanceof DefaultMutableTreeNode) {
                     Object userObject = ((DefaultMutableTreeNode) value).getUserObject();
-                    if(userObject instanceof ObjectFieldDefinition){
-                        setText(((ObjectFieldDefinition)userObject).getName());
+                    if (userObject instanceof ObjectFieldDefinition) {
+                        setText(((ObjectFieldDefinition) userObject).getName());
                     }
                 }
                 return treeCellRendererComponent;

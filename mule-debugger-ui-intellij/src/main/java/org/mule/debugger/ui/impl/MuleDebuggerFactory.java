@@ -7,21 +7,11 @@
  */
 package org.mule.debugger.ui.impl;
 
-import com.intellij.debugger.ui.DebuggerContentInfo;
 import com.intellij.execution.ui.RunnerLayoutUi;
-import com.intellij.execution.ui.layout.LayoutAttractionPolicy;
-import com.intellij.execution.ui.layout.LayoutViewOptions;
 import com.intellij.execution.ui.layout.PlaceInGrid;
-import com.intellij.openapi.Disposable;
-import com.intellij.openapi.actionSystem.ActionGroup;
-import com.intellij.openapi.actionSystem.ActionManager;
 import com.intellij.openapi.actionSystem.ActionPlaces;
 import com.intellij.openapi.actionSystem.DefaultActionGroup;
-import com.intellij.openapi.project.Project;
-import com.intellij.openapi.ui.SimpleToolWindowPanel;
-import com.intellij.openapi.ui.TitlePanel;
 import com.intellij.ui.content.Content;
-import com.intellij.xdebugger.XDebuggerBundle;
 import com.intellij.xdebugger.impl.ui.XDebuggerUIConstants;
 import org.jetbrains.annotations.NotNull;
 import org.mule.debugger.ui.actions.ConnectAction;
@@ -31,12 +21,11 @@ import org.mule.debugger.ui.controller.DebuggerResponseCallback;
 import org.mule.debugger.ui.event.EventBus;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class MuleDebuggerFactory {
 
 
-    private MuleDebuggerPayloadView payloadComposite;
+    private ObjectFieldDefinitionComposite payloadComposite;
     private MuleDebuggerPropertiesView propertiesView;
     private ScriptEvaluationComposite scriptView;
     //This is for
@@ -54,7 +43,7 @@ public class MuleDebuggerFactory {
 
     public JComponent createControl() {
         this.propertiesView = new MuleDebuggerPropertiesView();
-        this.payloadComposite = new MuleDebuggerPayloadView();
+        this.payloadComposite = new ObjectFieldDefinitionComposite();
         this.scriptView = new ScriptEvaluationComposite();
 
 
@@ -87,7 +76,7 @@ public class MuleDebuggerFactory {
 
 
 
-    public MuleDebuggerPayloadView getPayloadComposite() {
+    public ObjectFieldDefinitionComposite getPayloadComposite() {
         return payloadComposite;
     }
 

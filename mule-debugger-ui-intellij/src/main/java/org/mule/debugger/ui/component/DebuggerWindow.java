@@ -32,8 +32,8 @@ public class DebuggerWindow implements ToolWindowFactory {
         Content content = contentFactory.createContent(comp.createControl(), "Payload", false);
 
         new MuleDebuggerPayloadController(comp.getPayloadComposite(), eventBus, project);
-        new MuleDebuggerPropertiesController(comp.getPropertiesView(), eventBus);
-        new ScriptEvaluationController(comp.getScriptView(), eventBus);
+        new MuleDebuggerPropertiesController(comp.getPropertiesView(), eventBus, project);
+        new ScriptEvaluationController(comp.getScriptView(), eventBus, project);
 
 
         toolWindow.getContentManager().addContent(content);

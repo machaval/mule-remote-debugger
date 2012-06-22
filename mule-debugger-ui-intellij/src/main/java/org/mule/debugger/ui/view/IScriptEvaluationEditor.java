@@ -2,6 +2,7 @@
 package org.mule.debugger.ui.view;
 
 import com.intellij.ui.treeStructure.treetable.TreeTable;
+import org.mule.debugger.ui.impl.ObjectFieldDefinitionComposite;
 import org.mule.widgets.JTreeTable;
 
 import javax.swing.*;
@@ -9,14 +10,16 @@ import javax.swing.*;
 public interface IScriptEvaluationEditor
 {
 
-    JTextArea getResultText();
+
 
     JTextField getScript() ;
 
     JComboBox getExpressionType();
 
-    TreeTable getResultTree();
+    ObjectFieldDefinitionComposite getResult();
 
     JButton getSetResultAsPayload();
+
+
 
 }

@@ -1,6 +1,8 @@
 package org.mule.debugger.ui.controller;
 
+import com.intellij.openapi.project.Project;
 import com.intellij.ui.treeStructure.treetable.ListTreeTableModel;
+import com.intellij.ui.treeStructure.treetable.TreeTableModel;
 import com.intellij.util.ui.ColumnInfo;
 import org.mule.debugger.client.DebuggerClient;
 import org.mule.debugger.client.DefaultDebuggerResponseCallback;
@@ -20,6 +22,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Arrays;
 
 public class ScriptEvaluationController {
     private static final String[] EXPRESSION_TYPES = new String[]{"groovy", "mule", "headers", "variable",
@@ -28,18 +31,30 @@ public class ScriptEvaluationController {
             "xpath", "xpath2", "xpath-node"};
     private IScriptEvaluationEditor scriptEvaluation;
     private EventBus eventBus;
+    private Project project;
     private DebuggerClient client;
 
-    public ScriptEvaluationController(IScriptEvaluationEditor scriptEvaluation, EventBus eventBus) {
+    public ScriptEvaluationController(IScriptEvaluationEditor scriptEvaluation, EventBus eventBus, Project project) {
         super();
         this.scriptEvaluation = scriptEvaluation;
         this.eventBus = eventBus;
+        this.project = project;
         bind();
     }
 
     protected void bind() {
 
         scriptEvaluation.getExpressionType().setModel(new DefaultComboBoxModel(EXPRESSION_TYPES));
+
+
+        new AbstractObjectFieldDefinitionController(scriptEvaluation.getResult(), eventBus, project) {
+
+            @Override
+            protected void populateData(NewMuleMessageArrivedEvent event) {
+                // TODO Auto-generated method stub
+
+            }
+        };
 
 
         eventBus.registerListener(DebuggerEventType.CLIENT_INITIALIZED,
@@ -86,12 +101,11 @@ public class ScriptEvaluationController {
 
                                 @Override
                                 public void run() {
-                                    scriptEvaluation.getResultText().setText(info.getToStringResult());
                                     ObjectFieldDefinition excResultDef = info.getResult();
 
-                                    scriptEvaluation.getResultTree()
-                                            .setModel(ObjectFieldDefinitionTreeTableModel.createTreeNode(excResultDef));
-                                    eventBus.fireEvent(new NewMuleMessageArrivedEvent(info.getMessage()));
+                                    scriptEvaluation.getResult()
+                                            .getPayloadTreeViewer()
+                                            .setModel(ObjectFieldDefinitionTreeTableModel.createTreeNode(Arrays.asList(excResultDef)));
 
                                 }
                             });
@@ -103,13 +117,10 @@ public class ScriptEvaluationController {
 
                                 @Override
                                 public void run() {
-                                    scriptEvaluation.getResultText().setText("ERROR :\n Remote exception  :\n"
-                                            + exception.getMessage());
-
                                     ObjectFieldDefinition excResultDef = exception.getException();
-
-                                    scriptEvaluation.getResultTree()
-                                            .setModel(ObjectFieldDefinitionTreeTableModel.createTreeNode(excResultDef));
+                                    scriptEvaluation.getResult()
+                                            .getPayloadTreeViewer()
+                                            .setModel(ObjectFieldDefinitionTreeTableModel.createTreeNode(Arrays.asList(excResultDef)));
                                 }
                             });
 
@@ -149,8 +160,9 @@ public class ScriptEvaluationController {
     }
 
     private void cleanUI() {
-        scriptEvaluation.getResultText().setText("");
-        scriptEvaluation.getResultTree()
-                .setModel(new ListTreeTableModel(null, new ColumnInfo[0]));
+
+        TreeTableModel emptyMode = ObjectFieldDefinitionTreeTableModel.createTreeNode();
+        scriptEvaluation.getResult()
+                .getPayloadTreeViewer().setModel(emptyMode);
     }
 }

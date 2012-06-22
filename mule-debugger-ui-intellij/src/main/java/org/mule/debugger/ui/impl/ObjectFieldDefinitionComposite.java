@@ -1,37 +1,33 @@
 package org.mule.debugger.ui.impl;
 
 
-import com.intellij.ui.IdeBorderFactory;
 import com.intellij.ui.components.JBScrollPane;
-import com.intellij.ui.components.labels.LinkLabel;
 import com.intellij.ui.treeStructure.treetable.ListTreeTableModel;
 import com.intellij.ui.treeStructure.treetable.TreeTable;
 import com.intellij.ui.treeStructure.treetable.TreeTableCellRenderer;
 import com.intellij.ui.treeStructure.treetable.TreeTableModel;
 import com.intellij.util.ui.ColumnInfo;
 import com.intellij.util.ui.UIUtil;
-import org.mule.debugger.ui.view.IDebuggerMessageViewer;
+import org.mule.debugger.ui.view.IObjectFieldDefinitionEditor;
 
 
 import javax.swing.*;
 import java.awt.*;
 
-public class MuleDebuggerPayloadView extends JPanel implements IDebuggerMessageViewer {
-
+public class ObjectFieldDefinitionComposite extends JPanel implements IObjectFieldDefinitionEditor {
 
     private TreeTable payloadTreeViewer;
-
     private JTextArea stringValue;
 
-    public MuleDebuggerPayloadView() {
+    public ObjectFieldDefinitionComposite() {
         super();
         this.createControl();
 
     }
 
     protected void createControl() {
-        this.setLayout(new BorderLayout(1,3));
-        payloadTreeViewer = new TreeTable(new ListTreeTableModel(null,new ColumnInfo[0])){
+        this.setLayout(new BorderLayout(1, 3));
+        payloadTreeViewer = new TreeTable(new ListTreeTableModel(null, new ColumnInfo[0])) {
             @Override
             public TreeTableCellRenderer createTableRenderer(TreeTableModel treeTableModel) {
                 TreeTableCellRenderer tableRenderer = super.createTableRenderer(treeTableModel);
@@ -49,8 +45,8 @@ public class MuleDebuggerPayloadView extends JPanel implements IDebuggerMessageV
         stringValue.setEditable(false);
         stringValue.setRows(3);
 
-        this.add(new JBScrollPane(payloadTreeViewer),BorderLayout.CENTER);
-        this.add(new JBScrollPane(stringValue),BorderLayout.SOUTH);
+        this.add(new JBScrollPane(payloadTreeViewer), BorderLayout.CENTER);
+        this.add(new JBScrollPane(stringValue), BorderLayout.SOUTH);
 
 
         //this.setBorder(IdeBorderFactory.createTitledBorder("Message"));
@@ -58,12 +54,10 @@ public class MuleDebuggerPayloadView extends JPanel implements IDebuggerMessageV
     }
 
 
-
     @Override
     public void setSelectionTextValue(String paylodOutput) {
         stringValue.setText(paylodOutput);
     }
-
 
 
     @Override

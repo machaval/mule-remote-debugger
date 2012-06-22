@@ -13,120 +13,70 @@ import java.awt.*;
 public class MuleDebuggerPropertiesView extends JPanel implements IMuleDebuggerProperties {
 
 
-    private JBTable inboundProperties;
-    private JBTable invocationProperties;
-    private JBTable sessionProperties;
-    private JBTable outboundProperties;
-    private AnActionButtonRunnable addInvocation;
-    private AnActionButtonRunnable removeInvocation;
-    private AnActionButtonRunnable addSession;
-    private AnActionButtonRunnable removeSession;
-    private AnActionButtonRunnable addOutbound;
-    private AnActionButtonRunnable removeOutbound;
-
-    public void setAddInvocation(AnActionButtonRunnable addInvocation) {
-        this.addInvocation = addInvocation;
-    }
-
-    public void setRemoveInvocation(AnActionButtonRunnable removeInvocation) {
-        this.removeInvocation = removeInvocation;
-    }
-
-    public void setAddSession(AnActionButtonRunnable addSession) {
-        this.addSession = addSession;
-    }
-
-    public void setRemoveSession(AnActionButtonRunnable removeSession) {
-        this.removeSession = removeSession;
-    }
-
-    public void setAddOutbound(AnActionButtonRunnable addOutbound) {
-        this.addOutbound = addOutbound;
-    }
-
-    public void setRemoveOutbound(AnActionButtonRunnable removeOutbound) {
-        this.removeOutbound = removeOutbound;
-    }
+    private ObjectFieldDefinitionComposite inboudProperties;
+    private ObjectFieldDefinitionComposite invocationProperties;
+    private ObjectFieldDefinitionComposite sessionProperties;
+    private ObjectFieldDefinitionComposite outboundProperties;
 
     public MuleDebuggerPropertiesView() {
+        createControl();
+
+    }
+
+    protected void createControl() {
+        this.setLayout(new BorderLayout(1, 3));
+
+        setInboudProperties(createTreeTable());
+        setInvocationProperties(createTreeTable());
+        setSessionProperties(createTreeTable());
+        setOutboundProperties(createTreeTable());
 
         JBTabbedPane debuggerTabs = new JBTabbedPane(SwingConstants.TOP);
+        debuggerTabs.add("Inbound", getInboudProperties());
+        debuggerTabs.add("Flow", getInvocationProperties());
+        debuggerTabs.add("Session", getSessionProperties());
+        debuggerTabs.add("Outbound", getOutboundProperties());
+        this.add(debuggerTabs, BorderLayout.CENTER);
 
-        this.inboundProperties = new JBTable();
-        this.invocationProperties = new JBTable();
-        this.sessionProperties = new JBTable();
-        this.outboundProperties = new JBTable();
-        final ToolbarDecorator inboundPropertiesDecorated = ToolbarDecorator.createDecorator(inboundProperties);
-
-
-        final ToolbarDecorator invocationPropertiesDecorated = ToolbarDecorator.createDecorator(invocationProperties);
-        invocationPropertiesDecorated.setAddAction(new AnActionButtonRunnable() {
-            @Override
-            public void run(AnActionButton anActionButton) {
-                addInvocation.run(anActionButton);
-            }
-        }).setRemoveAction(new AnActionButtonRunnable() {
-            @Override
-            public void run(AnActionButton anActionButton) {
-                removeInvocation.run(anActionButton);
-            }
-        });
-
-        final ToolbarDecorator sessionPropertiesDecorated = ToolbarDecorator.createDecorator(sessionProperties);
-        sessionPropertiesDecorated.setAddAction(new AnActionButtonRunnable() {
-            @Override
-            public void run(AnActionButton anActionButton) {
-                addSession.run(anActionButton);
-            }
-        }).setRemoveAction(new AnActionButtonRunnable() {
-            @Override
-            public void run(AnActionButton anActionButton) {
-                removeSession.run(anActionButton);
-            }
-        });
-
-        final ToolbarDecorator outboundPropertiesDecorated = ToolbarDecorator.createDecorator(outboundProperties);
-        outboundPropertiesDecorated.setAddAction(new AnActionButtonRunnable() {
-            @Override
-            public void run(AnActionButton anActionButton) {
-                addOutbound.run(anActionButton);
-            }
-        }).setRemoveAction(new AnActionButtonRunnable() {
-            @Override
-            public void run(AnActionButton anActionButton) {
-                removeOutbound.run(anActionButton);
-            }
-        });
-
-
-        debuggerTabs.add("Inbound", inboundPropertiesDecorated.createPanel());
-        debuggerTabs.add("Flow", invocationPropertiesDecorated.createPanel());
-        debuggerTabs.add("Session", sessionPropertiesDecorated.createPanel());
-        debuggerTabs.add("Outbound", outboundPropertiesDecorated.createPanel());
-        this.setLayout(new GridLayout());
-
-        this.add(debuggerTabs);
-        // this.setBorder(IdeBorderFactory.createTitledBorder("Properties"));
     }
 
 
-    @Override
-    public JTable getInvocationProperties() {
+    /**
+     * Create the Table
+     */
+    private ObjectFieldDefinitionComposite createTreeTable() {
+        return new ObjectFieldDefinitionComposite();
+    }
+
+    public void setInboudProperties(ObjectFieldDefinitionComposite inboudProperties) {
+        this.inboudProperties = inboudProperties;
+    }
+
+    public void setInvocationProperties(ObjectFieldDefinitionComposite invocationProperties) {
+        this.invocationProperties = invocationProperties;
+    }
+
+    public void setSessionProperties(ObjectFieldDefinitionComposite sessionProperties) {
+        this.sessionProperties = sessionProperties;
+    }
+
+    public void setOutboundProperties(ObjectFieldDefinitionComposite outboundProperties) {
+        this.outboundProperties = outboundProperties;
+    }
+
+    public ObjectFieldDefinitionComposite getInboudProperties() {
+        return inboudProperties;
+    }
+
+    public ObjectFieldDefinitionComposite getInvocationProperties() {
         return invocationProperties;
     }
 
-    @Override
-    public JTable getSessionProperties() {
+    public ObjectFieldDefinitionComposite getSessionProperties() {
         return sessionProperties;
     }
 
-    @Override
-    public JTable getInboundProperties() {
-        return inboundProperties;
-    }
-
-    @Override
-    public JTable getOutboundProperties() {
+    public ObjectFieldDefinitionComposite getOutboundProperties() {
         return outboundProperties;
     }
 }
