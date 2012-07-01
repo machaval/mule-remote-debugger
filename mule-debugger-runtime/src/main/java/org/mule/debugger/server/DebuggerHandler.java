@@ -51,7 +51,7 @@ public class DebuggerHandler {
             if (!isCurrentMessage) {
 
                 try {
-                    messageResume.acquire();
+                    this.messageResume.acquire();
                 } catch (InterruptedException e) {
                     resume();
                 }
@@ -135,9 +135,8 @@ public class DebuggerHandler {
 
     public void resume() {
         this.currentMessage = null;
+        this.messageProcessed.release();
         this.messageResume.release();
-
-        stepOver();
     }
 
     public void stepOver() {

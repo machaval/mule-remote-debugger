@@ -25,6 +25,8 @@ import org.mule.context.notification.ServerNotificationManager;
 import org.mule.debugger.MuleDebuggingContext;
 import org.mule.debugger.remote.RemoteDebuggerService;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CountDownLatch;
@@ -36,11 +38,60 @@ public class DebuggerAgent extends AbstractAgent {
     public static final String MULE_DEBUG_SUSPEND = "mule.debug.suspend";
 
     private transient static Logger logger = Logger.getLogger(DebuggerAgent.class.getName());
-
+   //Change this for a SET
+    private static final List<String> MESSAGE_PROCESSOR_NAMES_BLACK_LIST = Arrays.asList(
+            "com.mulesoft.mule.tracking.event.EventMessageProcessor",
+            "com.mulesoft.mule.tracking.event.TransactionMessageProcessor",
+            "org.mule.api.processor.MessageProcessors$LifecyleAwareMessageProcessorWrapper",
+            "org.mule.construct.AbstractFlowConstruct$1$1",
+            "org.mule.construct.AbstractPipeline$ProcessIfPipelineStartedMessageProcessor",
+            "org.mule.construct.processor.FlowConstructStatisticsMessageProcessor",
+            "org.mule.construct.AbstractPipeline$1",
+            "org.mule.component.AbstractComponent$1$1",
+            "org.mule.endpoint.DefaultOutboundEndpoint",
+            "org.mule.endpoint.inbound.InboundLoggingMessageProcessor",
+            "org.mule.endpoint.inbound.InboundNotificationMessageProcessor",
+            "org.mule.endpoint.inbound.InboundEndpointPropertyMessageProcessor",
+            "org.mule.endpoint.inbound.InboundEndpointMimeTypeCheckingMessageProcessor",
+            "org.mule.endpoint.inbound.InboundExceptionDetailsMessageProcessor",
+            "org.mule.endpoint.outbound.OutboundEndpointPropertyMessageProcessor",
+            "org.mule.endpoint.outbound.OutboundEndpointMimeTypeCheckingMessageProcessor",
+            "org.mule.endpoint.outbound.OutboundEventTimeoutMessageProcessor",
+            "org.mule.endpoint.outbound.OutboundExceptionDetailsMessageProcessor",
+            "org.mule.endpoint.outbound.OutboundLoggingMessageProcessor",
+            "org.mule.endpoint.outbound.OutboundNotificationMessageProcessor",
+            "org.mule.endpoint.outbound.OutboundResponsePropertiesMessageProcessor",
+            "org.mule.endpoint.outbound.OutboundRewriteResponseEventMessageProcessor",
+            "org.mule.endpoint.outbound.OutboundRootMessageIdPropertyMessageProcessor",
+            "org.mule.endpoint.outbound.OutboundSessionHandlerMessageProcessor",
+            "org.mule.interceptor.LoggingInterceptor",
+            "org.mule.interceptor.ProcessingTimeInterceptor",
+            "org.mule.lifecycle.processor.ProcessIfStartedMessageProcessor",
+            "org.mule.lifecycle.processor.ProcessIfStartedWaitIfPausedMessageProcessor",
+            "org.mule.lifecycle.processor.ProcessIfStartedWaitIfSyncPausedMessageProcessor",
+            "org.mule.module.cxf.config.FlowConfiguringMessageProcessor",
+            "org.mule.processor.AsyncInterceptingMessageProcessor",
+            "org.mule.processor.OptionalAsyncInterceptingMessageProcessor",
+            "org.mule.processor.EndpointTransactionalInterceptingMessageProcessor",
+            "org.mule.processor.TransactionalInterceptingMessageProcessor",
+            "org.mule.processor.ExceptionHandlingMessageProcessor",
+            "org.mule.processor.LaxAsyncInterceptingMessageProcessor",
+            "org.mule.processor.LaxSedaStageInterceptingMessageProcessor",
+            "org.mule.processor.SedaStageInterceptingMessageProcessor",
+            "org.mule.processor.chain.DefaultMessageProcessorChain",
+            "org.mule.processor.chain.InterceptingChainLifecycleWrapper",
+            "org.mule.processor.chain.InterceptingChainLifecycleWrapper$1",
+            "org.mule.routing.requestreply.AsyncReplyToPropertyRequestReplyReplier",
+            "org.mule.routing.requestreply.ReplyToParameterProcessor",
+            "org.mule.routing.requestreply.ReplyToPropertyRequestReplyReplier",
+            "org.mule.service.processor.ServiceLoggingMessageProcessor",
+            "org.mule.service.processor.ServiceInternalMessageProcessor",
+            "org.mule.source.StartableCompositeMessageSource$InternalMessageProcessor",
+            "org.mule.transport.AbstractConnector$DispatcherMessageProcessor"
+    );
 
     private RemoteDebuggerService server;
     private DebuggerHandler handler;
-
 
 
     public DebuggerAgent() {
@@ -155,8 +206,9 @@ public class DebuggerAgent extends AbstractAgent {
 
                     ExpressionManager expressionManager = context.getExpressionManager();
                     MessageProcessor processor = notification.getProcessor();
-
-                     getHandler().messageArrived(new MuleDebuggingContext(message,expressionManager,Thread.currentThread().getContextClassLoader(),processor));
+                    if (!MESSAGE_PROCESSOR_NAMES_BLACK_LIST.contains(processor.getClass().getName())) {
+                        getHandler().messageArrived(new MuleDebuggingContext(message, expressionManager, Thread.currentThread().getContextClassLoader(), processor));
+                    }
                 }
             }
         }
